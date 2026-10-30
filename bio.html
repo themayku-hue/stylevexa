@@ -1,0 +1,557 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create stylish Instagram bios for boys and girls with InstaVibez.">
+  <title>Instagram Bio Generator - InstaVibez</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .bio-section {
+      max-width: 750px;
+      margin: 65px auto;
+      padding: 30px 20px;
+    }
+
+    .bio-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 25px;
+      margin-top: 25px;
+    }
+
+    .bio-box label {
+      display: block;
+      margin: 15px 0 8px;
+      font-weight: bold;
+    }
+
+    .bio-box select,
+    .bio-box textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #10101c;
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .bio-box textarea {
+      resize: vertical;
+      min-height: 150px;
+      margin-top: 10px;
+    }
+
+    .bio-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .bio-actions button {
+      flex: 1;
+      min-width: 130px;
+      border: none;
+      padding: 13px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      background: linear-gradient(90deg, #a855f7, #ec4899);
+    }
+
+    .bio-actions button:hover {
+      opacity: .85;
+    }
+
+    .bio-message {
+      margin-top: 12px;
+      color: #d8a9ff;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+
+    <nav class="navbar" id="navbar">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio</a>
+      <a href="username.html">Username</a>
+      <a href="fonts.html">Fonts</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="bio-section">
+
+    <div class="section-heading">
+      <span class="hero-tag">✨ InstaVibez Bio Tool</span>
+      <h1>Instagram Bio Generator</h1>
+      <p>Create amazing and stylish Instagram bios for your profile.</p>
+    </div>
+
+    <div class="bio-box">
+
+      <label for="bioCategory">Select Bio Category</label>
+
+      <select id="bioCategory">
+        <option value="boys">Boys Bio</option>
+        <option value="girls">Girls Bio</option>
+        <option value="attitude">Attitude Bio</option>
+        <option value="love">Love Bio</option>
+        <option value="sad">Sad Bio</option>
+        <option value="vip">VIP Bio</option>
+      </select>
+
+      <label for="bioOutput">Your Instagram Bio</label>
+
+      <textarea id="bioOutput" readonly placeholder="Your stylish bio will appear here..."></textarea>
+
+      <div class="bio-actions">
+        <button type="button" id="generateBio">✨ Generate Bio</button>
+        <button type="button" id="copyBio">📋 Copy Bio</button>
+      </div>
+
+      <p class="bio-message" id="bioMessage" aria-live="polite"></p>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+    <p>Make Your Profile Unique ✨</p>
+
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="guide.html">Guide</a>
+    </div>
+
+    <p class="copyright">© <span id="currentYear">2026</span> InstaVibez. All Rights Reserved.</p>
+  </div>
+</footer>
+
+ 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const categories = {
+
+    boys: [
+      "👑 Born To Be Different",
+      "😎 Simple Boy With Big Dreams",
+      "🔥 Hustle Until Success",
+      "💯 Family Is My Priority",
+      "🚀 Dream Big Work Hard",
+      "🖤 Silent Mind Strong Heart",
+      "⚡ Making My Own History",
+      "💪 Never Depend On Anyone",
+      "🏆 Success Is My Destination",
+      "🌍 Exploring My Own World",
+      "❤️ Respect Everyone",
+      "👑 Royal Mindset",
+      "🎯 Focused On My Goals",
+      "🦁 Fearless By Nature",
+      "✨ Living My Best Life",
+      "💎 Original Not A Copy",
+      "🤝 Loyalty Above Everything",
+      "🌟 Creating My Own Story",
+      "🔥 Work In Silence",
+      "💫 One Life One Dream"
+    ],
+
+    girls: [
+      "🦋 Just A Girl With Dreams",
+      "👑 Queen Of My Own World",
+      "🌸 Happiness Looks Good On Me",
+      "✨ Born To Shine Bright",
+      "💖 Loving Myself Every Day",
+      "🌷 Beauty With A Strong Mind",
+      "🦄 Unique In My Own Way",
+      "💕 Smile Is My Superpower",
+      "🌙 Moon Child With Dreams",
+      "💎 Classy Never Ordinary",
+      "🎀 Sweet But Strong",
+      "🌻 Spreading Positive Energy",
+      "🧸 Cute Heart Wild Soul",
+      "💫 Making My Dreams Real",
+      "🌺 Confidence Is My Beauty",
+      "🦋 Growing At My Own Pace",
+      "❤️ Kind Heart Strong Soul",
+      "👸 My Crown My Rules",
+      "🌈 Creating My Own Sunshine",
+      "✨ A Little Magic Everywhere"
+    ],
+
+    attitude: [
+      "😎 My Life My Rules",
+      "🔥 No Competition Just Evolution",
+      "👑 Born To Stand Out",
+      "⚡ Silence Is My Attitude",
+      "🖤 I Don't Chase I Attract",
+      "💯 Original Since Day One",
+      "🦁 Respect Is Everything",
+      "🚀 Watch Me Rise",
+      "👊 No Fear No Limits",
+      "💎 Rare Personality",
+      "🎯 Focused Not Distracted",
+      "🔥 Legends Never Explain",
+      "😈 Different By Nature",
+      "👑 Confidence Is My Style",
+      "⚔️ Stronger Than Yesterday",
+      "💫 My Vibe My Rules",
+      "🖤 Not Here To Impress",
+      "🏆 Actions Speak Louder",
+      "⚡ Never Underestimate Me",
+      "😎 Unbothered And Unstoppable"
+    ],
+
+    love: [
+      "❤️ Love Makes Life Beautiful",
+      "🥰 You Are My Favorite Person",
+      "🌹 Heart Full Of Feelings",
+      "💞 Together Is My Happy Place",
+      "🫶 Love Without Limits",
+      "💕 Collecting Beautiful Memories",
+      "💌 Forever Starts With You",
+      "🌷 A Heart That Loves Deeply",
+      "✨ Made For True Love",
+      "❤️ One Heart One Feeling",
+      "🦋 Falling In Love With Life",
+      "💖 Happiness Is Being Together",
+      "🌙 You Are My Moonlight",
+      "💫 Love Is My Favorite Story",
+      "🧿 Blessed With Beautiful People",
+      "🌹 A Little Romance Everyday",
+      "💍 Dreams Of Forever",
+      "🥀 Real Love Never Fades",
+      "💗 Love More Fear Less",
+      "🫀 My Heart Knows Your Name"
+    ],
+
+    sad: [
+      "🥀 Smiling But Not Happy",
+      "💔 Some Feelings Stay Hidden",
+      "🌧️ Rain Understands My Silence",
+      "🖤 Broken But Still Breathing",
+      "🌙 Nights Know My Stories",
+      "😔 Sometimes Silence Hurts",
+      "🥺 Missing The Old Days",
+      "💭 Lost In My Own Thoughts",
+      "🍂 People Change Memories Stay",
+      "🕊️ Searching For Inner Peace",
+      "🥀 A Smile Hides A Story",
+      "🌫️ Walking Through Silent Nights",
+      "💔 Not Every Story Has A Happy End",
+      "🖤 Trust Takes Time",
+      "🌧️ Tears Have Their Own Language",
+      "😶 Words Left Unsaid",
+      "🌙 Healing One Day At A Time",
+      "🍁 Some Memories Never Leave",
+      "🥺 Heart Tired Of Explaining",
+      "🕯️ Finding Light In Darkness"
+    ],
+
+    vip: [
+      "👑 Royal By Heart",
+      "💎 Limited Edition Personality",
+      "⚜️ Class Is Permanent",
+      "🔥 Premium Mindset",
+      "🏆 Built For Greatness",
+      "💫 Living Beyond Ordinary",
+      "👑 Elegance Is My Identity",
+      "💎 Rare And Original",
+      "🚀 Excellence Is My Goal",
+      "✨ Luxury In My Thoughts",
+      "⚜️ Quality Over Quantity",
+      "🦁 Born With Confidence",
+      "💯 Self Made Personality",
+      "🌟 Creating My Legacy",
+      "👑 Crowned By Confidence",
+      "💎 Unique Without Trying",
+      "🔥 High Standards Always",
+      "🏅 Making Every Moment Count",
+      "⚡ Premium Vibes Only",
+      "🌍 Dreaming Beyond Limits"
+    ]
+  };
+
+  const category = document.getElementById("bioCategory");
+  const output = document.getElementById("bioOutput");
+  const generate = document.getElementById("generateBio");
+  const copy = document.getElementById("copyBio");
+  const message = document.getElementById("bioMessage");
+
+  // Create results area automatically
+  const resultArea = document.createElement("div");
+  resultArea.id = "bioResults";
+
+  output.insertAdjacentElement("afterend", resultArea);
+
+  const style = document.createElement("style");
+  style.textContent = `
+    #bioResults {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .bio-result-card {
+      background: #10101c;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .bio-result-text {
+      color: white;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .bio-result-card button {
+      background: linear-gradient(90deg,#a855f7,#ec4899);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 7px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .bio-result-heading {
+      color: #d8a9ff;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+  `;
+
+  document.head.appendChild(style);
+
+  let allBios = [];
+
+  function randomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  function shuffle(array) {
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+
+    return copy;
+  }
+
+  function createBios(type) {
+
+    const phrases = categories[type];
+    const bios = new Set();
+    let attempts = 0;
+
+    while (bios.size < 150 && attempts < 50000) {
+
+      const lineCount = 2 + Math.floor(Math.random() * 4);
+      const selected = shuffle(phrases).slice(0, lineCount);
+
+      const bio = selected.join("\n");
+
+      bios.add(bio);
+      attempts++;
+    }
+
+    return shuffle([...bios]);
+  }
+
+  function renderBios() {
+
+    resultArea.innerHTML = "";
+    message.textContent = "";
+
+    const type = category.value;
+
+    if (!categories[type]) {
+      message.textContent = "Please select a valid category.";
+      return;
+    }
+
+    allBios = createBios(type);
+
+    if (allBios.length === 0) {
+      message.textContent = "Please try again.";
+      return;
+    }
+
+    // Show first bio in original textarea
+    output.value = allBios[0];
+
+    allBios.forEach(function(bio, index) {
+
+      const card = document.createElement("div");
+      card.className = "bio-result-card";
+
+      const heading = document.createElement("div");
+      heading.className = "bio-result-heading";
+      heading.textContent = "Bio " + (index + 1);
+
+      const text = document.createElement("div");
+      text.className = "bio-result-text";
+      text.textContent = bio;
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = "📋 Copy Bio";
+
+
+button.addEventListener("click", async function() {
+
+  const success = await copyText(bio);
+
+  if (success) {
+    button.textContent = "✓ COPIED!";
+    button.style.background = "#16a34a";
+    button.style.color = "#ffffff";
+
+    setTimeout(function() {
+      button.textContent = "📋 Copy Bio";
+      button.style.background = "linear-gradient(90deg,#a855f7,#ec4899)";
+    }, 2000);
+  }
+
+});
+       
+ 
+
+ 
+
+
+      card.appendChild(heading);
+      card.appendChild(text);
+      card.appendChild(button);
+
+      resultArea.appendChild(card);
+    });
+
+    message.textContent =
+      "✨ " + allBios.length + " unique " +
+      type + " bios generated!";
+  }
+
+  
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    message.textContent = "✅ Bio copied successfully!";
+    return true;
+
+  } catch (error) {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    temp.style.position = "fixed";
+    temp.style.opacity = "0";
+
+    document.body.appendChild(temp);
+    temp.select();
+
+    const copied = document.execCommand("copy");
+    temp.remove();
+
+    message.textContent = copied
+      ? "✅ Bio copied successfully!"
+      : "❌ Copy failed!";
+
+    return copied;
+  }
+}
+
+
+  async function copyAllBios() {
+
+    if (!allBios.length) {
+      message.textContent = "Please generate bios first!";
+      return;
+    }
+
+    await copyText(
+      allBios.map((bio, index) =>
+        "Bio " + (index + 1) + "\n" + bio
+      ).join("\n\n--------------------\n\n")
+    );
+  }
+
+  generate.addEventListener("click", renderBios);
+
+   copy.addEventListener("click", async function() {
+
+  await copyAllBios();
+
+  if (message.textContent.includes("copied successfully")) {
+    copy.textContent = "✓ Copied!";
+    copy.style.background = "#16a34a";
+
+    setTimeout(function() {
+      copy.textContent = "📋 Copy All Bios";
+      copy.style.background = "";
+    }, 2000);
+  }
+
+});
+copy.textContent = "📋 Copy All Bios";
+
+  // Mobile menu
+  const menuToggle = document.getElementById("menuToggle");
+  const navbar = document.getElementById("navbar");
+
+  if (menuToggle && navbar) {
+
+    menuToggle.addEventListener("click", function() {
+      navbar.classList.toggle("active");
+
+      const open = navbar.classList.contains("active");
+
+      menuToggle.textContent = open ? "✕" : "☰";
+      menuToggle.setAttribute("aria-expanded", open);
+    });
+
+    navbar.querySelectorAll("a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        navbar.classList.remove("active");
+        menuToggle.textContent = "☰";
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  const year = document.getElementById("currentYear");
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+
+  renderBios();
+
+});
+</script>
+
+
+</body>
+</html>

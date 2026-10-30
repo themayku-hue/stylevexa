@@ -1,0 +1,324 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="InstaVibez - Stylish Instagram bios, usernames, nicknames, fonts and captions.">
+  <meta name="theme-color" content="#10101c">
+  <title>InstaVibez - Stylish Bio & Username Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        ☰
+      </button>
+
+      <nav class="navbar" id="navbar">
+        <a href="index.html">Home</a>
+        <a href="bio.html">Bio</a>
+        <a href="username.html">Username</a>
+        <a href="fonts.html">Fonts</a>
+        <a href="guide.html">Guide</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="hero-tag">✨ Welcome to InstaVibez</span>
+        <h1>Make Your Instagram <span>More Stylish</span></h1>
+        <p>
+          Create stylish bios, unique usernames, cool nicknames,
+          fancy fonts and amazing captions in seconds.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="bio.html" class="btn primary-btn">Create Bio</a>
+          <a href="username.html" class="btn secondary-btn">Generate Username</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Explore Our Tools</h2>
+          <p>Everything you need to make your profile stand out.</p>
+        </div>
+
+        <div class="tools-grid">
+
+          <a href="bio.html" class="tool-card">
+            <div class="tool-icon">✍️</div>
+            <h3>Instagram Bio</h3>
+            <p>Create stylish and attractive Instagram bios.</p>
+            <span>Explore Tool →</span>
+          </a>
+
+          <a href="#" class="tool-card">
+            <div class="tool-icon">🧪</div>
+            <h3>TEST CARD</h3>
+            <p>Testing homepage card visibility.</p>
+            <span>Explore Tool →</span>
+          </a>
+
+          <a href="username.html" class="tool-card">
+            <div class="tool-icon">👤</div>
+            <h3>Username Generator</h3>
+            <p>Generate unique and VIP-style usernames.</p>
+            <span>Explore Tool →</span>
+          </a>
+
+          <a href="fonts.html" class="tool-card">
+            <div class="tool-icon">🔤</div>
+            <h3>Stylish Fonts</h3>
+            <p>Convert normal text into fancy fonts.</p>
+            <span>Explore Tool →</span>
+          </a>
+
+          <a href="nickname.html" class="tool-card">
+            <div class="tool-icon">💎</div>
+            <h3>Nickname Generator</h3>
+            <p>Find cool and attractive nicknames.</p>
+            <span>Explore Tool →</span>
+          </a>
+
+          
+<a href="#symbolsGenerator" class="tool-card">
+  <div class="tool-icon">✨</div>
+  <h3>Stylish Symbols Generator</h3>
+  <p>Explore stylish symbols in 20 different categories.</p>
+  <span>Explore Symbols →</span>
+</a>
+
+<a href="#emojiGenerator" class="tool-card">
+  <div class="tool-icon">😍</div>
+  <h3>All Emoji & Emoji Mixer</h3>
+  <p>Explore emojis, flags and create emoji combinations.</p>
+  <span>Explore Emojis →</span>
+</a>
+
+
+          <a href="captions.html" class="tool-card">
+            <div class="tool-icon">📸</div>
+            <h3>Instagram Captions</h3>
+            <p>Discover stylish captions for your posts.</p>
+            <span>Explore Tool →</span>
+          </a>
+
+          <a href="guide.html" class="tool-card">
+            <div class="tool-icon">📖</div>
+            <h3>Instagram Guide</h3>
+            <p>Learn tips to improve your Instagram profile.</p>
+            <span>Explore Guide →</span>
+          </a>
+
+
+        </div>
+      </div>
+    </section>
+    
+<!-- ANONYMOUS NAMES GENERATOR -->
+<section class="anonymous-section" id="anonymousNames">
+
+  <h2>Anonymous Names Generator</h2>
+  <p>Find your perfect identity without using your real name!</p>
+
+  <div class="anonymous-tabs">
+    <button class="active" data-type="boys">Boys Names</button>
+    <button data-type="girls">Girls Names</button>
+  </div>
+
+  <input
+    type="text"
+    id="anonymousSearch"
+    placeholder="Search anonymous names..."
+  >
+
+  <div id="anonymousNameList"></div>
+
+  <button id="anonymousLoadMore">Load More</button>
+
+</section>
+
+<!-- STYLISH SYMBOLS GENERATOR -->
+<section class="symbols-section" id="symbolsGenerator">
+  <div class="container">
+    <h2>Stylish Symbols Generator</h2>
+    <p>Choose a category and copy your favourite symbols.</p>
+
+    <input
+      type="search"
+      id="symbolSearch"
+      placeholder="Search symbols or categories..."
+    >
+
+    <div id="symbolCategoryList" class="symbol-category-list"></div>
+
+    <div id="symbolResults" class="symbol-results"></div>
+  </div>
+</section>
+
+
+<!-- ALL EMOJI GENERATOR -->
+<section class="emoji-section" id="emojiGenerator">
+  <div class="container">
+
+    <h2>All Emoji & Emoji Mixer</h2>
+    <p>Explore emojis and create your own combinations!</p>
+
+    <input
+      type="search"
+      id="emojiSearch"
+      placeholder="Search emojis or categories..."
+    >
+
+    <div id="emojiCategoryList" class="emoji-category-list"></div>
+
+    <div id="emojiResults" class="emoji-results"></div>
+
+    <!-- EMOJI MIXER -->
+    <div class="emoji-mixer" id="emojiMixer">
+
+      <h2>Emoji Mixer</h2>
+      <p>Choose 2, 3 or 4 emojis and create combinations.</p>
+
+      <div class="emoji-mixer-options">
+        <button type="button" data-count="2">2 Emojis</button>
+        <button type="button" data-count="3">3 Emojis</button>
+        <button type="button" data-count="4">4 Emojis</button>
+      </div>
+
+      <div id="emojiPicker"></div>
+
+      <div id="selectedEmojis">Select your emojis</div>
+
+      <button type="button" id="createEmojiMix">
+        Create Combination
+      </button>
+
+      <div id="emojiMixResults"></div>
+
+    </div>
+
+  </div>
+</section>
+
+
+  </main>
+
+   
+<footer class="footer">
+  <div class="container">
+
+    <a href="index.html" class="logo">
+      Insta<span>Vibez</span>
+    </a>
+
+    <p>Make Your Profile Unique ✨</p>
+
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="guide.html">Guide</a>
+    </div>
+
+    <!-- Privacy Information -->
+    <div style="
+      background: #ffffff;
+      color: #000000;
+      padding: 25px;
+      margin: 30px auto;
+      border-radius: 12px;
+      text-align: left;
+      max-width: 1000px;
+      line-height: 1.8;
+    ">
+
+      <h2 style="color:#000000; margin-bottom:15px;">
+        About InstaVibez Privacy Policy
+      </h2>
+
+      <p style="color:#000000;">
+        Welcome to InstaVibez! Your privacy and online safety are
+        important to us. InstaVibez is a platform designed to help
+        users create stylish Instagram bios, unique usernames,
+        attractive nicknames, fancy text fonts and creative captions.
+        We aim to provide a simple and enjoyable experience for
+        everyone visiting our website.
+      </p>
+
+      <p style="color:#000000;">
+        We respect your privacy and believe that visitors should
+        understand how their information may be handled. Information
+        entered into our tools may be processed in your browser or
+        through the technical services required to operate our website.
+        We do not ask users to enter sensitive information such as
+        passwords, banking details or private account credentials.
+      </p>
+
+      <p style="color:#000000;">
+        Our website may use cookies or similar technologies to improve
+        functionality, remember preferences, understand website
+        performance and provide a better browsing experience. We may
+        also use trusted third-party services for hosting, analytics
+        and advertising. These services may have their own privacy
+        policies and data handling practices.
+      </p>
+
+      <p style="color:#000000;">
+        We take reasonable steps to maintain website security and
+        protect information from unauthorized access. However,
+        no online service can guarantee complete security. We
+        recommend that visitors avoid sharing confidential or
+        sensitive personal information through our tools.
+      </p>
+
+      <p style="color:#000000;">
+        InstaVibez may update its Privacy Policy whenever necessary
+        to reflect changes in website features, services or applicable
+        requirements. Visitors are encouraged to review the complete
+        Privacy Policy page regularly to stay informed about our
+        privacy practices and any updates.
+      </p>
+
+      <p style="color:#000000;">
+        If you have questions, suggestions or concerns about privacy,
+        information handling or the use of our website, you can
+        contact the website administrator through the available
+        contact information. By using InstaVibez, you acknowledge
+        that you have read and understood our privacy information.
+        Thank you for trusting InstaVibez!
+      </p>
+
+      <a href="privacy.html"
+         style="color:#000000; font-weight:bold; text-decoration:underline;">
+        Read Full Privacy Policy →
+      </a>
+
+    </div>
+
+    <p class="copyright">
+      © <span id="currentYear">2026</span>
+      InstaVibez. All Rights Reserved.
+    </p>
+
+  </div>
+</footer>
+
+
+  <script src="common.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="anonymous-names.js"></script>
+  <script src="symbols.js"></script>
+  
+<script src="emoji.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Instagram bio, username, profile and caption tips with InstaVibez.">
+  <title>Instagram Guide - InstaVibez</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .guide-section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .guide-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: 14px;
+    }
+
+    .guide-card h2 {
+      color: #d8a9ff;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .guide-card p,
+    .guide-card li {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .guide-card ul {
+      padding-left: 20px;
+    }
+
+    .guide-card li {
+      margin-bottom: 7px;
+    }
+
+    .guide-cta {
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 35px 20px;
+      margin-top: 30px;
+    }
+
+    .guide-cta h2 {
+      margin-bottom: 12px;
+    }
+
+    .guide-cta p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    @media(max-width: 600px) {
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+
+    <nav class="navbar" id="navbar">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio</a>
+      <a href="username.html">Username</a>
+      <a href="fonts.html">Fonts</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="guide-section">
+
+    <div class="section-heading">
+      <span class="hero-tag">📖 InstaVibez Guide</span>
+      <h1>Instagram Profile Guide</h1>
+      <p>Learn simple tips to make your Instagram profile attractive.</p>
+    </div>
+
+    <div class="guide-grid">
+
+      <article class="guide-card">
+        <h2>👑 1. Create a Stylish Bio</h2>
+        <p>Your bio tells people about you. Keep it short, clear and interesting.</p>
+        <ul>
+          <li>Write a simple introduction.</li>
+          <li>Add your interests and hobbies.</li>
+          <li>Use emojis carefully.</li>
+          <li>Avoid unnecessary information.</li>
+        </ul>
+      </article>
+
+      <article class="guide-card">
+        <h2>✨ 2. Choose a Unique Username</h2>
+        <p>A memorable username helps people recognize your profile.</p>
+        <ul>
+          <li>Keep your username easy to remember.</li>
+          <li>Avoid too many numbers.</li>
+          <li>Use simple words.</li>
+          <li>Check availability on Instagram.</li>
+        </ul>
+      </article>
+
+      <article class="guide-card">
+        <h2>📸 3. Improve Your Profile</h2>
+        <p>A clean profile creates a better first impression.</p>
+        <ul>
+          <li>Use a clear profile picture.</li>
+          <li>Choose a suitable profile name.</li>
+          <li>Keep your bio organized.</li>
+          <li>Use highlights when helpful.</li>
+        </ul>
+      </article>
+
+      <article class="guide-card">
+        <h2>🔤 4. Use Stylish Fonts</h2>
+        <p>Stylish fonts can make selected parts of your profile stand out.</p>
+        <ul>
+          <li>Choose readable font styles.</li>
+          <li>Do not overuse fancy characters.</li>
+          <li>Check how your text looks on mobile.</li>
+          <li>Keep important information readable.</li>
+        </ul>
+      </article>
+
+      <article class="guide-card">
+        <h2>❤️ 5. Write Better Captions</h2>
+        <p>Good captions can help express the message behind your posts.</p>
+        <ul>
+          <li>Keep captions relevant.</li>
+          <li>Use natural language.</li>
+          <li>Add emojis where appropriate.</li>
+          <li>Ask genuine questions to encourage discussion.</li>
+        </ul>
+      </article>
+
+      <article class="guide-card">
+        <h2>🚀 6. Grow Your Profile</h2>
+        <p>Focus on creating useful and interesting content consistently.</p>
+        <ul>
+          <li>Post original content.</li>
+          <li>Maintain a regular schedule.</li>
+          <li>Interact with your audience.</li>
+          <li>Follow Instagram's community guidelines.</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="guide-cta">
+      <h2>Ready to Make Your Profile Stylish?</h2>
+      <p>Try our free Instagram tools and create your unique identity.</p>
+
+      <a href="bio.html" class="btn primary-btn">Create Your Bio</a>
+      <a href="username.html" class="btn secondary-btn">Generate Username</a>
+    </div>
+
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+    <p>Make Your Profile Unique ✨</p>
+
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="guide.html">Guide</a>
+    </div>
+
+    <p class="copyright">
+      © <span id="currentYear">2026</span> InstaVibez. All Rights Reserved.
+    </p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const menuToggle = document.getElementById("menuToggle");
+  const navbar = document.getElementById("navbar");
+
+  if (menuToggle && navbar) {
+    menuToggle.addEventListener("click", function () {
+      navbar.classList.toggle("active");
+
+      const open = navbar.classList.contains("active");
+      menuToggle.textContent = open ? "✕" : "☰";
+      menuToggle.setAttribute("aria-expanded", open);
+    });
+
+    navbar.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navbar.classList.remove("active");
+        menuToggle.textContent = "☰";
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  document.getElementById("currentYear").textContent =
+    new Date().getFullYear();
+
+});
+</script>
+
+</body>
+</html>

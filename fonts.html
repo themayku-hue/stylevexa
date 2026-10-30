@@ -1,0 +1,376 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert normal text into stylish Instagram fonts with InstaVibez.">
+  <title>Stylish Fonts Generator - InstaVibez</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .font-section {
+      max-width: 850px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    .font-box {
+      background: var(--card);
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      margin-top: 25px;
+    }
+
+    .font-box label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .font-box textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #10101c;
+      border: 1px solid var(--border);
+      color: white;
+      font-size: 16px;
+      resize: vertical;
+      outline: none;
+    }
+
+    .font-box > button {
+      margin-top: 15px;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #a855f7, #ec4899);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .font-results {
+      display: grid;
+      gap: 13px;
+      margin-top: 25px;
+    }
+
+    .font-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px;
+      background: #10101c;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+    }
+
+    .font-preview {
+      overflow-wrap: anywhere;
+      font-size: 17px;
+    }
+
+    .font-item button {
+      padding: 9px 14px;
+      border: none;
+      border-radius: 7px;
+      background: linear-gradient(90deg, #a855f7, #ec4899);
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .font-message {
+      color: #d8a9ff;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    @media(max-width: 500px) {
+      .font-item {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+
+    <nav class="navbar" id="navbar">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio</a>
+      <a href="username.html">Username</a>
+      <a href="fonts.html">Fonts</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="font-section">
+
+    <div class="section-heading">
+      <span class="hero-tag">✨ InstaVibez Font Tool</span>
+      <h1>Stylish Fonts Generator</h1>
+      <p>Convert your normal text into beautiful stylish fonts.</p>
+    </div>
+
+    <div class="font-box">
+
+      <label for="fontInput">Enter Your Text</label>
+
+      <textarea id="fontInput" placeholder="Type something here..."></textarea>
+
+      <button type="button" id="convertFonts">✨ Generate Stylish Fonts</button>
+
+      <div class="font-results" id="fontResults" aria-live="polite"></div>
+
+      <p class="font-message" id="fontMessage"></p>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+    <p>Make Your Profile Unique ✨</p>
+
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="guide.html">Guide</a>
+    </div>
+
+    <p class="copyright">© <span id="currentYear">2026</span> InstaVibez. All Rights Reserved.</p>
+  </div>
+</footer>
+
+ 
+ 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const input = document.getElementById("fontInput");
+  const generate = document.getElementById("convertFonts");
+  const results = document.getElementById("fontResults");
+  const message = document.getElementById("fontMessage");
+
+  if (!input || !generate || !results || !message) {
+    console.error("InstaVibez: Font elements not found!");
+    return;
+  }
+
+  function unicodeFont(text, upper, lower, special = {}) {
+    return Array.from(text).map(char => {
+      if (special[char]) return special[char];
+
+      const code = char.charCodeAt(0);
+
+      if (code >= 65 && code <= 90)
+        return String.fromCodePoint(upper + code - 65);
+
+      if (code >= 97 && code <= 122)
+        return String.fromCodePoint(lower + code - 97);
+
+      return char;
+    }).join("");
+  }
+
+  function fullwidth(t) {
+    return Array.from(t).map(c => {
+      const n = c.codePointAt(0);
+      return n >= 33 && n <= 126
+        ? String.fromCodePoint(n + 0xFEE0)
+        : c === " " ? "　" : c;
+    }).join("");
+  }
+
+  function circled(t) {
+    return Array.from(t).map(c => {
+      const n = c.charCodeAt(0);
+      if (n >= 65 && n <= 90) return String.fromCodePoint(0x24B6 + n - 65);
+      if (n >= 97 && n <= 122) return String.fromCodePoint(0x24D0 + n - 97);
+      if (n >= 49 && n <= 57) return String.fromCodePoint(0x2460 + n - 49);
+      if (c === "0") return "⓪";
+      return c;
+    }).join("");
+  }
+
+  function smallCaps(t) {
+    const a = "abcdefghijklmnopqrstuvwxyz";
+    const b = "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ";
+    return t.replace(/[a-z]/gi, c => b[a.indexOf(c.toLowerCase())] || c);
+  }
+
+  function upsideDown(t) {
+    const a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const b = "ɐqɔpǝɟƃɥᴉɾʞןɯuodbɹsʇnʌʍxʎz∀𐐒ƆᗡƎℲפHIſꓘ˥WNOԀΌᴚS⊥∩ΛMX⅄Z";
+    return Array.from(t).reverse().map(c => {
+      const i = a.indexOf(c);
+      return i >= 0 ? Array.from(b)[i] : c;
+    }).join("");
+  }
+
+  function generateFonts(text) {
+
+    const styles = [
+      ["Bold", t => unicodeFont(t, 0x1D400, 0x1D41A)],
+      ["Italic", t => unicodeFont(t, 0x1D434, 0x1D44E, {h:"ℎ"})],
+      ["Bold Italic", t => unicodeFont(t, 0x1D468, 0x1D482)],
+      ["Script", t => unicodeFont(t, 0x1D49C, 0x1D4B6, {B:"ℬ", E:"ℰ", F:"ℱ", H:"ℋ", I:"ℐ", L:"ℒ", M:"ℳ", R:"ℛ", e:"ℯ", g:"ℊ", o:"ℴ"})],
+      ["Bold Script", t => unicodeFont(t, 0x1D4D0, 0x1D4EA)],
+      ["Double Struck", t => unicodeFont(t, 0x1D538, 0x1D552, {C:"ℂ", H:"ℍ", N:"ℕ", P:"ℙ", Q:"ℚ", R:"ℝ", Z:"ℤ"})],
+      ["Monospace", t => unicodeFont(t, 0x1D670, 0x1D68A)],
+      ["Sans Serif", t => unicodeFont(t, 0x1D5A0, 0x1D5BA)],
+      ["Sans Bold", t => unicodeFont(t, 0x1D5D4, 0x1D5EE)],
+      ["Fullwidth", fullwidth],
+      ["Bold Fraktur", t => unicodeFont(t, 0x1D56C, 0x1D586)],
+      ["Fraktur", t => unicodeFont(t, 0x1D504, 0x1D51E, {C:"ℭ", H:"ℌ", I:"ℑ", R:"ℜ", Z:"ℨ"})],
+      ["Sans Italic", t => unicodeFont(t, 0x1D608, 0x1D622)],
+      ["Sans Bold Italic", t => unicodeFont(t, 0x1D63C, 0x1D656)],
+      ["Circled", circled],
+      ["Parenthesized", t => t.replace(/[A-Z]/g, c => String.fromCodePoint(0x1F110 + c.charCodeAt(0) - 65))],
+      ["Regional Letters", t => t.replace(/[a-z]/gi, c => String.fromCodePoint(0x1F1E6 + c.toUpperCase().charCodeAt(0) - 65))],
+      ["Small Caps", smallCaps],
+      ["Upside Down", upsideDown],
+      ["Reverse", t => Array.from(t).reverse().join("")],
+      ["Spaced", t => Array.from(t).join(" ")],
+      ["Underline", t => Array.from(t).join("\u0332") + "\u0332"],
+      ["Strike", t => Array.from(t).join("\u0336") + "\u0336"],
+      ["Dotted", t => Array.from(t).join("\u0307") + "\u0307"],
+      ["Double Underline", t => Array.from(t).join("\u0333") + "\u0333"],
+      ["Wide Spacing", t => Array.from(t).join("  ")]
+    ];
+
+    return styles.map(([name, convert]) => ({
+      name: name,
+      text: convert(text)
+    }));
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      message.textContent = "✅ Copied successfully!";
+    } catch (error) {
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      temp.style.position = "fixed";
+      temp.style.left = "-9999px";
+      document.body.appendChild(temp);
+      temp.select();
+
+      const success = document.execCommand("copy");
+      temp.remove();
+
+      message.textContent = success
+        ? "✅ Copied successfully!"
+        : "❌ Copy failed. Please copy manually.";
+    }
+  }
+
+  generate.addEventListener("click", function () {
+
+    const text = input.value.trim();
+    results.innerHTML = "";
+    message.textContent = "";
+
+    if (!text) {
+      message.textContent = "⚠️ Please enter some text first!";
+      input.focus();
+      return;
+    }
+
+    const fonts = generateFonts(text);
+
+    fonts.forEach(font => {
+      const item = document.createElement("div");
+      item.className = "font-item";
+
+      const preview = document.createElement("span");
+      preview.className = "font-preview";
+      preview.textContent = font.text;
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = "Copy";
+
+       
+button.addEventListener("click", async function () {
+  let success = false;
+
+  try {
+    await navigator.clipboard.writeText(font.text);
+    success = true;
+  } catch (error) {
+    const temp = document.createElement("textarea");
+    temp.value = font.text;
+    document.body.appendChild(temp);
+    temp.select();
+    success = document.execCommand("copy");
+    temp.remove();
+  }
+
+  if (success) {
+    button.textContent = "✓ COPIED!";
+    button.style.background = "#16a34a";
+    button.style.color = "#ffffff";
+
+    message.textContent = "✅ Font copied successfully!";
+
+    setTimeout(function() {
+      button.textContent = "Copy";
+      button.style.background = "";
+    }, 2000);
+  }
+});
+
+
+      item.appendChild(preview);
+      item.appendChild(button);
+      results.appendChild(item);
+    });
+
+    message.textContent = "✨ 25 stylish font styles generated!";
+  });
+
+  const menuToggle = document.getElementById("menuToggle");
+  const navbar = document.getElementById("navbar");
+
+  if (menuToggle && navbar) {
+    menuToggle.addEventListener("click", function () {
+      navbar.classList.toggle("active");
+      const open = navbar.classList.contains("active");
+      menuToggle.textContent = open ? "✕" : "☰";
+      menuToggle.setAttribute("aria-expanded", open);
+    });
+
+    navbar.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", function () {
+        navbar.classList.remove("active");
+        menuToggle.textContent = "☰";
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  const year = document.getElementById("currentYear");
+  if (year) year.textContent = new Date().getFullYear();
+
+});
+</script>
+
+</body>
+</html>

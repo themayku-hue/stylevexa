@@ -1,0 +1,782 @@
+ 
+/* ==============================
+   InstaVibez - Main Stylesheet
+================================ */
+
+:root {
+  --bg: #10101c;
+  --card: #1b1b2b;
+  --primary: #a855f7;
+  --secondary: #ec4899;
+  --text: #ffffff;
+  --muted: #b8b8c9;
+  --border: rgba(255,255,255,0.09);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.container {
+  width: 90%;
+  max-width: 1150px;
+  margin: auto;
+}
+
+/* HEADER */
+
+.header {
+  background: #151523;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+
+.navbar a {
+  color: var(--muted);
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: #ec4899;
+}
+
+.menu-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 27px;
+}
+
+/* HERO */
+
+.hero {
+  padding: 105px 0 95px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at top left, rgba(168,85,247,.20), transparent 45%),
+    radial-gradient(ellipse at bottom right, rgba(236,72,153,.15), transparent 45%);
+}
+
+.hero-tag {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid rgba(168,85,247,.4);
+  background: rgba(168,85,247,.12);
+  border-radius: 30px;
+  color: #d8a9ff;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(35px, 6vw, 65px);
+  line-height: 1.15;
+  font-weight: 800;
+  max-width: 850px;
+  margin: auto;
+}
+
+.hero h1 span {
+  display: block;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 23px auto 30px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+/* BUTTONS */
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 25px;
+  border-radius: 9px;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.primary-btn {
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  color: white;
+}
+
+.secondary-btn {
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.05);
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  opacity: .9;
+}
+
+/* TOOLS SECTION */
+
+.tools-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-heading h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.section-heading p {
+  color: var(--muted);
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 23px;
+}
+
+.tool-card {
+  display: block;
+  padding: 30px 25px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--card);
+  transition: .3s;
+}
+
+.tool-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 35px rgba(168,85,247,.12);
+}
+
+.tool-icon {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.tool-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.tool-card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.tool-card span {
+  color: #d8a9ff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* FOOTER */
+
+.footer {
+  padding: 45px 0 25px;
+  background: #151523;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer > .container > p {
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 20px 0;
+}
+
+.footer-links a {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #ec4899;
+}
+
+.footer .copyright {
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .nav {
+    min-height: 68px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: #151523;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .navbar.active {
+    display: flex;
+  }
+
+  .hero {
+    padding: 75px 0;
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 15px;
+  }
+}
+
+/* =================================
+   ANONYMOUS NAMES GENERATOR
+================================= */
+
+.anonymous-section {
+  padding: 60px 20px;
+  text-align: center;
+  background: #10101c;
+  color: #ffffff;
+}
+
+.anonymous-section h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.anonymous-section p {
+  color: #b9b9c9;
+  margin-bottom: 25px;
+}
+
+.anonymous-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.anonymous-tabs button {
+  padding: 12px 25px;
+  border: 1px solid #7655ff;
+  background: transparent;
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.anonymous-tabs button.active {
+  background: #7655ff;
+  color: #ffffff;
+}
+
+#anonymousSearch {
+  width: 100%;
+  max-width: 500px;
+  padding: 14px;
+  border: 1px solid #7655ff;
+  border-radius: 8px;
+  background: #1c1c2d;
+  color: #ffffff;
+  outline: none;
+  margin-bottom: 25px;
+  font-size: 15px;
+}
+
+#anonymousNameList {
+  max-width: 900px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.anonymous-name-card {
+  background: #1c1c2d;
+  border: 1px solid #33334d;
+  padding: 15px;
+  border-radius: 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+}
+
+.anonymous-name-card button {
+  background: #7655ff;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.anonymous-name-card button.copied {
+  background: #16a36a;
+}
+
+#anonymousLoadMore {
+  margin-top: 25px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  background: #7655ff;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  #anonymousNameList {
+    grid-template-columns: 1fr;
+  }
+
+  .anonymous-section h2 {
+    font-size: 24px;
+  }
+}
+
+/* ==============================
+   STYLISH SYMBOLS GENERATOR
+============================== */
+
+.symbols-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.symbols-section h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.symbols-section p {
+  margin-bottom: 25px;
+  color: #777;
+}
+
+#symbolSearch {
+  width: 100%;
+  max-width: 500px;
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+#symbolSearch:focus {
+  border-color: #8b5cf6;
+}
+
+.symbol-category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  max-width: 1000px;
+  margin: 0 auto 25px;
+}
+
+.symbol-category-card {
+  padding: 18px 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+  color: #222;
+  font-size: 15px;
+}
+
+.symbol-category-card:hover {
+  border-color: #8b5cf6;
+  transform: translateY(-3px);
+}
+
+.symbol-category-card .symbol-category-icon {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.symbol-results {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+  gap: 12px;
+}
+
+.symbol-item {
+  min-height: 75px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  color: #222;
+}
+
+.symbol-item span {
+  font-size: 27px;
+}
+
+.symbol-item small {
+  font-size: 11px;
+  color: #777;
+}
+
+.symbol-item:hover {
+  border-color: #8b5cf6;
+  background: #f8f5ff;
+}
+
+.symbol-item.copied {
+  background: #dcfce7;
+  border-color: #16a34a;
+}
+
+@media (max-width: 600px) {
+  .symbols-section {
+    padding: 35px 12px;
+  }
+
+  .symbols-section h2 {
+    font-size: 23px;
+  }
+
+  .symbol-category-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==============================
+   ALL EMOJI GENERATOR
+============================== */
+
+.emoji-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.emoji-section h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.emoji-section p {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+#emojiSearch {
+  width: 100%;
+  max-width: 500px;
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+#emojiSearch:focus {
+  border-color: #8b5cf6;
+}
+
+.emoji-category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  max-width: 1000px;
+  margin: 0 auto 25px;
+}
+
+.emoji-category-card {
+  padding: 18px 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 15px;
+}
+
+.emoji-category-card:hover {
+  border-color: #8b5cf6;
+  transform: translateY(-3px);
+}
+
+.emoji-category-icon {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.emoji-results {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  gap: 12px;
+}
+
+.emoji-item {
+  min-height: 75px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  color: #222;
+}
+
+.emoji-item span {
+  font-size: 30px;
+}
+
+.emoji-item small {
+  font-size: 11px;
+  color: #777;
+}
+
+.emoji-item:hover {
+  background: #f8f5ff;
+  border-color: #8b5cf6;
+}
+
+.emoji-item.copied {
+  background: #dcfce7;
+  border-color: #16a34a;
+}
+
+/* EMOJI MIXER */
+
+.emoji-mixer {
+  max-width: 850px;
+  margin: 50px auto 0;
+  padding: 25px 18px;
+  border: 1px solid #e5e5e5;
+  border-radius: 15px;
+  background: #fff;
+}
+
+.emoji-mixer h2 {
+  margin-bottom: 10px;
+}
+
+.emoji-mixer-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.emoji-mixer-options button,
+#createEmojiMix {
+  padding: 11px 18px;
+  border: 1px solid #8b5cf6;
+  border-radius: 8px;
+  background: #8b5cf6;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.emoji-mixer-options button.active {
+  background: #5b21b6;
+}
+
+#emojiPicker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+  gap: 9px;
+  margin: 20px 0;
+}
+
+.emoji-pick-item {
+  padding: 10px 5px;
+  border: 1px solid #e5e5e5;
+  border-radius: 9px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 27px;
+}
+
+.emoji-pick-item.selected {
+  background: #ede9fe;
+  border-color: #8b5cf6;
+}
+
+#selectedEmojis {
+  min-height: 65px;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px dashed #aaa;
+  border-radius: 10px;
+  font-size: 30px;
+  overflow-wrap: anywhere;
+}
+
+#emojiMixResults {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.emoji-mix-result {
+  padding: 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.emoji-mix-result small {
+  display: block;
+  font-size: 11px;
+  color: #777;
+}
+
+@media (max-width: 600px) {
+  .emoji-section {
+    padding: 35px 12px;
+  }
+
+  .emoji-section h2 {
+    font-size: 23px;
+  }
+
+  .emoji-category-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .emoji-mixer {
+    padding: 20px 12px;
+  }
+}

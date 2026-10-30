@@ -1,0 +1,407 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate stylish Instagram usernames with InstaVibez.">
+  <title>Username Generator - InstaVibez</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .generator-section {
+      max-width: 750px;
+      margin: 65px auto;
+      padding: 20px;
+    }
+
+    .generator-box {
+      background: var(--card);
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      margin-top: 25px;
+    }
+
+    .generator-box label {
+      display: block;
+      font-weight: bold;
+      margin: 15px 0 8px;
+    }
+
+    .generator-box input,
+    .generator-box select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #10101c;
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .username-output {
+      margin-top: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .username-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 13px;
+      background: #10101c;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      overflow-wrap: anywhere;
+    }
+
+    .username-item button,
+    .generator-actions button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 7px;
+      background: linear-gradient(90deg, #a855f7, #ec4899);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .generator-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .generator-actions button {
+      flex: 1;
+      padding: 13px;
+    }
+
+    .generator-message {
+      color: #d8a9ff;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <nav class="navbar" id="navbar">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio</a>
+      <a href="username.html">Username</a>
+      <a href="fonts.html">Fonts</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="generator-section">
+
+    <div class="section-heading">
+      <span class="hero-tag">✨ InstaVibez Username Tool</span>
+      <h1>Username Generator</h1>
+      <p>Create unique, stylish and attractive usernames.</p>
+    </div>
+
+    <div class="generator-box">
+
+      <label for="userName">Enter Your Name (Optional)</label>
+      <input type="text" id="userName" placeholder="Example: Rahul">
+
+      <label for="usernameCategory">Select Category</label>
+      <select id="usernameCategory">
+        <option value="vip">VIP Usernames</option>
+        <option value="attitude">Attitude Usernames</option>
+        <option value="royal">Royal Usernames</option>
+        <option value="cute">Cute Usernames</option>
+        <option value="gaming">Gaming Usernames</option>
+        <option value="aesthetic">Aesthetic Usernames</option>
+      </select>
+
+      <div class="generator-actions">
+        <button type="button" id="generateUsernames">✨ Generate Usernames</button>
+      </div>
+
+      <div class="username-output" id="usernameOutput" aria-live="polite"></div>
+
+      <p class="generator-message" id="usernameMessage"></p>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+    <p>Make Your Profile Unique ✨</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="guide.html">Guide</a>
+    </div>
+    <p class="copyright">© <span id="currentYear">2026</span> InstaVibez. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const nameInput = document.getElementById("userName");
+  const category = document.getElementById("usernameCategory");
+  const output = document.getElementById("usernameOutput");
+  const generateButton = document.getElementById("generateUsernames");
+  const message = document.getElementById("usernameMessage");
+
+  const patterns = {
+    vip: ["official", "the", "real", "its", "mr", "legend"],
+    attitude: ["killer", "fearless", "badboy", "boss", "savage"],
+    royal: ["king", "royal", "prince", "emperor", "maharaja"],
+    cute: ["cutie", "sweet", "angel", "doll", "sunshine"],
+    gaming: ["gamer", "pro", "gaming", "x", "shadow"],
+    aesthetic: ["vibes", "moon", "aesthetic", "dream", "soul"]
+  };
+
+  const endings = [
+    "07", "09", "99", "01", "143",
+    "x", "_official", ".in", "_real", "786"
+  ];
+
+  function randomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  function createUsername(name, type) {
+    const cleanName = name
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]/g, "");
+
+    const prefix = randomItem(patterns[type]);
+    const ending = randomItem(endings);
+
+    const variations = [
+      cleanName ? prefix + cleanName : prefix + ending,
+      cleanName ? cleanName + ending : prefix + "_x",
+      cleanName ? "its_" + cleanName : "its_" + prefix,
+      cleanName ? cleanName + "_" + prefix : prefix + "_official",
+      cleanName ? "the_" + cleanName : "the_" + prefix,
+      cleanName ? cleanName + "." + prefix : prefix + ".in"
+    ];
+
+    return randomItem(variations);
+  }
+
+  
+ 
+function generateUsernames() {
+  output.innerHTML = "";
+  message.textContent = "";
+
+  const rawName = nameInput.value.trim().toLowerCase();
+
+  const styleWords = [
+    ...new Set([
+      ...(patterns[category.value] || patterns.vip),
+      "girls", "princess", "queen", "king", "official",
+      "vibes", "love", "angel", "dream", "soul",
+      "its", "the", "real", "cute", "baby",
+      "dark", "star", "elite", "legend", "world",
+      "aesthetic", "sweet", "doll", "royal", "xoxo",
+      "boss", "glow", "shine", "heart", "unique"
+    ])
+  ];
+
+  const parts = rawName
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean);
+
+  const first = (parts[0] || randomItem(styleWords)).slice(0, 12);
+
+  const last = (
+    parts.length > 1
+      ? parts.slice(1).join("")
+      : randomItem(styleWords)
+  ).slice(0, 12);
+
+  const full = parts.length
+    ? parts.join("").slice(0, 20)
+    : first + last;
+
+  function number(length) {
+    return String(
+      Math.floor(Math.random() * (9 * Math.pow(10, length - 1))) +
+      Math.pow(10, length - 1)
+    );
+  }
+
+  const usernames = new Set();
+
+  const templates = [
+    () => `${first}.${last}${number(4)}`,
+    () => `${last}${first}__`,
+    () => `${first}__${last}${number(2)}`,
+    () => `${first}.${last}__${number(2)}`,
+    () => `its_girls.${first}`,
+    () => `${randomItem(styleWords)}.${first}_${last}`,
+    () => `${first}_${number(2)}.${number(2)}`,
+    () => `${first}.${randomItem(styleWords)}${number(2)}`,
+    () => `${last}.${first}${number(2)}`,
+    () => `${first}${last}.${number(2)}`,
+    () => `${first}_${last}__`,
+    () => `${first}.${last}_`,
+    () => `${randomItem(styleWords)}_${first}${number(2)}`,
+    () => `${first}x${randomItem(styleWords)}`,
+    () => `${randomItem(styleWords)}.${full}__`,
+    () => `the_${first}.${last}`,
+    () => `${first}._${randomItem(styleWords)}`,
+    () => `${first}__${randomItem(styleWords)}.${number(2)}`,
+    () => `${last}_${first}${number(2)}`,
+    () => `${first}.${randomItem(styleWords)}_${number(2)}`,
+    () => `${randomItem(styleWords)}_${last}.${first}`,
+    () => `${first}${number(3)}${randomItem(styleWords)}`,
+    () => `${randomItem(styleWords)}${first}__`,
+    () => `${first}.${last}${number(3)}`,
+    () => `${first}_${randomItem(styleWords)}_${number(2)}`,
+    () => `its_${first}.${last}`,
+    () => `${first}.${randomItem(styleWords)}__`,
+    () => `${last}__${first}`,
+    () => `${randomItem(styleWords)}.${first}${number(4)}`,
+    () => `${first}__${last}.${number(2)}`,
+    () => `${first}.${last}_${randomItem(styleWords)}`,
+    () => `${randomItem(styleWords)}${first}.${last}`,
+    () => `${first}_${last}${number(4)}`,
+    () => `${last}.${randomItem(styleWords)}_${first}`,
+    () => `${first}._${last}${number(3)}`,
+    () => `${randomItem(styleWords)}.${first}_${number(2)}`,
+    () => `${first}${last}__`,
+    () => `${first}.${randomItem(styleWords)}${number(4)}`,
+    () => `${last}${first}.${randomItem(styleWords)}`,
+    () => `real_${first}.${last}`,
+    () => `${first}__${randomItem(styleWords)}`,
+    () => `${randomItem(styleWords)}.${last}${number(3)}`,
+    () => `${first}.${last}__`,
+    () => `${last}_${first}__`,
+    () => `${first}_${randomItem(styleWords)}.${last}`,
+    () => `the.${first}_${last}`,
+    () => `${first}.${randomItem(styleWords)}_${last}`,
+    () => `${randomItem(styleWords)}_${first}.${last}`,
+    () => `${first}x_${last}${number(2)}`,
+    () => `${last}.${first}__${number(2)}`,
+    () => `${first}_${last}.${randomItem(styleWords)}`
+  ];
+
+  let attempts = 0;
+
+  while (usernames.size < 200 && attempts < 20000) {
+    const template = randomItem(templates);
+    const username = template()
+      .toLowerCase()
+      .replace(/[^a-z0-9._]/g, "")
+      .replace(/\.{2,}/g, ".")
+      .replace(/_{3,}/g, "__")
+      .replace(/^[._]+|[._]+$/g, "")
+      .slice(0, 30);
+
+    if (username.length >= 3) {
+      usernames.add(username);
+    }
+
+    attempts++;
+  }
+
+  usernames.forEach(function(username) {
+
+    const item = document.createElement("div");
+    item.className = "username-item";
+
+    const text = document.createElement("span");
+    text.textContent = username;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Copy";
+
+     
+button.addEventListener("click", async function() {
+  let success = false;
+
+  try {
+    await navigator.clipboard.writeText(username);
+    success = true;
+  } catch (error) {
+    const temp = document.createElement("textarea");
+    temp.value = username;
+    document.body.appendChild(temp);
+    temp.select();
+    success = document.execCommand("copy");
+    temp.remove();
+  }
+
+  if (success) {
+    button.textContent = "✓ COPIED!";
+    button.style.background = "#16a34a";
+    button.style.color = "#ffffff";
+
+    message.textContent = "✅ Username copied!";
+
+    setTimeout(function() {
+      button.textContent = "Copy";
+      button.style.background = "";
+    }, 2000);
+  }
+});
+
+
+    item.appendChild(text);
+    item.appendChild(button);
+    output.appendChild(item);
+  });
+
+  message.textContent =
+    "✨ " + usernames.size + " unique VIP usernames generated!";
+}
+
+
+  generateButton.addEventListener("click", generateUsernames);
+
+  // Mobile menu
+  const menuToggle = document.getElementById("menuToggle");
+  const navbar = document.getElementById("navbar");
+
+  if (menuToggle && navbar) {
+    menuToggle.addEventListener("click", function () {
+      navbar.classList.toggle("active");
+      const open = navbar.classList.contains("active");
+      menuToggle.textContent = open ? "✕" : "☰";
+      menuToggle.setAttribute("aria-expanded", open);
+    });
+
+    navbar.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navbar.classList.remove("active");
+        menuToggle.textContent = "☰";
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  document.getElementById("currentYear").textContent =
+    new Date().getFullYear();
+
+  generateUsernames();
+
+});
+</script>
+
+</body>
+</html>
