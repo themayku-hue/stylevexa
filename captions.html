@@ -1,10 +1,10 @@
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Find stylish Instagram captions for boys, girls, love, attitude, friendship, travel and more.">
+  <meta name="description" content="Generate 200 stylish Instagram captions in every category. Find captions for boys, girls, love, attitude, friendship and more.">
   <meta name="theme-color" content="#10101c">
   <title>Instagram Captions Generator - InstaVibez</title>
   <link rel="stylesheet" href="style.css">
@@ -12,9 +12,10 @@
   <style>
     .caption-section {
       max-width: 1100px;
-      margin: 50px auto;
+      margin: 45px auto;
       padding: 25px 18px;
       text-align: center;
+      min-height: 450px;
     }
 
     .caption-section h1 {
@@ -26,16 +27,17 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin: 25px 0;
+      margin: 28px 0;
     }
 
     .caption-categories button {
-      padding: 10px 17px;
+      padding: 11px 18px;
       border: 1px solid var(--border, #333);
       border-radius: 25px;
       background: var(--card, #191929);
       color: inherit;
       cursor: pointer;
+      font-size: 15px;
     }
 
     .caption-categories button.active {
@@ -52,13 +54,14 @@
       border: 1px solid var(--border, #444);
       background: #10101c;
       color: white;
-      margin: 10px auto 25px;
+      margin: 10px auto 28px;
+      font-size: 15px;
     }
 
     .caption-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 15px;
+      gap: 16px;
       text-align: left;
     }
 
@@ -67,21 +70,27 @@
       border: 1px solid var(--border, #333);
       border-radius: 12px;
       padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 15px;
     }
 
     .caption-card p {
       line-height: 1.7;
-      margin-bottom: 15px;
+      margin: 0;
       overflow-wrap: anywhere;
     }
 
     .caption-copy {
-      padding: 9px 17px;
+      padding: 10px 17px;
       border: none;
       border-radius: 7px;
       background: #8b5cf6;
       color: white;
       cursor: pointer;
+      align-self: flex-start;
+      font-size: 14px;
     }
 
     .caption-copy.copied {
@@ -90,13 +99,34 @@
 
     #captionLoadMore {
       display: none;
-      margin: 25px auto;
-      padding: 12px 25px;
+      margin: 28px auto;
+      padding: 13px 28px;
       background: #8b5cf6;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      font-size: 15px;
+    }
+
+    #captionCount {
+      margin: 8px 0 20px;
+      opacity: 0.8;
+    }
+
+    @media(max-width: 600px) {
+      .caption-section {
+        padding: 20px 12px;
+      }
+
+      .caption-categories button {
+        padding: 9px 13px;
+        font-size: 13px;
+      }
+
+      .caption-list {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -107,7 +137,9 @@
   <div class="container nav">
     <a href="index.html" class="logo">Insta<span>Vibez</span></a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      ☰
+    </button>
 
     <nav class="navbar" id="navbar">
       <a href="index.html">Home</a>
@@ -121,6 +153,7 @@
 
 <main>
   <section class="caption-section">
+
     <h1>Instagram Captions Generator 📸</h1>
     <p>Find the perfect caption for every Instagram post!</p>
 
@@ -137,24 +170,36 @@
       <button data-category="motivational">Motivational</button>
     </div>
 
-    <input type="search" id="captionSearch"
-      placeholder="Search your favourite captions...">
+    <input
+      type="search"
+      id="captionSearch"
+      placeholder="Search your favourite captions..."
+    >
+
+    <p id="captionCount">Loading captions...</p>
 
     <div class="caption-list" id="captionList"></div>
 
     <button id="captionLoadMore">Load More</button>
+
   </section>
 </main>
 
 <footer class="footer">
   <div class="container">
     <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+
     <p>Make Your Profile Unique ✨</p>
+
     <div class="footer-links">
       <a href="privacy.html">Privacy Policy</a>
       <a href="guide.html">Guide</a>
     </div>
-    <p>© <span id="currentYear">2026</span> InstaVibez. All Rights Reserved.</p>
+
+    <p>
+      © <span id="currentYear">2026</span>
+      InstaVibez. All Rights Reserved.
+    </p>
   </div>
 </footer>
 
@@ -163,7 +208,9 @@
 
 <script>
 (() => {
-  const captions = {
+  "use strict";
+
+  const baseCaptions = {
     attitude: [
       "My attitude is my identity. 😎",
       "I don't follow trends, I create them.",
@@ -282,64 +329,116 @@
     ]
   };
 
+  const endings = [
+    "And that's my story.",
+    "Living every moment.",
+    "Making it count.",
+    "Keeping it real.",
+    "One day at a time.",
+    "With my own style.",
+    "Nothing can change that.",
+    "Always moving forward.",
+    "This is just the beginning.",
+    "And loving every second.",
+    "No regrets, just lessons.",
+    "That's the way I live.",
+    "With a grateful heart.",
+    "Creating beautiful memories.",
+    "Staying true to myself.",
+    "My journey, my rules.",
+    "Let the moments shine.",
+    "A little more every day.",
+    "Keeping the good vibes.",
+    "And that's what matters."
+  ];
+
+  const captions = {};
+
+  // Create exactly 200 captions in every category
+  Object.keys(baseCaptions).forEach(category => {
+    captions[category] = [];
+
+    baseCaptions[category].forEach(base => {
+      endings.forEach(ending => {
+        captions[category].push(base + " " + ending);
+      });
+    });
+  });
+
   const list = document.getElementById("captionList");
   const search = document.getElementById("captionSearch");
   const loadMore = document.getElementById("captionLoadMore");
+  const countText = document.getElementById("captionCount");
   const categoryButtons = document.querySelectorAll(
     "#captionCategories button"
   );
 
-  let currentCategory = "all";
-  let visibleCount = 12;
+  if (!list || !search || !loadMore || !countText || !categoryButtons.length) {
+    console.error("Caption Generator HTML elements are missing.");
+    return;
+  }
 
-  function getCaptions() {
-    let result = [];
+  let currentCategory = "all";
+  let visibleCount = 20;
+
+  function getResults() {
+    let results = [];
 
     Object.keys(captions).forEach(category => {
       if (currentCategory === "all" || currentCategory === category) {
         captions[category].forEach(caption => {
-          result.push({ category, caption });
+          results.push(caption);
         });
       }
     });
 
     const query = search.value.trim().toLowerCase();
 
-    return result.filter(item =>
-      item.caption.toLowerCase().includes(query)
-    );
+    if (query) {
+      results = results.filter(caption =>
+        caption.toLowerCase().includes(query)
+      );
+    }
+
+    return results;
   }
 
   function renderCaptions() {
-    const results = getCaptions();
+    const results = getResults();
+
     list.innerHTML = "";
 
-    results.slice(0, visibleCount).forEach(item => {
+    results.slice(0, visibleCount).forEach(caption => {
       const card = document.createElement("div");
       card.className = "caption-card";
 
       const paragraph = document.createElement("p");
-      paragraph.textContent = item.caption;
+      paragraph.textContent = caption;
 
       const button = document.createElement("button");
-      button.className = "caption-copy";
       button.type = "button";
+      button.className = "caption-copy";
       button.textContent = "Copy Caption";
 
       button.addEventListener("click", async () => {
         try {
           if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(item.caption);
+            await navigator.clipboard.writeText(caption);
           } else {
             const textarea = document.createElement("textarea");
-            textarea.value = item.caption;
+            textarea.value = caption;
+            textarea.style.position = "fixed";
+            textarea.style.left = "-9999px";
+
             document.body.appendChild(textarea);
             textarea.select();
 
             const success = document.execCommand("copy");
             textarea.remove();
 
-            if (!success) throw new Error("Copy failed");
+            if (!success) {
+              throw new Error("Copy failed");
+            }
           }
 
           button.textContent = "Copied!";
@@ -360,9 +459,9 @@
       list.appendChild(card);
     });
 
-    if (results.length === 0) {
-      list.textContent = "No captions found!";
-    }
+    countText.textContent =
+      "Showing " + Math.min(visibleCount, results.length) +
+      " of " + results.length + " captions";
 
     loadMore.style.display =
       results.length > visibleCount ? "block" : "none";
@@ -371,11 +470,11 @@
   categoryButtons.forEach(button => {
     button.addEventListener("click", () => {
       currentCategory = button.dataset.category;
-      visibleCount = 12;
+      visibleCount = 20;
 
-      categoryButtons.forEach(item =>
-        item.classList.remove("active")
-      );
+      categoryButtons.forEach(item => {
+        item.classList.remove("active");
+      });
 
       button.classList.add("active");
       renderCaptions();
@@ -383,16 +482,19 @@
   });
 
   search.addEventListener("input", () => {
-    visibleCount = 12;
+    visibleCount = 20;
     renderCaptions();
   });
 
   loadMore.addEventListener("click", () => {
-    visibleCount += 12;
+    visibleCount += 20;
     renderCaptions();
   });
 
   renderCaptions();
+
+  console.log("Caption Generator Loaded");
+  console.log("Captions per category:", 200);
 })();
 </script>
 
