@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find stylish Instagram captions for boys, girls, love, attitude, friendship, travel and more.">
+  <meta name="theme-color" content="#10101c">
+  <title>Instagram Captions Generator - InstaVibez</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .caption-section {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 25px 18px;
+      text-align: center;
+    }
+
+    .caption-section h1 {
+      margin-bottom: 12px;
+    }
+
+    .caption-categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 25px 0;
+    }
+
+    .caption-categories button {
+      padding: 10px 17px;
+      border: 1px solid var(--border, #333);
+      border-radius: 25px;
+      background: var(--card, #191929);
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .caption-categories button.active {
+      background: #8b5cf6;
+      color: white;
+      border-color: #8b5cf6;
+    }
+
+    #captionSearch {
+      width: 100%;
+      max-width: 550px;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border, #444);
+      background: #10101c;
+      color: white;
+      margin: 10px auto 25px;
+    }
+
+    .caption-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+      text-align: left;
+    }
+
+    .caption-card {
+      background: var(--card, #191929);
+      border: 1px solid var(--border, #333);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .caption-card p {
+      line-height: 1.7;
+      margin-bottom: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .caption-copy {
+      padding: 9px 17px;
+      border: none;
+      border-radius: 7px;
+      background: #8b5cf6;
+      color: white;
+      cursor: pointer;
+    }
+
+    .caption-copy.copied {
+      background: #16a34a;
+    }
+
+    #captionLoadMore {
+      display: none;
+      margin: 25px auto;
+      padding: 12px 25px;
+      background: #8b5cf6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+
+    <nav class="navbar" id="navbar">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio</a>
+      <a href="username.html">Username</a>
+      <a href="fonts.html">Fonts</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="caption-section">
+    <h1>Instagram Captions Generator 📸</h1>
+    <p>Find the perfect caption for every Instagram post!</p>
+
+    <div class="caption-categories" id="captionCategories">
+      <button class="active" data-category="all">All</button>
+      <button data-category="attitude">Attitude</button>
+      <button data-category="boys">Boys</button>
+      <button data-category="girls">Girls</button>
+      <button data-category="love">Love</button>
+      <button data-category="sad">Sad</button>
+      <button data-category="friendship">Friendship</button>
+      <button data-category="selfie">Selfie</button>
+      <button data-category="travel">Travel</button>
+      <button data-category="motivational">Motivational</button>
+    </div>
+
+    <input type="search" id="captionSearch"
+      placeholder="Search your favourite captions...">
+
+    <div class="caption-list" id="captionList"></div>
+
+    <button id="captionLoadMore">Load More</button>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+    <p>Make Your Profile Unique ✨</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="guide.html">Guide</a>
+    </div>
+    <p>© <span id="currentYear">2026</span> InstaVibez. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="common.js" defer></script>
+<script src="script.js" defer></script>
+
+<script>
+(() => {
+  const captions = {
+    attitude: [
+      "My attitude is my identity. 😎",
+      "I don't follow trends, I create them.",
+      "Born to stand out, not to fit in.",
+      "Silent moves, loud results.",
+      "My vibe speaks louder than words.",
+      "Not perfect, just original.",
+      "Confidence is my favourite outfit.",
+      "I know my worth, no discount.",
+      "Less talk, more action.",
+      "Different mindset, different level."
+    ],
+
+    boys: [
+      "A simple boy with big dreams.",
+      "Creating my own journey. ✨",
+      "King of my own world.",
+      "Dream big, stay humble.",
+      "No shortcuts, only hard work.",
+      "Just a boy chasing happiness.",
+      "Stay real, stay original.",
+      "One life, endless possibilities.",
+      "Making memories every day.",
+      "Focused on my goals."
+    ],
+
+    girls: [
+      "Confidence looks beautiful on me. 💖",
+      "A little sparkle everywhere I go.",
+      "Happiness is my favourite filter.",
+      "Beautiful mind, beautiful soul.",
+      "Smiling through every season.",
+      "Own your magic.",
+      "Just being my lovely self.",
+      "Sunshine mixed with a little magic.",
+      "Elegance never goes out of style.",
+      "Blooming at my own pace."
+    ],
+
+    love: [
+      "You make ordinary moments special. ❤️",
+      "Love is felt, not explained.",
+      "Every love story is beautiful.",
+      "You are my favourite notification.",
+      "Together is my favourite place.",
+      "A little love goes a long way.",
+      "My heart found its home.",
+      "Love makes life beautiful.",
+      "Forever starts with a moment.",
+      "You are my happy place."
+    ],
+
+    sad: [
+      "Some feelings have no words.",
+      "Smiling outside, healing inside.",
+      "Not every silence means peace.",
+      "Some memories never fade.",
+      "Behind every smile, a story exists.",
+      "Sometimes distance says everything.",
+      "Healing takes time.",
+      "Quiet hearts feel deeply.",
+      "Some goodbyes stay forever.",
+      "Learning to let go."
+    ],
+
+    friendship: [
+      "Friends make life unforgettable. 🫶",
+      "Real friends, endless memories.",
+      "Together is always better.",
+      "Partners in every adventure.",
+      "Friendship is a beautiful journey.",
+      "Crazy moments, priceless memories.",
+      "Good friends are rare treasures.",
+      "Side by side, heart to heart.",
+      "Life is better with friends.",
+      "Forever my favourite people."
+    ],
+
+    selfie: [
+      "Just me, being me. 📸",
+      "A moment worth remembering.",
+      "Smile more, worry less.",
+      "Confidence in every click.",
+      "No filter, just vibes.",
+      "Today's mood: Happy.",
+      "A little selfie, a lot of confidence.",
+      "Collecting moments, not likes.",
+      "Feeling good, looking better.",
+      "Simply unforgettable."
+    ],
+
+    travel: [
+      "Collect memories, not things. 🌍",
+      "Wander often, wonder always.",
+      "New places, fresh beginnings.",
+      "Adventure is calling.",
+      "Lost in the right direction.",
+      "Travel far, feel free.",
+      "The world is full of wonders.",
+      "Every journey tells a story.",
+      "Chasing sunsets and dreams.",
+      "Life is a beautiful journey."
+    ],
+
+    motivational: [
+      "Dream it. Believe it. Achieve it.",
+      "Small steps lead to big results.",
+      "Your only limit is you.",
+      "Work hard, stay consistent.",
+      "Never stop believing in yourself.",
+      "Progress over perfection.",
+      "Make today count.",
+      "Success starts with courage.",
+      "Keep going, keep growing.",
+      "Your future is created today."
+    ]
+  };
+
+  const list = document.getElementById("captionList");
+  const search = document.getElementById("captionSearch");
+  const loadMore = document.getElementById("captionLoadMore");
+  const categoryButtons = document.querySelectorAll(
+    "#captionCategories button"
+  );
+
+  let currentCategory = "all";
+  let visibleCount = 12;
+
+  function getCaptions() {
+    let result = [];
+
+    Object.keys(captions).forEach(category => {
+      if (currentCategory === "all" || currentCategory === category) {
+        captions[category].forEach(caption => {
+          result.push({ category, caption });
+        });
+      }
+    });
+
+    const query = search.value.trim().toLowerCase();
+
+    return result.filter(item =>
+      item.caption.toLowerCase().includes(query)
+    );
+  }
+
+  function renderCaptions() {
+    const results = getCaptions();
+    list.innerHTML = "";
+
+    results.slice(0, visibleCount).forEach(item => {
+      const card = document.createElement("div");
+      card.className = "caption-card";
+
+      const paragraph = document.createElement("p");
+      paragraph.textContent = item.caption;
+
+      const button = document.createElement("button");
+      button.className = "caption-copy";
+      button.type = "button";
+      button.textContent = "Copy Caption";
+
+      button.addEventListener("click", async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(item.caption);
+          } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = item.caption;
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            const success = document.execCommand("copy");
+            textarea.remove();
+
+            if (!success) throw new Error("Copy failed");
+          }
+
+          button.textContent = "Copied!";
+          button.classList.add("copied");
+
+          setTimeout(() => {
+            button.textContent = "Copy Caption";
+            button.classList.remove("copied");
+          }, 1500);
+
+        } catch (error) {
+          button.textContent = "Copy Failed";
+        }
+      });
+
+      card.appendChild(paragraph);
+      card.appendChild(button);
+      list.appendChild(card);
+    });
+
+    if (results.length === 0) {
+      list.textContent = "No captions found!";
+    }
+
+    loadMore.style.display =
+      results.length > visibleCount ? "block" : "none";
+  }
+
+  categoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      currentCategory = button.dataset.category;
+      visibleCount = 12;
+
+      categoryButtons.forEach(item =>
+        item.classList.remove("active")
+      );
+
+      button.classList.add("active");
+      renderCaptions();
+    });
+  });
+
+  search.addEventListener("input", () => {
+    visibleCount = 12;
+    renderCaptions();
+  });
+
+  loadMore.addEventListener("click", () => {
+    visibleCount += 12;
+    renderCaptions();
+  });
+
+  renderCaptions();
+})();
+</script>
+
+</body>
+</html>
