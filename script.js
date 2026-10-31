@@ -1,4 +1,5 @@
  
+ 
 /* =================================
    InstaVibez - Main JavaScript
 ================================= */
@@ -19,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.innerHTML = isOpen ? "✕" : "☰";
     });
 
-    // Close menu after clicking a link
     navbar.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
         navbar.classList.remove("active");
@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Close menu when clicking outside
     document.addEventListener("click", function (event) {
       if (
         !navbar.contains(event.target) &&
@@ -46,6 +45,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
+  }
+
+  // Live Tool Search + No Results
+  const searchInput = document.getElementById("toolSearch");
+  const clearButton = document.getElementById("clearToolSearch");
+  const noResults = document.getElementById("noToolResults");
+
+  if (searchInput && clearButton && noResults) {
+
+    const toolCards = document.querySelectorAll(".tool-card");
+
+    function searchTools() {
+      const searchText = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      toolCards.forEach(function (card) {
+        const matches = card.textContent.toLowerCase().includes(searchText);
+
+        card.style.display = matches ? "" : "none";
+
+        if (matches) {
+          visibleCount++;
+        }
+      });
+
+      noResults.style.display =
+        visibleCount === 0 ? "block" : "none";
+    }
+
+    searchInput.addEventListener("input", searchTools);
+
+    clearButton.addEventListener("click", function () {
+      searchInput.value = "";
+      searchTools();
+      searchInput.focus();
+    });
+
+    searchTools();
   }
 
 });

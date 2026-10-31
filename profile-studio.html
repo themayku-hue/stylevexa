@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your complete Instagram profile with stylish usernames, bios, profile names and highlight ideas using InstaVibez Profile Makeover Studio.">
+  <meta name="theme-color" content="#10101c">
+  <title>Instagram Profile Makeover Studio - InstaVibez</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .studio-section {
+      max-width: 1100px;
+      margin: 45px auto;
+      padding: 25px;
+    }
+
+    .studio-heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .studio-heading h1 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .studio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .studio-box, .profile-preview {
+      background: var(--card, #1b1b2b);
+      border: 1px solid var(--border, #333);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .studio-box label {
+      display: block;
+      margin: 16px 0 8px;
+      font-weight: bold;
+    }
+
+    .studio-box input,
+    .studio-box select,
+    .studio-box textarea {
+      width: 100%;
+      padding: 13px;
+      border-radius: 9px;
+      border: 1px solid var(--border, #444);
+      background: #10101c;
+      color: white;
+      font: inherit;
+    }
+
+    .studio-box textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .studio-box button,
+    .studio-actions button {
+      border: none;
+      padding: 12px 18px;
+      margin-top: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .generate-btn {
+      background: #8b5cf6;
+      color: white;
+      width: 100%;
+    }
+
+    .profile-preview {
+      text-align: center;
+    }
+
+    /* Profile Theme Designs */
+
+.profile-preview.theme-royal {
+  background: linear-gradient(145deg, #2b124c, #111827);
+  border: 2px solid #fbbf24;
+}
+
+.profile-preview.theme-attitude {
+  background: linear-gradient(145deg, #450a0a, #18181b);
+  border: 2px solid #ef4444;
+}
+
+.profile-preview.theme-cute {
+  background: linear-gradient(145deg, #831843, #312e81);
+  border: 2px solid #f9a8d4;
+}
+
+.profile-preview.theme-gaming {
+  background: linear-gradient(145deg, #064e3b, #111827);
+  border: 2px solid #22c55e;
+}
+
+.profile-preview.theme-dark {
+  background: linear-gradient(145deg, #09090b, #27272a);
+  border: 2px solid #71717a;
+}
+
+.profile-preview.theme-love {
+  background: linear-gradient(145deg, #881337, #4c1d95);
+  border: 2px solid #fb7185;
+}
+
+.profile-preview.theme-classy {
+  background: linear-gradient(145deg, #374151, #111827);
+  border: 2px solid #d4d4d8;
+}
+
+.profile-preview.theme-sad {
+  background: linear-gradient(145deg, #1e293b, #020617);
+  border: 2px solid #64748b;
+}
+
+.profile-preview.theme-luxury {
+  background: linear-gradient(145deg, #422006, #171717);
+  border: 2px solid #eab308;
+}
+
+.profile-preview.theme-nature {
+  background: linear-gradient(145deg, #14532d, #052e16);
+  border: 2px solid #86efac;
+}
+    .profile-avatar {
+      width: 90px;
+      height: 90px;
+      margin: 10px auto 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    }
+
+    .preview-username {
+      color: #a78bfa;
+      margin: 8px 0;
+    }
+
+    .preview-bio {
+      white-space: pre-line;
+      line-height: 1.8;
+      margin: 18px 0;
+    }
+
+    .highlight-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .highlight-item {
+      border: 1px solid var(--border, #444);
+      border-radius: 12px;
+      padding: 10px;
+      min-width: 75px;
+      font-size: 13px;
+    }
+
+    .studio-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .studio-actions button {
+      background: #8b5cf6;
+      color: white;
+    }
+
+    @media(max-width: 750px) {
+      .studio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .studio-heading h1 {
+        font-size: 27px;
+      }
+
+      .studio-section {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <nav class="navbar" id="navbar">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio</a>
+      <a href="username.html">Username</a>
+      <a href="fonts.html">Fonts</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="studio-section">
+
+  <div class="studio-heading">
+    <h1>✨ Instagram Profile Makeover Studio</h1>
+    <p>Create your complete stylish Instagram profile in one place.</p>
+  </div>
+
+  <div class="studio-grid">
+
+    <div class="studio-box">
+
+      <h2>🎨 Create Your Profile</h2>
+
+      <label for="profileName">Your Name</label>
+      <input type="text" id="profileName" placeholder="Enter your name">
+
+      <label for="profileCategory">Choose Category</label>
+      <select id="profileCategory">
+        <option value="attitude">Attitude</option>
+        <option value="gaming">Gaming</option>
+        <option value="love">Love</option>
+        <option value="aesthetic">Aesthetic</option>
+        <option value="fashion">Fashion</option>
+        <option value="business">Business</option>
+        <option value="personal">Personal</option>
+        <option value="sad">Sad</option>
+      </select>
+
+      <label for="profileStyle">Choose Style</label>
+      <select id="profileStyle">
+        <option value="cool">Cool</option>
+        <option value="vip">VIP</option>
+        <option value="simple">Simple</option>
+        <option value="cute">Cute</option>
+      </select>
+
+            <label for="profileTheme">Choose Profile Theme 🎨</label>
+      <select id="profileTheme">
+        <option value="royal">👑 Royal VIP</option>
+        <option value="attitude">🔥 Attitude King</option>
+        <option value="cute">🌸 Cute & Sweet</option>
+        <option value="gaming">🎮 Gaming Pro</option>
+        <option value="dark">🖤 Dark Aesthetic</option>
+        <option value="love">💖 Love Vibes</option>
+        <option value="classy">✨ Classy</option>
+        <option value="sad">🌙 Sad Soul</option>
+        <option value="luxury">💎 Luxury</option>
+        <option value="nature">🌿 Simple & Clean</option>
+      </select>
+
+      <button class="generate-btn" id="generateProfile">
+        Generate My Profile ✨
+      </button>
+
+    </div>
+
+    <div class="profile-preview" id="profilePreview">
+
+      <h2>Instagram Profile Preview</h2>
+
+      <div class="profile-avatar">✨</div>
+
+      <h3 id="previewName">Your Name</h3>
+      <div class="username-change-box">
+  <p class="preview-username" id="previewUsername">@your_username</p>
+  <button type="button" id="changeUsername">🔄 Change Username</button>
+   
+</div>
+
+      <p class="preview-bio" id="previewBio">
+        Your stylish Instagram bio will appear here.
+      </p>
+
+      <h3>Highlights</h3>
+
+      <div class="highlight-list" id="previewHighlights">
+        <div class="highlight-item">✨ Life</div>
+        <div class="highlight-item">❤️ Love</div>
+        <div class="highlight-item">📸 Photos</div>
+      </div>
+
+      <div class="studio-actions">
+        <button id="copyProfile">Copy All</button>
+        <button id="copyBio">Copy Bio</button>
+      </div>
+
+      <p id="copyMessage" aria-live="polite"></p>
+
+    </div>
+
+  </div>
+
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <a href="index.html" class="logo">Insta<span>Vibez</span></a>
+    <p>Make Your Profile Unique ✨</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="guide.html">Guide</a>
+    </div>
+    <p>© <span id="currentYear"></span> InstaVibez. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="common.js" defer></script>
+
+ 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const nameInput = document.getElementById("profileName");
+  const categoryInput = document.getElementById("profileCategory");
+  const styleInput = document.getElementById("profileStyle");
+  const themeInput = document.getElementById("profileTheme");
+
+  const previewName = document.getElementById("previewName");
+  const previewUsername = document.getElementById("previewUsername");
+  const previewBio = document.getElementById("previewBio");
+  const previewHighlights = document.getElementById("previewHighlights");
+  const copyMessage = document.getElementById("copyMessage");
+  const profilePreview = document.getElementById("profilePreview");
+
+  let generatedProfile = "";
+  let currentUsername = "";
+
+  const bioIdeas = {
+    attitude: [
+      "👑 Born to stand out\n🔥 My attitude, my rules\n✨ Creating my own story",
+      "😎 Silent but powerful\n⚡ Confidence is my style\n👑 Never ordinary"
+    ],
+    gaming: [
+      "🎮 Eat • Sleep • Game • Repeat\n🔥 Level up every day\n🏆 Game on!",
+      "🕹️ Gaming is my world\n⚡ Play hard, stay humble\n🎯 Born to win"
+    ],
+    love: [
+      "❤️ Spreading love everywhere\n✨ Collecting beautiful memories\n🌸 Heart full of dreams",
+      "💕 Love makes life beautiful\n🌹 Keep smiling\n❤️ Stay genuine"
+    ],
+    aesthetic: [
+      "🌙 Lost in my own world\n🦋 Creating little moments\n✨ Dreaming endlessly",
+      "🌸 Soft heart, strong soul\n☁️ Chasing peaceful days\n🕊️ Living beautifully"
+    ],
+    fashion: [
+      "✨ Style is my identity\n👗 Fashion lover\n📸 Making every moment count",
+      "🖤 Confidence is my outfit\n🔥 Creating my own trends\n✨ Stay stylish"
+    ],
+    business: [
+      "💼 Building something meaningful\n📈 Learning every day\n🚀 Dream • Plan • Execute",
+      "✨ Turning ideas into action\n🎯 Focused on growth\n💼 Work with purpose"
+    ],
+    personal: [
+      "😊 Simple person, big dreams\n🌍 Exploring life\n✨ Making memories",
+      "🌸 Just being myself\n💫 Enjoying little things\n❤️ Stay positive"
+    ],
+    sad: [
+      "🥀 Smiling through everything\n🌙 Some stories stay silent\n🖤 Healing slowly",
+      "🌧️ Quiet heart, deep thoughts\n🥀 Finding my own peace\n🌙 One day at a time"
+    ]
+  };
+
+  const highlights = {
+    attitude: ["👑 Royal", "🔥 Life", "😎 Style"],
+    gaming: ["🎮 Games", "🏆 Wins", "⚡ Squad"],
+    love: ["❤️ Love", "🌹 Memories", "💕 Moments"],
+    aesthetic: ["🌸 Vibes", "🌙 Life", "🦋 Dreams"],
+    fashion: ["👗 Style", "📸 Looks", "✨ Fits"],
+    business: ["💼 Work", "📈 Goals", "🚀 Growth"],
+    personal: ["😊 Me", "📸 Photos", "✈️ Trips"],
+    sad: ["🥀 Feelings", "🌧️ Thoughts", "🖤 Life"]
+  };
+
+  const usernameWords = {
+    cool: ["official", "its", "real", "the"],
+    vip: ["king", "queen", "vip", "royal"],
+    simple: ["its", "the", "hello", "iam"],
+    cute: ["cutie", "sweet", "angel", "little"]
+  };
+
+  const themeClasses = [
+    "theme-royal", "theme-attitude", "theme-cute",
+    "theme-gaming", "theme-dark", "theme-love",
+    "theme-classy", "theme-sad", "theme-luxury",
+    "theme-nature"
+  ];
+
+  function cleanUsername(value) {
+    return value
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9 ]/g, "")
+      .replace(/\s+/g, ".");
+  }
+
+  function updateGeneratedProfile() {
+    generatedProfile =
+      "Name: " + previewName.textContent +
+      "\nUsername: " + previewUsername.textContent +
+      "\nBio:\n" + previewBio.textContent +
+      "\nHighlights: " +
+      Array.from(previewHighlights.children)
+        .map(item => item.textContent)
+        .join(" | ");
+  }
+
+  function generate() {
+    const name = nameInput.value.trim();
+    const category = categoryInput.value;
+    const style = styleInput.value;
+
+    if (!name) {
+      alert("Please enter your name first!");
+      nameInput.focus();
+      return;
+    }
+
+    const cleanName = cleanUsername(name);
+    const words = usernameWords[style];
+    const word = words[Math.floor(Math.random() * words.length)];
+    const username = word + "." + cleanName;
+
+    currentUsername = username;
+
+    const bios = bioIdeas[category];
+    const bio = bios[Math.floor(Math.random() * bios.length)];
+
+    previewName.textContent = name;
+    previewUsername.textContent = "@" + username;
+    previewBio.textContent = bio;
+
+    previewHighlights.innerHTML = "";
+
+    highlights[category].forEach(item => {
+      const div = document.createElement("div");
+      div.className = "highlight-item";
+      div.textContent = item;
+      previewHighlights.appendChild(div);
+    });
+
+    const theme = themeInput.value;
+    profilePreview.classList.remove(...themeClasses);
+    profilePreview.classList.add("theme-" + theme);
+
+    updateGeneratedProfile();
+    copyMessage.textContent = "";
+  }
+
+  function changeUsername() {
+    const name = nameInput.value.trim();
+
+    if (!name) {
+      alert("Please generate your profile first!");
+      return;
+    }
+
+    const cleanName = cleanUsername(name);
+    const words = usernameWords[styleInput.value];
+
+    let newUsername = "";
+
+    do {
+      const word = words[Math.floor(Math.random() * words.length)];
+      const number = Math.floor(10 + Math.random() * 990);
+      newUsername = word + "." + cleanName + number;
+    } while (newUsername === currentUsername);
+
+    currentUsername = newUsername;
+    previewUsername.textContent = "@" + newUsername;
+
+    updateGeneratedProfile();
+
+    copyMessage.textContent = "New username generated!";
+    copyMessage.style.color = "#22c55e";
+  }
+
+  async function copyText(value, message) {
+    if (!value) {
+      copyMessage.textContent = "Please generate your profile first!";
+      copyMessage.style.color = "#ef4444";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(value);
+      copyMessage.textContent = message;
+      copyMessage.style.color = "#22c55e";
+    } catch (error) {
+      copyMessage.textContent =
+        "Copy not supported. Please select and copy manually.";
+      copyMessage.style.color = "#ef4444";
+    }
+  }
+
+  document.getElementById("generateProfile")
+    .addEventListener("click", generate);
+
+  document.getElementById("changeUsername")
+    .addEventListener("click", changeUsername);
+
+  document.getElementById("copyProfile")
+    .addEventListener("click", function () {
+      copyText(generatedProfile, "Complete profile copied!");
+    });
+
+  document.getElementById("copyBio")
+    .addEventListener("click", function () {
+      copyText(previewBio.textContent, "Bio copied!");
+    });
+
+  const year = document.getElementById("currentYear");
+  if (year) year.textContent = new Date().getFullYear();
+
+});
+</script>
+
+
+</body>
+</html>

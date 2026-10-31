@@ -122,21 +122,7 @@ button {
   margin-bottom: 25px;
 }
 
-.hero h1 {
-  font-size: clamp(35px, 6vw, 65px);
-  line-height: 1.15;
-  font-weight: 800;
-  max-width: 850px;
-  margin: auto;
-}
 
-.hero h1 span {
-  display: block;
-  background: linear-gradient(90deg, #a855f7, #ec4899);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
 
 .hero p {
   max-width: 650px;
@@ -189,10 +175,7 @@ button {
   margin-bottom: 45px;
 }
 
-.section-heading h2 {
-  font-size: 35px;
-  margin-bottom: 10px;
-}
+ 
 
 .section-heading p {
   color: var(--muted);
@@ -224,10 +207,7 @@ button {
   margin-bottom: 15px;
 }
 
-.tool-card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
+
 
 .tool-card p {
   color: var(--muted);
@@ -779,4 +759,204 @@ button {
   .emoji-mixer {
     padding: 20px 12px;
   }
+}
+
+/* PREMIUM MAIN HEADINGS */
+
+.hero h1 {
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.12;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  max-width: 900px;
+  margin: auto;
+  color: #ffffff;
+  text-shadow: 0 0 18px rgba(168, 85, 247, 0.25);
+}
+
+.hero h1 span {
+  display: block;
+  font-weight: 900;
+  background: linear-gradient(
+    90deg,
+    #c084fc,
+    #f472b6,
+    #a78bfa,
+    #c084fc
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: headingShine 4s linear infinite;
+}
+
+@keyframes headingShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* SECTION HEADINGS */
+
+.section-heading h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 900;
+  letter-spacing: -0.7px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #ffffff, #c084fc, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 15px rgba(168, 85, 247, 0.18);
+}
+
+/* TOOL CARD HEADINGS */
+
+.tool-card h3 {
+  font-size: 21px;
+  font-weight: 850;
+  letter-spacing: 0.2px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.25);
+}
+
+/* =================================
+   INSTAVIBEZ PREMIUM 3D TOOL CARDS
+================================= */
+
+.tool-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+/* Purple Pink Glow */
+
+.tool-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    #a855f7,
+    #ec4899,
+    #8b5cf6,
+    #06b6d4
+  );
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.35s ease;
+}
+
+/* Hover Effect */
+
+.tool-card:hover {
+  transform: translateY(-9px) scale(1.02);
+  border-color: #c084fc;
+  box-shadow:
+    0 12px 30px rgba(168, 85, 247, 0.22),
+    0 0 22px rgba(236, 72, 153, 0.15);
+}
+
+.tool-card:hover::before {
+  opacity: 0.18;
+}
+
+/* Icon Animation */
+
+.tool-icon {
+  display: inline-block;
+  transition: transform 0.35s ease;
+}
+
+.tool-card:hover .tool-icon {
+  transform: scale(1.2) rotate(-8deg);
+}
+
+/* Heading Glow */
+
+.tool-card h3 {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.tool-card:hover h3 {
+  color: #e9d5ff;
+  text-shadow: 0 0 12px rgba(192, 132, 252, 0.5);
+}
+
+/* Mobile Friendly */
+
+@media (hover: none) {
+  .tool-card:hover {
+    transform: none;
+  }
+
+  .tool-card:hover .tool-icon {
+    transform: none;
+  }
+}
+
+/* Reduced Motion Support */
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-card,
+  .tool-icon,
+  .tool-card h3 {
+    transition: none;
+  }
+}
+/* =================================
+   INSTAVIBEZ LIVE TOOL SEARCH
+================================= */
+
+.tool-search-box {
+  width: min(90%, 600px);
+  margin: 25px auto 35px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #19172b;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(168, 85, 247, 0.12);
+}
+
+.tool-search-box span {
+  font-size: 21px;
+}
+
+.tool-search-box input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 0;
+  color: #fff;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.tool-search-box input::placeholder {
+  color: #aaa;
+}
+
+.tool-search-box button {
+  color: #fff;
+  background: #a855f7;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 11px;
+  cursor: pointer;
+}
+
+.tool-search-box button:hover {
+  background: #ec4899;
 }
