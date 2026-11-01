@@ -93,12 +93,15 @@ button {
   color: #ec4899;
 }
 
-.menu-toggle {
+  .menu-toggle {
   display: none;
   border: none;
   background: transparent;
   color: white;
   font-size: 27px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1001;
 }
 
 /* HERO */
