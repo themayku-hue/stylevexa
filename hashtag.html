@@ -1,0 +1,1296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore Instagram hashtags and keywords by category. Copy hashtags for reels, posts and social media.">
+  <meta name="theme-color" content="#10101c">
+  <title>Viral Keywords & Hashtags - Insta Vibez</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #10101c;
+      color: #fff;
+      padding: 14px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+     .main-heading {
+  position: relative;
+  text-align: center;
+  font-size: clamp(27px, 6vw, 39px);
+  font-weight: 1000;
+  letter-spacing: 2px;
+  margin: 15px 0 22px;
+  padding: 17px 8px 20px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #25123d, #171326, #35123d);
+  border: 1px solid #7543a5;
+  border-radius: 15px;
+  text-shadow: 0 0 12px #d58aff, 0 0 25px #a855f7;
+  box-shadow: 0 0 18px #a855f733, inset 0 0 18px #a855f71c;
+}
+
+.main-heading::before {
+  content: "INSTAVIBEZ  ✦  HASHTAG STUDIO";
+  display: block;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #e5a8ff;
+  margin-bottom: 10px;
+  text-shadow: none;
+}
+
+.main-heading::after {
+  content: "";
+  display: block;
+  width: 75px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #a855f7, #ff5cbd);
+  box-shadow: 0 0 12px #c66aff;
+}
+
+    .search-area {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #10101c;
+      padding: 8px 0 12px;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 7px;
+    }
+
+    #searchInput {
+      width: 100%;
+      min-width: 0;
+      padding: 11px 13px;
+      border: 1px solid #655078;
+      border-radius: 20px;
+      background: #1b1928;
+      color: white;
+      font-size: 14px;
+      outline: none;
+    }
+
+    #searchBtn {
+      border: none;
+      border-radius: 20px;
+      padding: 0 17px;
+      background: #a855f7;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .section-heading {
+      font-size: 17px;
+      font-weight: 800;
+      margin: 15px 0 11px;
+      color: #f4d5ff;
+    }
+
+    #categories {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .category-btn {
+      min-width: 0;
+      padding: 12px 8px;
+      border: 1px solid #554268;
+      border-radius: 10px;
+      background: #211b30;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      text-align: left;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .category-btn.active {
+      background: #63349a;
+      border-color: #d5a5ff;
+      box-shadow: 0 0 10px #a855f755;
+      transform: scale(1.02);
+    }
+
+    .results-box {
+      margin-top: 17px;
+      padding: 13px;
+      border: 1px solid #49365d;
+      border-radius: 12px;
+      background: #191625;
+    }
+
+    #categoryTitle {
+      font-size: 19px;
+      font-weight: 900;
+      color: #e9c3ff;
+      margin-bottom: 6px;
+    }
+
+    #tagCount {
+      font-size: 12px;
+      color: #c6b4d5;
+      margin-bottom: 12px;
+    }
+
+    #tagList {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag-item {
+      padding: 8px 10px;
+      border: 1px solid #59446c;
+      border-radius: 8px;
+      background: #292137;
+      color: #f0dfff;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .tag-item input {
+      margin-right: 5px;
+      accent-color: #bd75ff;
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .action-buttons button {
+      border: none;
+      border-radius: 8px;
+      padding: 11px 7px;
+      background: #853fd0;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .action-buttons button:active,
+    #searchBtn:active {
+      transform: scale(.97);
+    }
+
+    #message {
+      min-height: 20px;
+      text-align: center;
+      color: #c8a2ff;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .rules-box {
+      margin-top: 22px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #050505;
+      border: 1px solid #444;
+      color: #eee;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .rules-box h3 {
+      color: #fff;
+      margin-bottom: 7px;
+      font-size: 15px;
+    }
+
+    .rules-box p {
+      margin-bottom: 6px;
+    }
+
+    @media (min-width: 600px) {
+      #categories {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .action-buttons {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 class="main-heading">VIRAL KEYWORDS</h1>
+
+  <div class="search-area">
+    <div class="search-box">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search category or hashtag..."
+      >
+      <button type="button" id="searchBtn">Search</button>
+    </div>
+  </div>
+
+  <h2 class="section-heading">Explore Categories</h2>
+
+  <div id="categories"></div>
+
+  <section class="results-box">
+    <h2 id="categoryTitle">Select a Category</h2>
+    <p id="tagCount">Choose a category to see hashtags.</p>
+
+    <div id="tagList"></div>
+
+    <div class="action-buttons">
+      <button type="button" id="copyAllBtn">Copy All</button>
+      <button type="button" id="copySelectedBtn">Selected Copy</button>
+      <button type="button" id="copyCategoryBtn">Same Category Copy</button>
+      <button type="button" id="shuffleBtn">Shuffle</button>
+    </div>
+
+    <p id="message"></p>
+  </section>
+
+   
+ 
+<div class="rules-box">
+   <div class="rules-box">
+  <h3>HOW TO USE HASHTAGS</h3>
+  <p><strong>1.</strong> Select your preferred category.</p>
+  <p><strong>2.</strong> Choose hashtags or use the copy options.</p>
+  <p><strong>3.</strong> Paste relevant hashtags into your Instagram caption.</p>
+  <p><strong>4.</strong> Use hashtags that match your content.</p>
+</div>
+
+<div class="privacy-box">
+  <h3>🔒 PRIVACY POLICY</h3>
+  <p>Your privacy is important to us.</p>
+  <p>No Instagram login or password is required.</p>
+  <p>We do not ask for your personal or sensitive information.</p>
+  <p>Browse Insta Vibez and use our tools responsibly.</p>
+  <div class="copyright">© 2026 Insta Vibez | All Rights Reserved</div>
+</div>
+
+.rules-box,
+.privacy-box {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 12px 0;
+  padding: 15px;
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #333333;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.rules-box h3,
+.privacy-box h3 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 900;
+  margin: 0 0 9px;
+}
+
+.rules-box p,
+.privacy-box p {
+  margin: 5px 0;
+}
+
+.copyright {
+  border-top: 1px solid #444444;
+  margin-top: 10px;
+  padding-top: 8px;
+  text-align: center;
+  color: #d9b5ff;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+ 
+<script>
+const hashtagData = {
+"Viral Reels": [
+"#viralreels","#reelsinstagram","#reelsvideo","#reelsindia","#instagramreels",
+"#reelitfeelit","#reelsdaily","#reelkarofeelkaro","#trendingreels","#viralvideo",
+"#reelscreator","#reelscontent","#reelscommunity","#explorereels","#reelslover",
+"#instareels","#reelsfun","#reelsedit","#reelsmusic","#reelsinspiration",
+"#shortvideo","#dailyreels","#reelstrend","#reelsworld","#newreels",
+"#creativevideo","#reelsstyle","#reelslife","#reelsviral","#contentcreator",
+"#instagramvideo","#reelsoftheday","#reels2026","#videooftheday","#reelsideas",
+"#reelsmaker","#reelsindiaofficial","#reelsupdates","#reelsfeed","#reelsengagement",
+"#reelsentertainment","#reelsfashion","#reelsdance","#reelscomedy","#reelsmotivation",
+"#reelsphotography","#reelsartist","#reelslovers","#reelscommunityindia","#reelsinfluencer"
+],
+"Viral Posts": [
+"#viralpost","#instapost","#instagrampost","#postoftheday","#photooftheday",
+"#instadaily","#dailyphoto","#postinspiration","#creativepost","#trendingpost",
+"#socialmediapost","#pictureoftheday","#instaphoto","#postideas","#contentpost",
+"#photopost","#postdesign","#beautifulpost","#newpost","#postupdate",
+"#instagramcontent","#feedpost","#instagood","#photoart","#digitalcreator",
+"#postcreator","#postinspo","#dailycontent","#contentideas","#postcommunity",
+"#visualcontent","#creativecontent","#instafeed","#poststyle","#postoftheweek",
+"#shareyourstory","#postoftheday2026","#instalove","#photographylover","#goodvibes",
+"#explorepage","#discovercontent","#contentdaily","#postinspirationdaily","#socialpost",
+"#instamoments","#pictureperfect","#photoideas","#instaworld","#postlover"
+],
+"Trending Topics": [
+"#trending","#trendingnow","#latesttrends","#populartrends","#trendalert",
+"#currenttrends","#internettrends","#viraltrend","#trendingsocial","#newtrend",
+"#trendingtopic","#whatsnew","#socialtrends","#dailytrends","#trendwatch",
+"#popularnow","#onlinebuzz","#digitaltrends","#trendupdate","#todaystrends",
+"#trendspotting","#viralcontent","#internetculture","#socialbuzz","#toptrends",
+"#trendsetter","#trendstyle","#trendingsubject","#freshcontent","#newupdates",
+"#buzzworthy","#trendingideas","#moderntrends","#globaltrends","#trendcommunity",
+"#trendnews","#dailybuzz","#popularcontent","#exploretrends","#trendreport",
+"#socialupdates","#onlinecommunity","#contenttrends","#trenddiscovery","#viralupdates",
+"#digitalculture","#trendingworld","#newdiscoveries","#trendtalk","#futuretrends"
+],
+"Famous Personalities": [
+"#famouspersonality","#publicfigure","#inspirationpeople","#celebritynews","#famouspeople",
+"#personality","#greatpeople","#rolemodel","#inspiringperson","#iconicpeople",
+"#celebritylife","#popularperson","#legendarypeople","#famousquotes","#influentialpeople",
+"#publicperson","#globalicons","#celebritystyle","#peopleinspiration","#greatpersonality",
+"#successstories","#leaders","#influencers","#famousfaces","#inspiringstories",
+"#popularfigures","#iconicperson","#personalitydevelopment","#famousleaders","#celebrityworld",
+"#knownpersonalities","#greatlegends","#inspirationalpeople","#famousworld","#publicinspiration",
+"#peopleofinfluence","#celebrityupdates","#globalpersonality","#famousicons","#rolemodels",
+"#legendaryperson","#successmindset","#peoplewhomatter","#inspiringlife","#personalityquotes",
+"#famousinspiration","#notablepeople","#greatpersonalities","#worldicons","#inspirationdaily"
+],
+"Billionaires": [
+"#billionaire","#billionaires","#millionairemindset","#wealthmindset","#businesswealth",
+"#financialfreedom","#wealthcreation","#richmindset","#successmindset","#wealthbuilding",
+"#entrepreneurship","#businessleaders","#wealthy","#moneygoals","#investmentmindset",
+"#financialsuccess","#luxurylifestyle","#businesssuccess","#wealthquotes","#millionairelife",
+"#richlife","#smartinvesting","#wealthjourney","#businessinspiration","#moneywisdom",
+"#financialgrowth","#successhabits","#wealthmanagement","#futurewealth","#globalbusiness",
+"#richthinking","#wealthtips","#financialeducation","#businessvision","#moneytalk",
+"#luxuryworld","#wealthstrategy","#investorlife","#successjourney","#billionairelifestyle",
+"#businessmind","#wealthinspiration","#financialgoals","#moneyideas","#wealthcommunity",
+"#richhabits","#successquotes","#businessgrowth","#millionairemotivation","#wealthdaily"
+],
+"Entrepreneurs": [
+"#entrepreneur","#entrepreneurs","#entrepreneurlife","#startupfounder","#businessowner",
+"#entrepreneurship","#businessmindset","#startupjourney","#founderlife","#smallbusiness",
+"#businessideas","#startupsuccess","#entrepreneurmind","#businessgrowth","#selfemployed",
+"#businessinspiration","#startupcommunity","#founderstory","#entrepreneurmotivation","#businessgoals",
+"#buildabusiness","#businessstrategy","#creativeentrepreneur","#startupindia","#indianentrepreneur",
+"#businessdevelopment","#worksmart","#leadership","#innovation","#businesscoach",
+"#sidehustle","#onlinebusiness","#digitalentrepreneur","#entrepreneurquotes","#businesslife",
+"#successmindset","#founders","#startupideas","#businessnetwork","#entrepreneurdaily",
+"#businessplanning","#growthmindset","#businessownerlife","#startupworld","#newbusiness",
+"#entrepreneurtips","#businessskills","#futurefounder","#businessjourney","#createvalue"
+],
+"Business & Startups": [
+"#business","#startups","#startupbusiness","#businessideas","#businessgrowth",
+"#smallbusiness","#businessowner","#businessstrategy","#startupindia","#newbusiness",
+"#businessdevelopment","#businesssuccess","#businesscommunity","#businessmarketing","#businessplanning",
+"#businessmodel","#startupfounder","#businessgoals","#businessnews","#businessinspiration",
+"#businessmanagement","#businessnetworking","#businesssolutions","#businessinnovation","#businessmindset",
+"#startupjourney","#startupculture","#startupteam","#startupfunding","#startupideas",
+"#digitalbusiness","#onlinebusiness","#localbusiness","#businessservices","#businessbranding",
+"#businessskills","#businesseducation","#businessworld","#businessdaily","#businessopportunity",
+"#businessleadership","#businessvision","#businessgrowthtips","#startupstory","#businesslaunch",
+"#businessowners","#businesssupport","#businesslife","#businessupdates","#buildyourbusiness"
+],
+"Technology": [
+"#technology","#tech","#technews","#technologytrends","#innovation",
+"#futuretechnology","#digitalworld","#techcommunity","#gadgets","#smartdevices",
+"#techupdates","#newtechnology","#digitaltransformation","#techlover","#techlife",
+"#software","#hardware","#internet","#cloudcomputing","#cybersecurity",
+"#techindustry","#digitalinnovation","#smarttechnology","#techinspiration","#techworld",
+"#technologydaily","#emergingtech","#computerscience","#mobiletechnology","#techsolutions",
+"#futureisnow","#techreviews","#digitalfuture","#techideas","#moderntechnology",
+"#technewsdaily","#engineering","#automation","#connectedworld","#techdiscoveries",
+"#digitaltools","#techstartup","#technologyeducation","#smartfuture","#innovationdaily",
+"#techtrends2026","#futuregadgets","#techenthusiast","#digitalage","#technologylover"
+],
+"Artificial Intelligence": [
+"#artificialintelligence","#ai","#machinelearning","#deeplearning","#generativeai",
+"#aitools","#aitechnology","#aifuture","#aicontent","#aiinnovation",
+"#datascience","#neuralnetworks","#automation","#chatbot","#llm",
+"#openai","#robotics","#intelligenttechnology","#aiart","#aiapplications",
+"#aidevelopment","#aicommunity","#futureofai","#aiprogramming","#computervision",
+"#naturallanguageprocessing","#aisolutions","#digitalintelligence","#smarttechnology","#ailearning",
+"#aibusiness","#aiupdates","#aiexplained","#aiproductivity","#aidesign",
+"#aiassistant","#aicreator","#aieducation","#aiexploration","#ethicalai",
+"#responsibleai","#aiengineering","#futuretechnology","#aiprojects","#aiexperiments",
+"#aiforall","#innovation","#techfuture","#intelligentmachines","#aiworld"
+],
+"Robotics": [
+"#robotics","#robot","#robots","#robotictechnology","#automation",
+"#robotengineering","#roboticscience","#industrialrobots","#humanoidrobot","#roboticscommunity",
+"#roboticarm","#roboticssystem","#roboticseducation","#robotinnovation","#futureofrobotics",
+"#smartrobots","#roboticsproject","#roboticslife","#robotdesign","#roboticslab",
+"#robotprogramming","#roboticsclub","#roboticsworld","#roboticsdaily","#roboticsnews",
+"#roboticsfuture","#roboticssolutions","#roboticsresearch","#roboticsstartup","#roboticslearning",
+"#artificialintelligence","#mechatronics","#engineering","#stemeducation","#techinnovation",
+"#autonomousrobots","#roboticscompetition","#roboticsideas","#roboticslover","#roboticsindustry",
+"#machineautomation","#smartmachines","#futuremachines","#roboticsdevelopment","#roboticstechnology",
+"#roboticsforall","#roboticsinspiration","#roboticsworkshop","#roboticsmaker","#roboticscommunityindia"
+],
+"Space & Astronomy": [
+"#space","#astronomy","#universe","#cosmos","#nasa",
+"#spacex","#galaxy","#stars","#planets","#moon",
+"#mars","#solarsystem","#astrophysics","#spaceexploration","#stargazing",
+"#nebula","#blackhole","#cosmic","#spacetechnology","#astronaut",
+"#spacefacts","#spacephotography","#nightSky","#telescope","#milkyway",
+"#deepSpace","#spaceScience","#rocket","#satellite","#spaceMission",
+"#cosmology","#exoplanets","#eclipse","#meteor","#supernova",
+"#planetaryScience","#spaceDiscovery","#astronomyLovers","#universeMysteries","#spaceNews",
+"#celestial","#spaceResearch","#moonMission","#futureofspace","#interstellar",
+"#spaceCommunity","#cosmicWonders","#astronomyEducation","#spaceWorld","#exploreTheUniverse"
+],
+"Future Inventions": [
+"#futureinventions","#futuretechnology","#innovation","#newinventions","#invention",
+"#inventors","#futureideas","#nextgeneration","#smartfuture","#emergingtechnology",
+"#futuregadgets","#technologyinnovation","#creativeinventions","#scienceandtechnology","#futuredesign",
+"#moderninventions","#techdiscoveries","#futureworld","#inventionideas","#inventorlife",
+"#futureengineering","#smartdevices","#breakthroughtechnology","#newdiscoveries","#advancedtechnology",
+"#futuremobility","#greeninnovation","#digitalfuture","#automation","#robotics",
+"#futureconcepts","#innovativethinking","#futureprojects","#scienceinnovation","#techfuture",
+"#tomorrowstechnology","#futurevision","#inventionlab","#engineeringideas","#nextbigthing",
+"#futuremakers","#creativeengineering","#smartinventions","#futureexploration","#innovationdaily",
+"#futurepossibilities","#technologyideas","#futureofliving","#inventioncommunity","#designthinking"
+],
+"Electric Vehicles": [
+"#electricvehicle","#electricvehicles","#ev","#evcars","#electriccar",
+"#evcharging","#evtechnology","#electricmobility","#sustainabletransport","#greenmobility",
+"#tesla","#evlife","#electricbike","#evcommunity","#futuremobility",
+"#cleanenergy","#batterypower","#evinnovation","#evnews","#electricmotor",
+"#evrevolution","#evchargingstation","#electricdriving","#eventhusiast","#automotivefuture",
+"#zeroemission","#smartmobility","#electrictransport","#evindia","#electriccarsindia",
+"#evdesign","#evmarket","#evindustry","#batterytechnology","#renewableenergy",
+"#ecofriendly","#futurecars","#evupdates","#electricvehiclelife","#evworld",
+"#evsolutions","#evinfrastructure","#greentechnology","#electricvehiclelover","#evstartup",
+"#electriccarsofinstagram","#mobilityinnovation","#sustainablefuture","#evjourney","#electricfuture"
+],
+"Science": [
+"#science","#sciencefacts","#scienceeducation","#scientist","#research",
+"#physics","#chemistry","#biology","#scientificdiscovery","#scienceworld",
+"#scienceandtechnology","#experiments","#laboratory","#scientificresearch","#innovation",
+"#stem","#sciencecommunity","#scienceexplained","#sciencelearning","#scienceproject",
+"#astronomy","#environmentalscience","#microbiology","#genetics","#neuroscience",
+"#earthscience","#quantumphysics","#scientificmethod","#sciencefactsdaily","#futureofscience",
+"#researchlife","#sciencecommunication","#discoveries","#scienceisawesome","#scienceinspiration",
+"#scienceforall","#scienceupdates","#scienceexperiments","#scienceknowledge","#sciencelover",
+"#scientificinnovation","#sciencejournal","#sciencefacts101","#scienceeducationmatters","#scienceclub",
+"#scienceandnature","#scienceexploration","#scienceideas","#scienceworldwide","#curiousmind"
+],
+"Coding & Programming": [
+"#coding","#programming","#developer","#webdevelopment","#softwaredevelopment",
+"#javascript","#python","#html","#css","#java",
+"#cprogramming","#codinglife","#programmer","#frontenddeveloper","#backenddeveloper",
+"#fullstackdeveloper","#codingcommunity","#learncoding","#codeeveryday","#programminglife",
+"#developerlife","#opensource","#github","#git","#debugging",
+"#softwareengineer","#appdevelopment","#mobiledevelopment","#webdesign","#techcareer",
+"#codingisfun","#programminglanguage","#datastructures","#algorithms","#computerscience",
+"#codingbootcamp","#codeNewbie","#100daysofcode","#buildinpublic","#devtools",
+"#programmingtips","#codingchallenge","#developercommunity","#techskills","#codelearning",
+"#pythonprogramming","#reactjs","#nodejs","#codingprojects","#futuredeveloper"
+],
+"Digital Marketing": [
+"#digitalmarketing","#marketing","#socialmediamarketing","#seo","#contentmarketing",
+"#onlinemarketing","#marketingstrategy","#emailmarketing","#searchengineoptimization","#branding",
+"#marketingtips","#digitaladvertising","#marketingagency","#marketingexpert","#marketingdigital",
+"#socialmedia","#marketingcampaign","#leadgeneration","#marketingautomation","#growthmarketing",
+"#influencermarketing","#personalbranding","#contentstrategy","#marketingideas","#businessmarketing",
+"#digitalstrategy","#marketingeducation","#marketingcommunity","#onlinebusiness","#webtraffic",
+"#googleads","#analytics","#conversionoptimization","#marketingtools","#brandstrategy",
+"#marketinggrowth","#digitalentrepreneur","#marketingnews","#marketingtrends","#customerexperience",
+"#advertising","#marketingconsultant","#marketinginspiration","#marketinggoals","#smallbusinessmarketing",
+"#socialmediatips","#marketingworld","#digitalgrowth","#marketingdaily","#brandbuilding"
+],
+"Social Media": [
+"#socialmedia","#instagram","#facebook","#youtube","#socialnetwork",
+"#socialmediatips","#digitalworld","#onlinecommunity","#socialmediacreator","#socialmediacontent",
+"#socialmediamarketing","#socialmediaupdates","#socialmediatrending","#socialmediacommunity","#instagramcreator",
+"#instagramcontent","#instagrammarketing","#instagramupdates","#instagramtrending","#contentcreator",
+"#socialmediapage","#socialmediastrategy","#socialmediainfluencer","#onlinecontent","#digitalcreator",
+"#socialmediapost","#socialmediaworld","#socialmediagrowth","#socialmedialife","#socialmediaplatform",
+"#socialmediatools","#socialmediaengagement","#communitybuilding","#contentstrategy","#creatorcommunity",
+"#socialmediabranding","#digitalcommunity","#socialmediaideas","#socialmediaexpert","#socialmediaeducation",
+"#socialmediahelp","#socialmediafun","#socialmediaforbusiness","#onlinepresence","#digitalmarketing",
+"#socialmediadaily","#socialmedia2026","#socialmediafacts","#socialmediaindustry","#socialmediatrends"
+],
+"Content Creators": [
+"#contentcreator","#contentcreators","#creatorlife","#digitalcreator","#contentcreation",
+"#creatorcommunity","#youtubecreator","#instagramcreator","#videocreator","#creativecontent",
+"#contentideas","#creatorinspiration","#contentstrategy","#creatoreconomy","#influencerlife",
+"#contentmarketing","#creatorjourney","#dailycontent","#contentproduction","#creatorstudio",
+"#visualstorytelling","#personalbrand","#contentplanning","#socialmediacreator","#contenttips",
+"#creatorsofinstagram","#creativeprocess","#contentbusiness","#creatornetwork","#contentdesign",
+"#videoediting","#photocreator","#bloggerlife","#podcastcreator","#reelscreator",
+"#shortscreator","#contentgrowth","#contenteducation","#creatorsupport","#creatorgoals",
+"#digitalstorytelling","#creatorstyle","#contentcommunity","#creatortools","#creativeideas",
+"#contentinspiration","#creatorworld","#onlinecreator","#contentdaily","#buildyourbrand"
+],
+"Motivation": [
+"#motivation","#motivationalquotes","#inspiration","#successmindset","#nevergiveup",
+"#staypositive","#believeinyourself","#dreambig","#keepgoing","#selfmotivation",
+"#dailyinspiration","#mindsetmatters","#positivity","#hardwork","#discipline",
+"#goalsetting","#personalgrowth","#growthmindset","#successquotes","#motivational",
+"#inspireothers","#focusonyourself","#workhard","#dreamscometrue","#positivevibes",
+"#mindsetiseverything","#consistency","#selfbelief","#determination","#lifequotes",
+"#motivationdaily","#inspirationalquotes","#successjourney","#neverstopdreaming","#ambition",
+"#pushyourself","#makeithappen","#positiveenergy","#motivationforlife","#innerstrength",
+"#believeandachieve","#takeaction","#successhabits","#keepmovingforward","#strongmind",
+"#motivationindia","#dailyquotes","#inspireyourself","#youcandoit","#motivationalthoughts"
+],
+"Success & Lifestyle": [
+"#success","#successlife","#lifestyle","#successfulpeople","#successmindset",
+"#luxurylifestyle","#simpleliving","#lifestyleblogger","#personalgrowth","#selfdevelopment",
+"#successhabits","#dailyhabits","#goalsetting","#productivity","#worklifebalance",
+"#mindfulliving","#healthylifestyle","#positiveattitude","#successquotes","#lifeinspiration",
+"#dreamlife","#livingwell","#goodhabits","#selfimprovement","#lifejourney",
+"#successstory","#lifestyleinspiration","#happylife","#balancedlife","#growthmindset",
+"#successdaily","#lifegoals","#betterlife","#discipline","#focus",
+"#wealthmindset","#financialfreedom","#morningroutine","#dailyroutine","#lifeadvice",
+"#lifestylegoals","#successprinciples","#inspiredliving","#modernlifestyle","#mindsetshift",
+"#happinessmatters","#personaldevelopment","#successcommunity","#liveyourbestlife","#lifetips"
+],
+"Nature": [
+"#nature","#naturephotography","#naturelovers","#beautifulnature","#naturegram",
+"#nature_perfection","#earthfocus","#wildnature","#naturebeauty","#naturephoto",
+"#landscapephotography","#greenplanet","#naturewalk","#outdoors","#earthpix",
+"#nature_daily","#mothernature","#natureaddict","#natureinspired","#natureworld",
+"#trees","#flowers","#sunset","#sunrise","#skyphotography",
+"#mountainviews","#river","#forest","#wildlife","#naturalbeauty",
+"#exploretheoutdoors","#naturecaptures","#natureheals","#planetearth","#ecology",
+"#naturecommunity","#naturelover","#greenworld","#freshair","#earthbeauty",
+"#naturestories","#outdoorlife","#scenicviews","#natureinspiration","#beautifuldestinations",
+"#naturegramindia","#earthshots","#naturedetails","#naturalworld","#ourplanet"
+],
+"Mountains": [
+"#mountains","#mountainlife","#mountainlovers","#mountainview","#mountainphotography",
+"#mountainadventures","#mountainhiking","#mountainescape","#mountainvibes","#mountainrange",
+"#mountainpeak","#mountainlandscape","#mountainlove","#mountaintrip","#mountainair",
+"#mountainstories","#mountainclimbing","#mountainexplorer","#mountainworld","#mountainmagic",
+"#hikingadventures","#trekking","#hikinglife","#naturelovers","#outdooradventures",
+"#snowymountains","#hillstation","#mountainroad","#mountainriver","#mountainforest",
+"#travelmountains","#mountainmorning","#mountainsunset","#mountainviews","#mountainjourney",
+"#mountainculture","#mountainphotographyindia","#adventuretravel","#exploremore","#highaltitude",
+"#peaklife","#mountainbeauty","#mountaincommunity","#mountaintrails","#wildmountains",
+"#mountainexperience","#mountainholiday","#mountainnature","#mountainlover","#mountainescape"
+],
+"Beaches": [
+"#beach","#beachlife","#beachvibes","#beachlover","#beachphotography",
+"#beachday","#beachsunset","#beachsunrise","#oceanview","#seaside",
+"#tropicalbeach","#sandybeach","#beachholiday","#beachvacation","#coastline",
+"#oceanlover","#waves","#seaview","#beachwalk","#islandlife",
+"#beachlovers","#summervibes","#coastalbeauty","#beachmood","#beachscape",
+"#oceanphotography","#blueocean","#seasandandsun","#beachadventures","#beachtime",
+"#tropicalparadise","#seasideescape","#beachrelax","#sunandsea","#coastalliving",
+"#beachinspiration","#oceanbreeze","#beachculture","#beachcommunity","#beachtravel",
+"#beachmoments","#beautifulbeaches","#seascape","#coastalviews","#beachloverlife",
+"#beachdestination","#islandvibes","#shoreline","#beachstories","#oceanworld"
+],
+"Waterfalls": [
+"#waterfall","#waterfalls","#waterfallphotography","#waterfalllovers","#waterfallview",
+"#naturewaterfall","#waterfallbeauty","#waterfalladventure","#waterfallhike","#waterfalltrip",
+"#cascades","#flowingwater","#naturephotography","#riverlife","#freshwater",
+"#waterfallwonder","#hiddenwaterfall","#waterfalldestination","#waterfallchasing","#waterfallmood",
+"#waterfallnature","#beautifulwaterfalls","#waterfallworld","#waterfallcaptures","#waterfallvibes",
+"#waterfalllover","#waterfalljourney","#waterfallscenery","#waterfallmagic","#waterfalldreams",
+"#natureescape","#forestwaterfall","#mountainwaterfall","#waterfallseason","#waterfalltour",
+"#waterfalladventures","#waterfallinspiration","#waterfallshots","#waterfallcommunity","#waterfalltravel",
+"#waterfallstories","#waterfallbeautyspot","#waterfallhunting","#waterfallviewpoint","#wildwaterfall",
+"#waterfallparadise","#waterfallphotographer","#waterfalllife","#naturelover","#waterfallwonderland"
+],
+"Forest & Wildlife": [
+"#forest","#wildlife","#forestlife","#forestphotography","#wildlifephotography",
+"#forestlovers","#wildlifeconservation","#forestbeauty","#junglelife","#animalworld",
+"#forestwalk","#natureconservation","#wildanimals","#biodiversity","#greenforest",
+"#forestvibes","#wildlifeplanet","#forestadventure","#wildlifeeducation","#forestnature",
+"#savewildlife","#protectnature","#forestecosystem","#wildlifehabitat","#animalphotography",
+"#forestexploration","#naturelover","#wildlifecommunity","#foreststories","#junglephotography",
+"#tropicalforest","#rainforest","#woodland","#birdwatching","#wildlifeprotection",
+"#foresttrails","#wildlifeworld","#earthconservation","#naturepreservation","#forestscape",
+"#wildlifelovers","#forestmagic","#animalhabitat","#wildlifeawareness","#greenplanet",
+"#forestjourney","#natureandwildlife","#wildlifeindia","#forestlifeindia","#ourwildworld"
+],
+"Travel": [
+"#travel","#travelgram","#travelphotography","#travelblogger","#traveltheworld",
+"#wanderlust","#traveladdict","#travelholic","#travelinspiration","#travelcommunity",
+"#exploremore","#beautifuldestinations","#worldtravel","#tripideas","#travelguide",
+"#adventuretravel","#solotravel","#familytravel","#budgettravel","#luxurytravel",
+"#travelmoments","#travelstories","#travelgoals","#travellover","#traveling",
+"#vacationmode","#holidayvibes","#discoverearth","#exploretheworld","#travelindia",
+"#indiatravel","#weekendgetaway","#roadtrip","#hiddenplaces","#tourism",
+"#travelupdates","#travelideas","#travelbucketlist","#naturetravel","#citybreak",
+"#travelphotographer","#journeyofalifetime","#travelmemories","#travelinfluencer","#tripplanner",
+"#travelworldwide","#destinationinspiration","#travel2026","#exploreindia","#goexplore"
+],
+"Countries & Cities": [
+"#countries","#cities","#worldcities","#citylife","#cityphotography",
+"#beautifulcities","#cityscape","#urbanlife","#travelcities","#explorecities",
+"#countrylife","#globaltravel","#worldculture","#citylights","#cityviews",
+"#cityvibes","#metropolitan","#urbanphotography","#cityexplorer","#worlddestinations",
+"#indiancities","#indiatravel","#delhi","#mumbai","#jaipur",
+"#kanpur","#lucknow","#newyork","#london","#paris",
+"#tokyo","#dubai","#singapore","#sydney","#toronto",
+"#citytour","#cityguide","#urbanexploration","#citylover","#globalcities",
+"#worldmap","#countryfacts","#citystories","#cityarchitecture","#travelaroundtheworld",
+"#citycommunity","#beautifulplaces","#discovercities","#worldexplorer","#citytravel"
+],
+"Food": [
+"#food","#foodie","#foodphotography","#foodlover","#foodstagram",
+"#instafood","#foodblogger","#foodiesofinstagram","#yummy","#delicious",
+"#homemadefood","#streetfood","#indianfood","#foodgasm","#foodpics",
+"#foodloverforever","#foodinspiration","#tasty","#healthyfood","#fooddiary",
+"#foodculture","#foodexplorer","#foodart","#foodstyling","#foodreels",
+"#cooking","#homecooking","#recipeideas","#foodrecipes","#dessertlover",
+"#sweettooth","#breakfastideas","#lunchideas","#dinnerideas","#snacktime",
+"#foodcommunity","#foodstories","#foodtrends","#foodpassion","#foodjourney",
+"#indianstreetfood","#traditionalfood","#foodmagic","#foodworld","#fooddaily",
+"#foodcontent","#foodcreator","#foodexperience","#foodlifestyle","#eatwell"
+],
+"Fashion": [
+"#fashion","#fashionstyle","#fashionblogger","#fashionista","#ootd",
+"#outfitoftheday","#styleinspiration","#fashiontrends","#streetstyle","#fashionlover",
+"#styleblogger","#mensfashion","#womensfashion","#indianfashion","#fashiondaily",
+"#fashiongram","#styleoftheday","#fashioninspo","#fashionphotography","#fashioncommunity",
+"#modernstyle","#casualstyle","#traditionalfashion","#ethnicwear","#designerwear",
+"#fashiondesign","#styleguide","#fashionideas","#outfitideas","#lookbook",
+"#fashionworld","#fashionweek","#fashionmodel","#stylegoals","#fashionaddict",
+"#fashionreels","#fashioncontent","#wardrobestyle","#personalstyle","#beautifullooks",
+"#fashionupdates","#fashioninfluencer","#styleeveryday","#fashioninspiration","#trendystyle",
+"#clothingstyle","#fashiondiary","#fashionjourney","#fashionculture","#styleyourself"
+],
+"Beauty": [
+"#beauty","#beautytips","#beautycare","#beautyblogger","#beautylover",
+"#skincare","#skincareroutine","#makeup","#makeuplover","#makeuptutorial",
+"#beautycommunity","#naturalbeauty","#glowingskin","#selfcare","#beautyproducts",
+"#beautyinspiration","#beautycontent","#beautyreels","#beautyideas","#beautyworld",
+"#haircare","#hairgoals","#nailart","#naildesign","#beautytrend",
+"#cosmetics","#makeupartist","#beautyexpert","#beautyupdates","#beautydaily",
+"#glowup","#beautyroutine","#skinhealth","#beautyjourney","#beautycreator",
+"#makeupinspiration","#beautystyle","#beautyphotography","#beautyreview","#beautyessentials",
+"#everydaybeauty","#beautytutorial","#beautyloverforever","#beautyandcare","#beautylook",
+"#beautycommunityindia","#selfcaretips","#skincarelover","#beautygoals","#beautyblog"
+],
+"Fitness & Gym": [
+"#fitness","#gym","#fitnessmotivation","#workout","#gymmotivation",
+"#fitnessjourney","#fitlife","#healthylifestyle","#fitnessgoals","#strengthtraining",
+"#bodybuilding","#gymlife","#fitnesslover","#workoutmotivation","#fitindia",
+"#exercise","#training","#personaltrainer","#musclebuilding","#cardio",
+"#weighttraining","#fitnesscommunity","#gymlover","#healthandfitness","#fitnesstips",
+"#homeworkout","#dailyworkout","#fitnessreels","#fitnessinspiration","#strongbody",
+"#wellness","#active lifestyle","#sportsfitness","#gymtime","#fitnesstransformation",
+"#fitnesscoach","#workoutlife","#fitnesstraining","#healthgoals","#fitnessdaily",
+"#gymcommunity","#fitnessmodel","#fitnesscontent","#mindandbody","#fitjourney",
+"#strengthandconditioning","#fitnesseducation","#healthyhabits","#gyminspiration","#fitnessworld"
+],
+"Sports": [
+"#sports","#sport","#sportsnews","#sportslover","#sportslife",
+"#athlete","#athletics","#sportscommunity","#sportsphotography","#sportsmotivation",
+"#football","#cricket","#basketball","#tennis","#badminton",
+"#volleyball","#hockey","#swimming","#running","#cycling",
+"#fitness","#teamspirit","#sportsmanship","#champion","#training",
+"#sportsupdates","#sportsfans","#sportsevents","#sportscontent","#sportsreels",
+"#gameon","#matchday","#playhard","#nevergiveup","#sportsinspiration",
+"#sportsindia","#worldsports","#athletelife","#sportstraining","#sportsacademy",
+"#sportsclub","#sportsperformance","#sportsaction","#sportsworld","#sportsdaily",
+"#sportsphotographer","#sportstalk","#sportsfun","#lovesports","#active life"
+],
+"Gaming": [
+"#gaming","#gamer","#gamingcommunity","#gaminglife","#gamingvideos",
+"#gameplay","#onlinegaming","#mobilegaming","#pcgaming","#consolegaming",
+"#gaming setup","#gamingworld","#gamersofinstagram","#gamingcontent","#gamingreels",
+"#esports","#gamerlife","#gamingstreamer","#livestream","#gameon",
+"#videogames","#gamingclips","#gaminghighlights","#gamingfun","#gamingnews",
+"#gamingupdates","#gamingzone","#gamingchannel","#gamingaddict","#pro gamer",
+"#gamingindia","#indian gamers","#gamecreator","#gaminginspiration","#gamingculture",
+"#multiplayer","#gamingsetup","#gamecollection","#gamingtips","#gamingcommunityindia",
+"#gamerforever","#gamingdaily","#newgames","#game review","#gamingpassion",
+"#mobilegamer","#pcgamer","#console gamer","#gamingexperience","#futuregaming"
+],
+"Cars": [
+"#cars","#carsofinstagram","#carlover","#carphotography","#supercars",
+"#luxurycars","#sportscars","#carculture","#carcommunity","#carenthusiast",
+"#automotive","#carshow","#modifiedcars","#carreels","#cargram",
+"#carspotting","#carstyle","#carinterior","#carinteriors","#carreviews",
+"#carlifestyle","#carpassion","#carmeet","#carclub","#carworld",
+"#newcars","#classiccars","#vintagecars","#electriccars","#hypercars",
+"#carlovers","#carvideos","#carcontent","#automotivephotography","#carcollection",
+"#carupdates","#carnews","#carinspiration","#dreamcar","#fastcars",
+"#carengine","#cartechnology","#car design","#car detailing","#carcare",
+"#carcommunityindia","#indian cars","#carjourney","#carenthusiasts","#autoworld"
+],
+"Bikes": [
+"#bikes","#bikelife","#bikelover","#bikers","#motorcycle",
+"#motorcycles","#bikestagram","#bikephotography","#bikerlife","#bikercommunity",
+"#sportsbike","#superbike","#royalenfield","#bikeride","#ridinglife",
+"#bikergram","#bikelovers","#biketrip","#bikerides","#bikeadventure",
+"#motorcyclelife","#motorcyclelover","#bikeculture","#bikeclub","#bikemodification",
+"#bikereels","#bikevideos","#bikeworld","#bikestyle","#bikerforever",
+"#motovlog","#motovlogger","#riders","#riderlife","#longride",
+"#roadtrip","#bikejourney","#motorcyclephotography","#bikemeet","#bikeshow",
+"#bikereview","#bikelifestyle","#biketechnology","#bikerinspiration","#bikecommunityindia",
+"#indiabikers","#indianbikes","#twowheels","#ridefree","#bikelove"
+],
+"Photography": [
+"#photography","#photographer","#photooftheday","#photographylovers","#photographyart",
+"#naturephotography","#portraitphotography","#streetphotography","#travelphotography","#mobilephotography",
+"#landscapephotography","#macrophoto","#creativephotography","#photographylover","#photographycommunity",
+"#photoideas","#photographylife","#photographyinspiration","#photographyworld","#photographydaily",
+"#camera","#cameralover","#photoediting","#phototips","#photographyguide",
+"#visualstorytelling","#photojournalism","#blackandwhitephotography","#sunsetphotography","#wildlifephotography",
+"#architecturephotography","#fashionphotography","#foodphotography","#nightphotography","#portraitmood",
+"#capturethemoment","#photoart","#pictureperfect","#photographyreels","#photographycontent",
+"#photographyjourney","#photographyskills","#photographyeducation","#photographygear","#photographyinspo",
+"#creativephotos","#photooftheweek","#photographyindia","#instaphoto","#lensculture"
+],
+"Music": [
+"#music","#musician","#musiclover","#musiclife","#musicvideo",
+"#musicartist","#musicproducer","#singer","#songwriter","#newmusic",
+"#musiccommunity","#musicdaily","#musicinspiration","#musicreels","#musicworld",
+"#indiemusic","#indianmusic","#bollywoodmusic","#popmusic","#classicalmusic",
+"#hiphop","#rapmusic","#rockmusic","#electronicmusic","#lofimusic",
+"#musicproduction","#musicstudio","#musicfestival","#livemusic","#musicconcert",
+"#singing","#vocals","#guitar","#piano","#drums",
+"#musically","#musicculture","#musicpassion","#musiccreator","#musiccontent",
+"#musicupdates","#musicdiscovery","#musicrecommendations","#soundtrack","#melody",
+"#rhythm","#musicartistlife","#musicjourney","#musicfans","#musicvibes"
+],
+"Dance": [
+"#dance","#dancer","#dancelife","#dancevideo","#dancechallenge",
+"#dancersofinstagram","#dancelover","#dancecommunity","#danceperformance","#dancereels",
+"#dancemoves","#dancemusic","#dancepractice","#dancestudio","#danceinspiration",
+"#dancestyle","#dancefitness","#hiphopdance","#bollywooddance","#classicaldance",
+"#streetdance","#contemporarydance","#freestyledance","#salsadance","#bellydance",
+"#danceteacher","#dancetraining","#dancecover","#dancecrew","#danceworld",
+"#dancelifestyle","#dancepassion","#dancecontent","#dancecreator","#danceindia",
+"#dancedaily","#dancefun","#dancetrend","#danceartist","#danceexpression",
+"#dancelovers","#danceshow","#dancecompetition","#dancemoments","#dancejourney",
+"#dancemovement","#dancestories","#dancereelsindia","#dancingfeet","#danceforever"
+],
+"Comedy & Memes": [
+"#comedy","#memes","#funny","#funnyvideos","#comedian",
+"#memesdaily","#comedyreels","#humor","#laugh","#jokes",
+"#funnyreels","#memepage","#relatablememes","#indianmemes","#desimemes",
+"#comedyvideo","#standupcomedy","#comedylife","#memecommunity","#memeculture",
+"#dailyhumor","#laughoutloud","#funnycontent","#comedycontent","#memecreator",
+"#sarcasm","#funnyjokes","#comedyclips","#viralcomedy","#internetmemes",
+"#memelover","#comedyindia","#funnyindia","#jokesdaily","#relatablecontent",
+"#laughing","#comedyshow","#humorpage","#memeoftheday","#memesworld",
+"#funnycommunity","#comedyartist","#comicvideos","#entertainment","#funnyposts",
+"#memesforever","#comedytime","#jokesandfun","#memepost","#laughmore"
+],
+"Love & Couples": [
+"#love","#couplegoals","#couplelove","#relationshipgoals","#romantic",
+"#lovestory","#couplephotography","#couplevibes","#togetherforever","#soulmate",
+"#truelove","#relationship","#lovequotes","#romance","#couplelife",
+"#happycouple","#lovelymoments","#relationshipquotes","#couplegoalsdaily","#foreverlove",
+"#mylover","#lovebirds","#romanticvibes","#coupletravel","#couplediary",
+"#loveforever","#partnersincrime","#sweetlove","#relationshiptips","#lovemoments",
+"#couplecontent","#couplereels","#loveinspiration","#romanticcouple","#hearttoheart",
+"#loveyou","#couplegoalsindia","#togetherness","#beautifulrelationship","#loveandlife",
+"#couplememories","#relationshipjourney","#loveislife","#happytogether","#lovestoryreels",
+"#coupleinspiration","#lovecommunity","#romanticstory","#twogether","#foreverus"
+],
+"Friendship": [
+"#friendship","#friends","#bestfriends","#friendshipgoals","#friendsforever",
+"#besties","#friendshipquotes","#friendshipday","#friendshiplove","#friendsforlife",
+"#goodfriends","#friendshipmoments","#friendshipstories","#friendshipreels","#friendshipvibes",
+"#truefriends","#bff","#squadgoals","#friendshipmemories","#friendshiptime",
+"#friendslikefamily","#friendshipcommunity","#friendshipinspiration","#friendshipstatus","#friendshipbond",
+"#schoolfriends","#collegefriends","#childhoodfriends","#oldfriends","#newfriends",
+"#friendshipforever","#bestfriendgoals","#friendshipphotography","#friendshipvideo","#friendshipfun",
+"#friendshipjourney","#friendshipmatters","#friendshipdayeveryday","#friendshipworld","#friendshiplife",
+"#friendshipcelebration","#friendshipmagic","#friendsunited","#friendshipisbeautiful","#friendshipmomentsdaily",
+"#friendshiploveforever","#friendshipfirst","#friendsreunion","#friendshipclub","#friendsforeverever"
+],
+"Family": [
+"#family","#familylove","#familytime","#familyfirst","#familyforever",
+"#familygoals","#familybond","#familymoments","#familyphotography","#familylife",
+"#familyvalues","#familyiseverything","#familytogether","#familymemories","#familyreels",
+"#familyfun","#familycelebration","#familyloveforever","#familycommunity","#familyinspiration",
+"#parentslove","#siblings","#brotherandsister","#motherlove","#fatherlove",
+"#grandparents","#familyday","#familytrip","#familydinner","#familygathering",
+"#familytradition","#familycare","#familyhappiness","#familybonding","#familystories",
+"#familyjourney","#familytimeisbest","#familyvibes","#familyfirstalways","#family support",
+"#familyphoto","#familymomentsdaily","#lovemyfamily","#familyunity","#familyheart",
+"#familyhome","#familytogetherness","#familylifeindia","#familyandfriends","#ourfamily"
+],
+"Wedding": [
+"#wedding","#weddingday","#weddinginspiration","#weddingphotography","#weddingdecor",
+"#indianwedding","#bride","#groom","#bridetobe","#groomtobe",
+"#weddingdress","#weddingstyle","#weddingplanner","#weddingideas","#weddingseason",
+"#weddingbells","#weddingceremony","#weddingreels","#weddingmoments","#weddinglove",
+"#bridalwear","#weddingfashion","#weddingmakeup","#weddingvenue","#weddingdetails",
+"#shaadi","#shaadiseason","#indianbride","#indianweddingphotography","#weddingphotographer",
+"#weddingfilm","#weddingstory","#weddingdaymemories","#marriage","#newlyweds",
+"#couplewedding","#weddingcelebration","#weddingparty","#weddingflowers","#weddingtheme",
+"#weddingplanning","#weddingcontent","#weddingcommunity","#weddinginspo","#dreamwedding",
+"#weddingvibes","#weddinginindia","#weddinginspirationdaily","#weddingmemories","#foreverbegins"
+],
+"Education": [
+"#education","#learning","#studentlife","#studygram","#studymotivation",
+"#educationmatters","#knowledge","#schoollife","#collegelife","#university",
+"#onlinelearning","#elearning","#educationforall","#learningeveryday","#studytime",
+"#exampreparation","#studyinspiration","#studentmotivation","#teacherlife","#educationcommunity",
+"#learningjourney","#skilldevelopment","#careergoals","#academiclife","#educationtechnology",
+"#smartlearning","#studyhard","#successineducation","#educationalcontent","#educationtips",
+"#scienceeducation","#mathlearning","#englishlearning","#languagelearning","#booklover",
+"#readingtime","#knowledgeispower","#lifelonglearning","#digitaleducation","#learningresources",
+"#educationnews","#studygoals","#studentsuccess","#classroom","#educationworld",
+"#educationinindia","#futureeducation","#learningcommunity","#studyreels","#learnsomethingnew"
+],
+"Art & Creativity": [
+"#art","#artist","#artwork","#creative","#creativity",
+"#artlover","#artistsoninstagram","#artcommunity","#artinspiration","#creativeart",
+"#digitalart","#drawing","#painting","#illustration","#sketching",
+"#artdaily","#artistic","#creativeprocess","#artstyle","#modernart",
+"#abstractart","#traditionalart","#artistlife","#artreels","#artcontent",
+"#artstudio","#artideas","#creativeideas","#handmadeart","#crafting",
+"#doodleart","#design","#graphicdesign","#visualart","#artworld",
+"#artjourney","#artlovers","#creativecommunity","#arteducation","#artpractice",
+"#artisticexpression","#artworkdaily","#artgallery","#artcollector","#creativedesign",
+"#artandculture","#artisticmind","#artistinspiration","#artprojects","#makeart"
+],
+"Animals & Pets": [
+"#animals","#pets","#petlover","#animalphotography","#wildlife",
+"#doglover","#catlover","#dogs","#cats","#puppy",
+"#kitten","#petlife","#animalworld","#petstagram","#petsofinstagram",
+"#animalcare","#petcare","#animalrescue","#adoptdontshop","#petcommunity",
+"#cuteanimals","#animalvideos","#petreels","#animalplanet","#naturelovers",
+"#birdlover","#horselover","#rabbitlover","#petfashion","#petfriendly",
+"#animalfriends","#animalprotection","#wildlifephotography","#petphotography","#dogsofinstagram",
+"#catsofinstagram","#doglife","#catlife","#petstories","#animalstories",
+"#petinspiration","#animalwelfare","#saveanimals","#petadoption","#animalfacts",
+"#petcontent","#animaldaily","#petworld","#lovemy pet","#animalsareawesome"
+],
+"Festivals": [
+"#festival","#festivals","#festivalvibes","#festivalcelebration","#indianfestivals",
+"#festivaloflights","#diwali","#holi","#navratri","#dussehra",
+"#rakshabandhan","#janmashtami","#ganeshchaturthi","#eid","#christmas",
+"#newyear","#pongal","#lohri","#baisakhi","#onam",
+"#durga puja","#festivalseason","#festivaldecor","#festivallook","#festivalfashion",
+"#festivalfood","#festivalphotography","#festivalmoments","#culturalfestival","#traditionalcelebration",
+"#festivallove","#festivalreels","#festivalfun","#festivalspirit","#festivalcommunity",
+"#celebrationtime","#indian culture","#festivaltime","#festivalvibesindia","#festivemood",
+"#festivalinspiration","#festivaltraditions","#familyfestival","#festivecelebration","#festivalideas",
+"#festivalupdates","#festivalworld","#festiveseason","#celebrateculture","#festivalmemories"
+],
+"Environment": [
+"#environment","#environmentalawareness","#sustainability","#climatechange","#savetheplanet",
+"#gogreen","#ecofriendly","#recycling","#renewableenergy","#greenliving",
+"#natureconservation","#protectnature","#earthday","#climateaction","#biodiversity",
+"#cleanenergy","#zerowaste","#plasticfree","#sustainableliving","#environmentprotection",
+"#greenplanet","#ecology","#conservation","#saveearth","#environmenteducation",
+"#treeplanting","#forestconservation","#oceanconservation","#wildlifeprotection","#cleanenvironment",
+"#environmentalprotection","#sustainablefuture","#greenfuture","#earthcare","#environmentalchange",
+"#pollutioncontrol","#waterconservation","#energyefficiency","#organicliving","#environmentcommunity",
+"#climateawareness","#earthfriendly","#naturematters","#planetcare","#greeninitiatives",
+"#sustainabilitymatters","#ecowarrior","#environmentdaily","#futuregenerations","#ourplanet"
+],
+"Virtual Reality & Metaverse": [
+"#virtualreality","#vr","#metaverse","#augmentedreality","#ar",
+"#mixedreality","#virtualworld","#immersivetechnology","#vrgaming","#metaverseworld",
+"#digitalworld","#virtualexperience","#vrtechnology","#futureinternet","#digitalidentity",
+"#virtualcommunity","#3dworld","#spatialcomputing","#virtualrealitygaming","#metaversecommunity",
+"#vrheadset","#artechnology","#immersiveexperience","#digitalassets","#virtualspace",
+"#metaversefuture","#virtualdesign","#vrdevelopment","#arinnovation","#digitalexperience",
+"#virtualevents","#metaverseevents","#virtualeducation","#futuretechnology","#web3",
+"#digitalfashion","#virtualcreator","#virtualrealityart","#metaverseart","#vrcontent",
+"#virtualexploration","#immersiveworld","#virtualinnovation","#metaversetechnology","#virtualreels",
+"#digitalfuture","#futureofinternet","#virtualrealityindia","#metaversedevelopment","#nextgenerationtech"
+],
+"Future Trends": [
+"#futuretrends","#futuretechnology","#emergingtrends","#innovation","#nextgeneration",
+"#futureofwork","#futureliving","#smartcities","#artificialintelligence","#automation",
+"#robotics","#cleanenergy","#sustainablefuture","#digitaltransformation","#futuremobility",
+"#spaceinnovation","#biotechnology","#quantumcomputing","#futureeducation","#smartdevices",
+"#digitalhealth","#greeninnovation","#futuredesign","#futurebusiness","#futureeconomy",
+"#techtrends","#futureideas","#newdiscoveries","#futurelifestyle","#smarttechnology",
+"#futureindustry","#innovationdaily","#futurevision","#tomorrowstechnology","#futureworld",
+"#digitalfuture","#futureofscience","#futureinventions","#futurecommunity","#emergingtechnology",
+"#nextbigthing","#futurethinking","#futureexploration","#technologyupdates","#futurepossibilities",
+"#futuremakers","#futureinspiration","#worldof tomorrow","#futuregoals","#future2026"
+],
+"Bhagwan & God": [
+"#bhagwan","#god","#bhakti","#devotion","#prayer",
+"#godbless","#faith","#spirituality","#divineblessings","#godisgreat",
+"#bhagwanstatus","#bhaktistatus","#godquotes","#divineenergy","#spiritualjourney",
+"#indianspirituality","#sanatandharma","#hindutemple","#mandir","#darshan",
+"#puja","#aarti","#mantra","#divinegrace","#godlove",
+"#bhagwanquotes","#devotional","#spiritualquotes","#faithingod","#blessed",
+"#godmessage","#divinepower","#bhaktimarg","#sacredlife","#innerpeace",
+"#spiritualwisdom","#godstories","#indiantradition","#sanskriti","#divinevibes",
+"#bhaktireels","#devotionalstatus","#godphoto","#templevisit","#dailyprayer",
+"#shubhday","#bhagwankibhakti","#spiritualindia","#divinepath","#harekrishna"
+],
+"Sanatan Dharma": [
+"#sanatandharma","#sanatan","#hindudharma","#hinduism","#dharma",
+"#sanataniculture","#vedas","#upanishads","#hindu","#hindutradition",
+"#sanskriti","#bharatiyasanskriti","#hinduheritage","#indianheritage","#spiritualindia",
+"#bhakti","#sanatanwisdom","#dharmaquotes","#sanatanvalues","#hinduspirituality",
+"#templeculture","#sacredtradition","#vedicwisdom","#sanskrit","#mantra",
+"#yoga","#meditation","#divinelife","#spiritualknowledge","#hinduprayer",
+"#sanatanreels","#sanatanstatus","#sanatanquotes","#sanatancommunity","#sanatandharmalive",
+"#indianphilosophy","#eternaltruth","#dharmaway","#vedicculture","#hinduismfacts",
+"#bhartiya","#hinduculture","#sanatandharmaforever","#spiritualjourney","#dharmaeducation",
+"#sacredindia","#ancientwisdom","#sanatandharmaindia","#divineheritage","#faithanddharma"
+],
+"Radha Rani": [
+"#radharani","#radheradhe","#radha","#radhakrishna","#shriradhe",
+"#radhamadhav","#radhekrishna","#barsana","#radhabhakti","#radharaniquotes",
+"#radharanistatus","#radharanibhajan","#radharanireels","#radhenam","#radhegovinda",
+"#kishoriji","#shriji","#barsanadham","#radheprem","#radharani ki jai",
+"#radhe naam","#radhaashtami","#radharani darshan","#radhekrishnalove","#radhekrishnabhakti",
+"#radharanibhakti","#radharaniprem","#radharanimandir","#radhevrindavan","#vrindavan",
+"#barsanawali","#ladliji","#shriradhika","#radheradheji","#radhekrishnastatus",
+"#radhekrishnaquotes","#radharanimahima","#radhekrishnabhajan","#radhekrishnareels","#radharani darshan",
+"#radhekrishnaji","#radhekrishnabhakt","#radhekrishnadiaries","#radhekrishnaworld","#radhekrishnabhav",
+"#radhekrishnaseva","#radhekrishnadhun","#radhekrishnamandir","#radhekrishnaculture","#radhekrishnabhakti"
+],
+"Radha Krishna": [
+"#radhakrishna","#radhekrishna","#radheradhe","#radha","#krishna",
+"#shriradha","#shrikrishna","#radhamadhav","#radhegovinda","#radheshyam",
+"#krishnabhakti","#radhabhakti","#krishnalove","#radheprem","#radhakrishnalove",
+"#radhakrishnastatus","#radhakrishnaquotes","#radhakrishnareels","#radhakrishnabhajan","#radhakrishnabhakti",
+"#vrindavan","#mathura","#barsana","#gokul","#dwarka",
+"#krishnajanmashtami","#janmashtami","#harekrishna","#krishnaconsciousness","#krishnadiaries",
+"#krishnastatus","#krishnaquotes","#krishnareels","#krishnabhajan","#krishnaworld",
+"#bankebihari","#bihari ji","#laddugopal","#gopal","#murlidhar",
+"#kanha","#kanhaiya","#shyamsundar","#madhav","#govinda",
+"#radhakrishnaprem","#radhekrishnadarshan","#radhekrishnaseva","#radhekrishnadhun","#divinelove"
+],
+"Premanand Maharaj": [
+"#premanandmaharaj","#premanandjimaharaj","#shripremanand","#vrindavan","#radheradhe",
+"#satsang","#santvani","#bhakti","#bhaktimarg","#spiritualwisdom",
+"#premanandmaharajquotes","#premanandmaharajvani","#premanandmaharajstatus","#premanandmaharajreels","#maharajji",
+"#radharani","#krishnabhakti","#sanatandharma","#sant","#sadhu",
+"#spiritualjourney","#bhaktistatus","#devotional","#divineknowledge","#innerpeace",
+"#premanandji","#premanandvani","#premanandashram","#vrindavandham","#barsana",
+"#radhenam","#radhekrishna","#sadhana","#seva","#naamjap",
+"#bhajan","#kirtan","#spiritualquotes","#dharma","#vairagya",
+"#satsangvichar","#santvachan","#bhaktireels","#maharajvani","#divinepath",
+"#bhagwatkatha","#radhabhakti","#krishnaprem","#premanandjiwords","#spiritualindia"
+],
+"Mahadev & Shiv": [
+"#mahadev","#harharmahadev","#shiv","#shiva","#bholenath",
+"#mahakal","#omnamahshivaya","#shivshankar","#lordshiva","#shivbhakti",
+"#mahadevstatus","#mahadevquotes","#mahadevreels","#mahadevlover","#shivratri",
+"#sawan","#kedarnath","#neelkanth","#adiyogi","#shambhu",
+"#bholebaba","#shivshakti","#shivji","#mahakalbhakt","#shivtemple",
+"#mahadev भक्त","#shivsagar","#shivmantra","#shivam","#rudra",
+"#trimbakeshwar","#amarnath","#somnath","#ujjain","#mahakaleshwar",
+"#shivbhajan","#shivdarshan","#shiv tandav","#shivaquotes","#shivadivine",
+"#mahadev ki jai","#bholenath ki jai","#shivratri2026","#sawanmonth","#shivling",
+"#shivparvati","#shankar","#devon ke dev","#mahadevstatusvideo","#shivbhakti"
+],
+"Shri Ram": [
+"#shriram","#jaishreeram","#ram","#rammandir","#siyaram",
+"#jaisiyaram","#ramji","#lordram","#ramayana","#ramayan",
+"#ram bhakti","#ramstatus","#ramquotes","#ramreels","#ramnavami",
+"#ayodhya","#ayodhyarammandir","#rambhakt","#hanuman","#sitaram",
+"#maryadapurushottam","#raghupati","#ramdarbar","#ramnaam","#ramkatha",
+"#ramayanquotes","#ramayanstatus","#ramayanreels","#ramtemple","#ramlalla",
+"#sriram","#shriramji","#ramayanam","#ramcharitmanas","#tulsidas",
+"#ramsetu","#ramayanaquotes","#rammandirayodhya","#ramdevotion","#rambhajan",
+"#ramkripa","#sita ram","#ramji ki jai","#bhagwanram","#ramayanstories",
+"#ramayanaart","#ramayaninspiration","#ramayanwisdom","#ramnavami2026","#jaishriram"
+],
+"Hanuman Ji": [
+"#hanumanji","#jaishreeram","#bajrangbali","#hanuman","#sankatmochan",
+"#hanumanchalisa","#pavanputra","#anjaneya","#mahavir","#hanumanbhakti",
+"#hanumanstatus","#hanumanquotes","#hanumanreels","#hanumanmandir","#hanumanji ki jai",
+"#bajrangbali ki jai","#ramdoot","#kesarinandan","#marutinandan","#anjaniputra",
+"#hanumanchalisaquotes","#hanumanbhajan","#hanumandarshan","#hanumantemple","#hanumanjayanti",
+"#hanumanjayanti2026","#sankatmochanhanuman","#veerhanuman","#rambhakt","#ramnaam",
+"#shriram","#siyaram","#bhaktihanuman","#hanumanpower","#hanumanlove",
+"#hanumankripa","#hanumanjiquotes","#bajrangbali status","#hanumanchalisa path","#hanumankatha",
+"#hanumanseva","#hanumanji bhakti","#hanumanji reels","#panchmukhi hanuman","#balaji",
+"#salasarbalaji","#mehandipur balaji","#anjaneyaswamy","#hanumandham","#jaihanuman"
+],
+"Bhagavad Gita": [
+"#bhagavadgita","#gita","#geeta","#gitateachings","#gitaquotes",
+"#bhagavadgitashlok","#krishna","#krishnawisdom","#gita gyan","#gita updesh",
+"#gitaquotesdaily","#gitalife","#gitateachings","#gita saar","#gita knowledge",
+"#shrimadbhagavadgita","#bhagavadgitajayanti","#krishnaconsciousness","#spiritualwisdom","#lifelessons",
+"#dharma","#karma","#karmayoga","#bhaktiyoga","#jnanayoga",
+"#gitaquotesinhindi","#gitaquotesenglish","#krishnaquotes","#sanatandharma","#vedicwisdom",
+"#gitaeducation","#gitaexplained","#gita for life","#gita inspiration","#gita message",
+"#gita shlokas","#gita path","#gita study","#gita wisdom","#gita teachings",
+"#spiritualknowledge","#innerpeace","#selfrealization","#lifephilosophy","#eternaltruth",
+"#krishnaupdesh","#bhagwatgita","#gita daily","#gita motivation","#wisdomofgita"
+],
+"Bhakti & Devotion": [
+"#bhakti","#devotion","#bhaktimarg","#bhaktistatus","#bhaktireels",
+"#bhajan","#kirtan","#satsang","#prayer","#spirituality",
+"#radheradhe","#harekrishna","#jaishreeram","#harharmahadev","#jaibajrangbali",
+"#sanatandharma","#hindubhakti","#krishnabhakti","#shivbhakti","#ram bhakti",
+"#devotionalmusic","#bhajanstatus","#bhajanreels","#bhajanlover","#spiritualquotes",
+"#divineblessings","#godisgreat","#faithingod","#divinegrace","#naamjap",
+"#mantra","#aarti","#puja","#darshan","#templevisit",
+"#spiritualjourney","#innerpeace","#divineenergy","#bhaktisagar","#bhaktisong",
+"#bhakticulture","#devotionalstatus","#bhakticommunity","#bhaktisadhna","#sacredmusic",
+"#dailyprayer","#divinelove","#godquotes","#bhaktimovement","#devotionallife"
+]
+};
+</script>
+
+
+<script>
+const categoriesEl = document.getElementById("categories");
+const tagList = document.getElementById("tagList");
+const titleEl = document.getElementById("categoryTitle");
+const countEl = document.getElementById("tagCount");
+const messageEl = document.getElementById("message");
+const searchInput = document.getElementById("searchInput");
+
+const copyAllBtn = document.getElementById("copyAllBtn");
+const copySelectedBtn = document.getElementById("copySelectedBtn");
+const copyCategoryBtn = document.getElementById("copyCategoryBtn");
+const shuffleBtn = document.getElementById("shuffleBtn");
+const searchBtn = document.getElementById("searchBtn");
+
+let activeCategory = "";
+let currentTags = [];
+
+function cleanTag(tag) {
+  return tag.trim().replace(/\s+/g, "");
+}
+
+function allTags() {
+  return Object.values(hashtagData).flat().map(cleanTag);
+}
+
+function showMessage(text) {
+  messageEl.textContent = text;
+  clearTimeout(showMessage.timer);
+  showMessage.timer = setTimeout(() => {
+    messageEl.textContent = "";
+  }, 2200);
+}
+
+async function copyText(text) {
+  if (!text) {
+    showMessage("Nothing to copy!");
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+    showMessage("Copied successfully!");
+  } catch (error) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    try {
+      document.execCommand("copy");
+      showMessage("Copied successfully!");
+    } catch (e) {
+      showMessage("Copy failed. Please try again.");
+    }
+
+    textarea.remove();
+  }
+}
+
+function renderCategories(filter = "") {
+  categoriesEl.innerHTML = "";
+
+  const query = filter.toLowerCase().trim();
+
+  Object.keys(hashtagData).forEach(category => {
+    const tags = hashtagData[category].map(cleanTag);
+
+    const matches =
+      !query ||
+      category.toLowerCase().includes(query) ||
+      tags.some(tag => tag.toLowerCase().includes(query));
+
+    if (!matches) return;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "category-btn";
+    button.textContent = category;
+
+    if (category === activeCategory) {
+      button.classList.add("active");
+    }
+
+    button.addEventListener("click", () => {
+      selectCategory(category);
+    });
+
+    categoriesEl.appendChild(button);
+  });
+}
+
+function selectCategory(category) {
+  activeCategory = category;
+  currentTags = hashtagData[category].map(cleanTag);
+
+  titleEl.textContent = category;
+  renderCategories(searchInput.value);
+  renderTags(currentTags);
+}
+
+function renderTags(tags) {
+  tagList.innerHTML = "";
+  currentTags = tags;
+
+  countEl.textContent = tags.length + " Hashtags Available";
+
+  tags.forEach(tag => {
+    const item = document.createElement("div");
+    item.className = "tag-item";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "tag-check";
+    checkbox.value = tag;
+
+    const label = document.createElement("span");
+    label.textContent = tag;
+    label.style.cursor = "pointer";
+
+    label.addEventListener("click", () => {
+      copyText(tag);
+    });
+
+    item.appendChild(checkbox);
+    item.appendChild(label);
+    tagList.appendChild(item);
+  });
+}
+
+function searchHashtags() {
+  const query = searchInput.value.toLowerCase().trim();
+
+  if (!query) {
+    renderCategories();
+    if (activeCategory) {
+      renderTags(hashtagData[activeCategory].map(cleanTag));
+    }
+    return;
+  }
+
+  const matchingCategories = Object.keys(hashtagData).filter(category => {
+    return category.toLowerCase().includes(query) ||
+      hashtagData[category].some(tag =>
+        cleanTag(tag).toLowerCase().includes(query)
+      );
+  });
+
+  renderCategories(query);
+
+  if (matchingCategories.length === 0) {
+    activeCategory = "";
+    titleEl.textContent = "No Results Found";
+    countEl.textContent = "Try another search.";
+    tagList.innerHTML = "";
+    currentTags = [];
+    return;
+  }
+
+  const categoryMatch = matchingCategories.find(category =>
+    category.toLowerCase().includes(query)
+  );
+
+  selectCategory(categoryMatch || matchingCategories[0]);
+
+  currentTags = currentTags.filter(tag =>
+    tag.toLowerCase().includes(query)
+  );
+
+  renderTags(currentTags);
+}
+
+copyAllBtn.addEventListener("click", () => {
+  copyText(allTags().join(" "));
+});
+
+copySelectedBtn.addEventListener("click", () => {
+  const selected = Array.from(
+    document.querySelectorAll(".tag-check:checked")
+  ).map(input => input.value);
+
+  copyText(selected.join(" "));
+});
+
+copyCategoryBtn.addEventListener("click", () => {
+  if (!activeCategory) {
+    showMessage("Please select a category first!");
+    return;
+  }
+
+  copyText(hashtagData[activeCategory].map(cleanTag).join(" "));
+});
+
+shuffleBtn.addEventListener("click", () => {
+  if (!activeCategory) {
+    showMessage("Please select a category first!");
+    return;
+  }
+
+  const shuffled = [...currentTags];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  renderTags(shuffled);
+  showMessage("Hashtags shuffled!");
+});
+
+searchBtn.addEventListener("click", searchHashtags);
+
+searchInput.addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    searchHashtags();
+  }
+});
+
+searchInput.addEventListener("input", () => {
+  if (searchInput.value.trim() === "") {
+    renderCategories();
+    if (activeCategory) {
+      renderTags(hashtagData[activeCategory].map(cleanTag));
+    }
+  }
+});
+
+// Show all categories and the first category on page load
+renderCategories();
+
+const firstCategory = Object.keys(hashtagData)[0];
+if (firstCategory) {
+  selectCategory(firstCategory);
+}
+</script>
+</body>
+</html>
+
+ 

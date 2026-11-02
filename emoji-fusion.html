@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Emoji Fusion Game - Insta Vibez</title>
+<meta name="description" content="Mix emojis and create unique characters with the Insta Vibez Emoji Fusion Game.">
+<meta name="theme-color" content="#10101c">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #10101c;
+  color: white;
+  text-align: center;
+}
+
+.fusion-section {
+  max-width: 750px;
+  margin: 25px auto;
+}
+
+.fusion-box {
+  background: #1b1b2b;
+  border: 1px solid #34344b;
+  border-radius: 20px;
+  padding: 25px 15px;
+}
+
+h1 {
+  color: #f0abfc;
+  font-size: 30px;
+}
+
+.fusion-box p {
+  color: #c9c9d8;
+}
+
+.mode-buttons,
+.fusion-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.mode-buttons button,
+.fusion-button,
+.fusion-actions button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+}
+
+.mode-buttons button.active {
+  background: linear-gradient(135deg, #ec4899, #f97316);
+  outline: 2px solid white;
+}
+/* EMOJI CATEGORY BUTTONS */
+
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.category-buttons button {
+  border: 1px solid #494965;
+  border-radius: 12px;
+  padding: 11px 15px;
+  background: #292940;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.category-buttons button:hover {
+  border-color: #ec4899;
+  transform: translateY(-2px);
+}
+
+.category-buttons button.active {
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+  border-color: #f0abfc;
+  color: white;
+  box-shadow: 0 3px 12px rgba(236, 72, 153, 0.25);
+}
+.emoji-category-title {
+  grid-column: 1 / -1;
+  text-align: left;
+  color: #f0abfc;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 12px 5px 5px;
+  border-bottom: 1px solid #494965;
+  margin-top: 8px;
+}
+/* EMOJI BROWSER SCROLL */
+
+.emoji-browser {
+  max-height: 55vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 5px;
+  margin-bottom: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #9333ea #292940;
+}
+
+ /* FIXED BOTTOM PANEL */
+
+.fusion-sticky-panel {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px);
+  max-width: 750px;
+  z-index: 1000;
+  background: #1b1b2b;
+  border: 1px solid #494965;
+  border-radius: 16px 16px 0 0;
+  padding: 10px 12px;
+  margin: 0;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.35);
+}
+
+.fusion-sticky-panel h3 {
+  font-size: 16px;
+  margin: 5px 0 8px;
+}
+
+.fusion-sticky-panel .mode-buttons {
+  margin: 8px 0;
+  gap: 8px;
+}
+
+.fusion-sticky-panel .mode-buttons button {
+  padding: 9px 14px;
+}
+
+.fusion-sticky-panel p {
+  margin: 5px 0;
+  color: #f0abfc;
+  font-weight: bold;
+}
+
+.fusion-sticky-panel #selectedDisplay {
+  margin: 8px 0;
+  min-height: 38px;
+}
+
+.fusion-sticky-panel .fusion-button {
+  margin: 5px 0;
+  width: 100%;
+}
+
+/* SPACE FOR FIXED PANEL */
+.fusion-section {
+  padding-bottom: 240px;
+}
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.emoji-choice {
+  background: #292940;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 12px 4px;
+  font-size: 29px;
+  cursor: pointer;
+}
+
+.emoji-choice.selected {
+  border-color: #ec4899;
+  background: #49305c;
+  transform: scale(1.06);
+}
+
+#selectedDisplay {
+  min-height: 45px;
+  padding: 10px;
+  background: #10101c;
+  border-radius: 10px;
+  font-size: 25px;
+  margin: 15px 0;
+}
+
+.fusion-button {
+  font-size: 17px;
+  padding: 14px 28px;
+  margin: 10px;
+}
+
+.fusion-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+#fusionOutput {
+  width: min(65%, 320px);
+  flex-shrink: 1;
+}
+
+#fusionOutput svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.next-fusion {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+  padding: 0;
+}
+
+#fusionName {
+  color: #f0abfc;
+  margin: 10px 0;
+}
+
+#copyMessage {
+  color: #86efac;
+  min-height: 20px;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .fusion-box {
+    padding: 20px 10px;
+  }
+
+  .emoji-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .emoji-choice {
+    font-size: 27px;
+  }
+
+  .fusion-display {
+    gap: 7px;
+  }
+
+  .next-fusion {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="fusion-section">
+
+  <h1>🎮 Emoji Fusion Game</h1>
+  <p>Choose emojis and create your own unique character!</p>
+
+  <div class="fusion-box">
+
+     
+
+   <div class="emoji-browser">
+
+  <h3>Select your emojis</h3>
+
+  <div class="category-buttons" id="categoryButtons"></div>
+
+  <div class="emoji-grid" id="emojiGrid"></div>
+
+</div>
+ <div class="fusion-sticky-panel">
+
+  <h3>How many emojis do you want to mix?</h3>
+
+  <div class="mode-buttons">
+    <button type="button" class="active" data-count="2">2 Emojis</button>
+    <button type="button" data-count="3">3 Emojis</button>
+    <button type="button" data-count="4">4 Emojis</button>
+  </div>
+
+  <p>Selected emojis:</p>
+
+  <div id="selectedDisplay">Choose your emojis</div>
+
+  <button type="button" class="fusion-button" id="fusionButton">
+    ✨ Create Fusion
+  </button>
+
+</div>
+    <h3>Your New Character</h3>
+
+    <div class="fusion-display">
+
+      <button type="button" id="colorFusion"
+        class="next-fusion" title="Change colour">›</button>
+
+      <div id="fusionOutput">
+        <p>Your character will appear here!</p>
+      </div>
+
+      <button type="button" id="nextFusion"
+        class="next-fusion" title="Change design">‹›</button>
+
+    </div>
+
+    <h3 id="fusionName"></h3>
+
+    <div class="fusion-actions">
+      <button type="button" id="copyFusion">📋 Copy Character</button>
+      <button type="button" id="downloadFusion">⬇️ Download Character</button>
+    </div>
+
+    <p id="copyMessage"></p>
+
+  </div>
+</section>
+
+<script>
+ const emojiGrid = document.getElementById("emojiGrid");
+const categoryButtons = document.getElementById("categoryButtons");
+
+const modeButtons = document.querySelectorAll(".mode-buttons button");
+
+const selectedDisplay = document.getElementById("selectedDisplay");
+const output = document.getElementById("fusionOutput");
+const message = document.getElementById("copyMessage");
+
+let selected = [];
+let maxSelection = 2;
+
+let lastFusionEmojis = [];
+let fusionVariation = 0;
+let designVariation = 0;
+
+const emojiCategories = {
+  "😀 Emoji / Smileys": ["😀", "😎", "🥳", "🤩", "🤔"],
+
+  "🐶 Animals": ["🐶", "🐱", "🐼", "🐸", "🦊"],
+
+  "❤️ Love": ["❤️", "😍", "😘", "💕", "💖"],
+
+  "🔥 Fire": ["🔥", "🌋", "☄️", "💥", "⚡"],
+
+  "🎮 Game": ["🎮", "👾", "🎯", "🕹️", "🏆"],
+
+  "🎂 Birthday Wishes": ["🎂", "🎉", "🎁", "🎈", "🥳"],
+
+  "😂 Hasna & Rona": ["🤣", "😂", "😭", "🥹", "😢"],
+
+  "👧 Girls & Boys": ["👦", "👧", "🧑", "👸", "🤴"],
+
+  "👕 Clothes": ["👕", "👖", "👗", "🩱", "👙"],
+
+  "✨ Aesthetic & Viral Trends": ["🫠", "🥹", "💅", "🧿", "✨"]
+};
+
+
+ // Show all categories and all emojis together
+function showAllEmojis() {
+
+  categoryButtons.style.display = "none";
+  emojiGrid.innerHTML = "";
+
+  Object.entries(emojiCategories).forEach(([category, emojis]) => {
+
+    const heading = document.createElement("div");
+
+    heading.className = "emoji-category-title";
+    heading.textContent = category;
+
+    emojiGrid.appendChild(heading);
+
+    emojis.forEach(emoji => {
+
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "emoji-choice";
+      button.textContent = emoji;
+
+      button.addEventListener("click", function () {
+
+        if (selected.includes(emoji)) {
+
+          selected = selected.filter(item => item !== emoji);
+
+        } else if (selected.length < maxSelection) {
+
+          selected.push(emoji);
+
+        } else {
+
+          message.textContent = "You can select only " + maxSelection + " emojis!";
+          return;
+
+        }
+
+        message.textContent = "";
+        updateSelected();
+
+      });
+
+      emojiGrid.appendChild(button);
+
+    });
+
+  });
+
+}
+
+// Start all emojis
+showAllEmojis();
+const designs = [
+  "round",
+  "square",
+  "cat",
+  "monster",
+  "panda",
+  "royal"
+];
+
+ // Emoji selection modes
+modeButtons.forEach(button => {
+
+  button.addEventListener("click", function () {
+
+    maxSelection = Number(this.dataset.count);
+
+    modeButtons.forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    this.classList.add("active");
+
+    selected = [];
+
+    updateSelected();
+
+  });
+
+});
+
+// Update selected emojis
+function updateSelected() {
+
+  document.querySelectorAll(".emoji-choice").forEach(button => {
+
+    button.classList.toggle(
+      "selected",
+      selected.includes(button.textContent.trim())
+    );
+
+  });
+
+  selectedDisplay.textContent = selected.length
+    ? selected.join(" + ")
+    : "Choose your emojis";
+
+}
+
+  
+// Character generator - One Connected Cartoon Character
+function makeCharacter(emojis, colorVariation = 0, shapeVariation = 0) {
+
+  const combo = emojis.join("");
+  let hash = 0;
+
+  for (let i = 0; i < combo.length; i++) {
+    hash = (hash * 31 + combo.charCodeAt(i)) >>> 0;
+  }
+
+  const palettes = [
+    ["#f9a8d4", "#a78bfa", "#ec4899"],
+    ["#67e8f9", "#3b82f6", "#0ea5e9"],
+    ["#fde68a", "#fb923c", "#f97316"],
+    ["#86efac", "#22c55e", "#15803d"],
+    ["#c4b5fd", "#9333ea", "#7e22ce"],
+    ["#fda4af", "#e11d48", "#be123c"],
+    ["#bef264", "#84cc16", "#4d7c0f"],
+    ["#f0abfc", "#c026d3", "#86198f"]
+  ];
+
+  const colors = palettes[
+    (hash + colorVariation) % palettes.length
+  ];
+
+  const shapes = ["round", "square", "cat", "monster", "panda", "royal"];
+  const shape = shapes[
+    (hash + shapeVariation) % shapes.length
+  ];
+
+  const hasAnimal = emojis.some(e =>
+    ["🐶", "🐱", "🦊", "🐼", "🐸"].includes(e)
+  );
+
+  const hasCat = emojis.includes("🐱") || emojis.includes("🦊");
+  const hasPanda = emojis.includes("🐼");
+  const hasFrog = emojis.includes("🐸");
+  const hasFire = emojis.some(e =>
+    ["🔥", "🌋", "☄️"].includes(e)
+  );
+
+  const hasLove = emojis.some(e =>
+    ["❤️", "😍", "😘", "💕", "💖"].includes(e)
+  );
+
+  const hasClothes = emojis.some(e =>
+    ["👕", "👖", "👗", "🩱", "👙"].includes(e)
+  );
+
+  const hasGame = emojis.some(e =>
+    ["🎮", "👾", "🎯", "🕹️"].includes(e)
+  );
+
+  const hasBirthday = emojis.some(e =>
+    ["🎂", "🎉", "🎁", "🎈"].includes(e)
+  );
+
+  const hasCool = emojis.includes("😎") || emojis.includes("💅");
+  const hasCrown = emojis.some(e =>
+    ["👸", "🤴", "🏆"].includes(e)
+  );
+
+  // Connected body
+  const body = `
+    <path d="M75 315 Q78 235 125 225
+    L195 225 Q242 235 245 315Z"
+    fill="${colors[2]}" stroke="#252536" stroke-width="5"/>
+
+    <path d="M115 240 Q160 280 205 240"
+    fill="none" stroke="${colors[0]}" stroke-width="7"
+    stroke-linecap="round"/>
+  `;
+
+  // Face shape
+  let head = "";
+
+  if (shape === "square") {
+    head = `
+      <rect x="65" y="55" width="190" height="190"
+      rx="55" fill="url(#face)" stroke="#252536" stroke-width="5"/>
+    `;
+  } else if (shape === "cat" || hasCat) {
+    head = `
+      <path d="M65 110 L65 30 L125 75
+      Q160 55 195 75 L255 30 L255 110
+      Q285 205 210 245 Q160 270 110 245
+      Q35 205 65 110Z"
+      fill="url(#face)" stroke="#252536" stroke-width="5"/>
+    `;
+  } else if (shape === "monster") {
+    head = `
+      <path d="M65 100 L95 25 L135 65
+      L185 65 L225 25 L255 100
+      Q290 190 225 245 Q160 280 95 245
+      Q30 190 65 100Z"
+      fill="url(#face)" stroke="#252536" stroke-width="5"/>
+    `;
+  } else {
+    head = `
+      <circle cx="160" cy="150" r="100"
+      fill="url(#face)" stroke="#252536" stroke-width="5"/>
+    `;
+  }
+
+  // Animal ears attached to head
+  let ears = "";
+
+  if (hasAnimal) {
+    ears = `
+      <path d="M82 100 Q35 5 110 65
+      Q125 80 125 100Z"
+      fill="${colors[0]}" stroke="#252536" stroke-width="5"/>
+
+      <path d="M198 100 Q195 5 245 65
+      Q265 80 238 110Z"
+      fill="${colors[0]}" stroke="#252536" stroke-width="5"/>
+    `;
+  }
+
+  // Fire hair attached to head
+  let hair = "";
+
+  if (hasFire) {
+    hair = `
+      <path d="M80 95 Q45 35 105 10
+      Q95 55 135 48 Q125 5 165 0
+      Q165 45 195 48 Q225 15 230 5
+      Q275 55 240 100Z"
+      fill="#fb923c" stroke="#252536" stroke-width="5"/>
+    `;
+  }
+
+  // Crown attached to head
+  let crown = "";
+
+  if (hasCrown) {
+    crown = `
+      <path d="M105 65 L90 15 L130 45
+      L160 5 L190 45 L230 15 L215 65Z"
+      fill="#facc15" stroke="#252536" stroke-width="5"/>
+    `;
+  }
+
+  // Face details
+  let eyes = `
+    <ellipse cx="125" cy="150" rx="11" ry="16" fill="#171717"/>
+    <ellipse cx="195" cy="150" rx="11" ry="16" fill="#171717"/>
+    <circle cx="128" cy="145" r="4" fill="white"/>
+    <circle cx="198" cy="145" r="4" fill="white"/>
+  `;
+
+  if (hasCool) {
+    eyes = `
+      <rect x="100" y="130" width="55" height="35"
+      rx="12" fill="#171717"/>
+      <rect x="165" y="130" width="55" height="35"
+      rx="12" fill="#171717"/>
+      <path d="M155 145 L165 145"
+      stroke="#171717" stroke-width="7"/>
+      <path d="M105 135 L150 135"
+      stroke="white" stroke-width="3"/>
+    `;
+  }
+
+  if (hasPanda) {
+    eyes = `
+      <ellipse cx="125" cy="150" rx="25" ry="30" fill="#252536"/>
+      <ellipse cx="195" cy="150" rx="25" ry="30" fill="#252536"/>
+      <circle cx="130" cy="148" r="10" fill="white"/>
+      <circle cx="200" cy="148" r="10" fill="white"/>
+    `;
+  }
+
+  if (hasFrog) {
+    eyes = `
+      <circle cx="120" cy="105" r="27" fill="white"
+      stroke="#252536" stroke-width="5"/>
+      <circle cx="200" cy="105" r="27" fill="white"
+      stroke="#252536" stroke-width="5"/>
+      <circle cx="120" cy="105" r="12" fill="#171717"/>
+      <circle cx="200" cy="105" r="12" fill="#171717"/>
+    `;
+  }
+
+  const mouth = emojis.some(e =>
+    ["🤣", "😂", "🥳"].includes(e)
+  )
+    ? `<path d="M125 190 Q160 250 195 190Z"
+       fill="#7f1d1d" stroke="#252536" stroke-width="4"/>`
+    : `<path d="M130 195 Q160 225 190 195"
+       fill="none" stroke="#252536" stroke-width="7"
+       stroke-linecap="round"/>`;
+
+  // Outfit integrated with body
+  let outfit = "";
+
+  if (hasClothes || hasGame) {
+    outfit = `
+      <path d="M105 245 L85 315 L235 315 L215 245
+      Q160 275 105 245Z"
+      fill="${colors[0]}" stroke="#252536" stroke-width="5"/>
+
+      <path d="M130 265 L160 290 L190 265"
+      fill="none" stroke="${colors[2]}" stroke-width="7"/>
+    `;
+  }
+
+  // Small details connected to the character
+  let details = "";
+
+  if (hasLove) {
+    details += `
+      <path d="M160 75 C145 55 120 70 160 105
+      C200 70 175 55 160 75Z"
+      fill="#ef4444" stroke="#252536" stroke-width="3"/>
+    `;
+  }
+
+  if (hasGame) {
+    details += `
+      <rect x="125" y="275" width="70" height="25"
+      rx="10" fill="#252536" stroke="white" stroke-width="3"/>
+      <circle cx="145" cy="287" r="5" fill="#ef4444"/>
+      <circle cx="175" cy="287" r="5" fill="#22c55e"/>
+    `;
+  }
+
+  if (hasBirthday) {
+    details += `
+      <path d="M145 45 L160 15 L175 45Z"
+      fill="#facc15" stroke="#252536" stroke-width="3"/>
+    `;
+  }
+
+  return `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 350">
+
+    <defs>
+      <linearGradient id="face" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${colors[0]}"/>
+        <stop offset="100%" stop-color="${colors[1]}"/>
+      </linearGradient>
+    </defs>
+
+    ${body}
+    ${outfit}
+    ${ears}
+    ${head}
+    ${hair}
+    ${crown}
+    ${details}
+
+    <ellipse cx="105" cy="190" rx="15" ry="8"
+    fill="#fb7185" opacity="0.65"/>
+
+    <ellipse cx="215" cy="190" rx="15" ry="8"
+    fill="#fb7185" opacity="0.65"/>
+
+    ${eyes}
+    ${mouth}
+
+  </svg>
+  `;
+}
+
+
+// Character names
+function makeCharacterName(emojis) {
+
+  const names = [
+    "Magic Fusion",
+    "Super Vibe",
+    "Crazy Legend",
+    "Royal Monster",
+    "Dreamy Hero",
+    "Ultimate Star",
+    "Mystery Soul",
+    "Fusion Master"
+  ];
+
+  return names[(emojis.length + designVariation) % names.length];
+}
+
+// Create fusion
+document.getElementById("fusionButton").addEventListener("click", function () {
+
+  if (selected.length !== maxSelection) {
+    message.textContent = "Please select " + maxSelection + " emojis first!";
+    return;
+  }
+
+  lastFusionEmojis = [...selected];
+
+  fusionVariation = 0;
+  designVariation = 0;
+
+  output.innerHTML = makeCharacter(
+    lastFusionEmojis,
+    fusionVariation,
+    designVariation
+  );
+
+  document.getElementById("fusionName").textContent =
+    makeCharacterName(lastFusionEmojis);
+
+  message.textContent = "";
+
+  selected = [];
+  updateSelected();
+});
+
+// Left button: colour change
+document.getElementById("colorFusion").addEventListener("click", function () {
+
+  if (lastFusionEmojis.length === 0) return;
+
+  fusionVariation++;
+
+  output.innerHTML = makeCharacter(
+    lastFusionEmojis,
+    fusionVariation,
+    designVariation
+  );
+
+  message.textContent = "";
+});
+
+// Right button: design change
+document.getElementById("nextFusion").addEventListener("click", function () {
+
+  if (lastFusionEmojis.length === 0) return;
+
+  designVariation = (designVariation + 1) % designs.length;
+
+  output.innerHTML = makeCharacter(
+    lastFusionEmojis,
+    fusionVariation,
+    designVariation
+  );
+
+  document.getElementById("fusionName").textContent =
+    makeCharacterName(lastFusionEmojis);
+
+  message.textContent = "";
+});
+
+// Convert transparent SVG to transparent PNG
+async function getFusionPNG() {
+
+  const svg = output.querySelector("svg");
+
+  if (!svg) {
+    message.textContent = "First create a character!";
+    return null;
+  }
+
+  const svgData = new XMLSerializer().serializeToString(svg);
+
+  const svgBlob = new Blob([svgData], {
+    type: "image/svg+xml;charset=utf-8"
+  });
+
+  const url = URL.createObjectURL(svgBlob);
+  const img = new Image();
+
+  return new Promise(resolve => {
+
+    img.onload = function () {
+
+      const canvas = document.createElement("canvas");
+
+      canvas.width = 640;
+      canvas.height = 640;
+
+      const ctx = canvas.getContext("2d");
+
+      // Clear canvas: no background colour
+      ctx.clearRect(0, 0, 640, 640);
+
+      ctx.drawImage(img, 0, 0, 640, 640);
+
+      URL.revokeObjectURL(url);
+
+      canvas.toBlob(blob => {
+        resolve(blob);
+      }, "image/png");
+    };
+
+    img.onerror = function () {
+      URL.revokeObjectURL(url);
+      resolve(null);
+    };
+
+    img.src = url;
+  });
+}
+
+ // Copy transparent character
+document.getElementById("copyFusion").addEventListener("click", async function () {
+
+  const blob = await getFusionPNG();
+
+  if (!blob) return;
+
+  try {
+
+    if (!navigator.clipboard || !window.ClipboardItem) {
+      throw new Error("Image clipboard not supported");
+    }
+
+    const pngBlob = new Blob([blob], {
+      type: "image/png"
+    });
+
+    await navigator.clipboard.write([
+      new ClipboardItem({
+        "image/png": pngBlob
+      })
+    ]);
+
+    message.textContent = "Transparent character copied!";
+
+  } catch (error) {
+
+    message.textContent = "Copy failed. Please use Download Character.";
+
+  }
+});
+
+// Download transparent character
+document.getElementById("downloadFusion").addEventListener("click", async function () {
+
+  const blob = await getFusionPNG();
+
+  if (!blob) return;
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "instavibez-emoji-fusion.png";
+
+  link.click();
+
+  URL.revokeObjectURL(url);
+
+  message.textContent = "Transparent character downloaded!";
+});
+
+</script>
+
+</body>
+</html>
