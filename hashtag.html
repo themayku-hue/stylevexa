@@ -233,6 +233,71 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
+    #backToTop {
+  position: fixed;
+  right: 14px;
+  bottom: 22px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+.rules-box {
+  display: block;
+  width: 100%;
+  margin: 22px 0 12px;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: #050505;
+  border: 1px solid #444;
+  color: #eee;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.rules-box h3 {
+  color: #fff;
+  margin-bottom: 7px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.rules-box p {
+  margin-bottom: 6px;
+}
+
+.rules-box {
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #050505;
+  border: 1px solid #444;
+  color: #eee;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.rules-box h3 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 9px;
+}
+
+.rules-box p {
+  margin-bottom: 5px;
+}
+
+
   </style>
 </head>
 
@@ -254,8 +319,10 @@
   <h2 class="section-heading">Explore Categories</h2>
 
   <div id="categories"></div>
+  <button type="button" id="backToTop" aria-label="Back to top">↑</button>
 
   <section class="results-box">
+     
     <h2 id="categoryTitle">Select a Category</h2>
     <p id="tagCount">Choose a category to see hashtags.</p>
 
@@ -271,63 +338,18 @@
     <p id="message"></p>
   </section>
 
-   
- 
 <div class="rules-box">
-   <div class="rules-box">
-  <h3>HOW TO USE HASHTAGS</h3>
-  <p><strong>1.</strong> Select your preferred category.</p>
-  <p><strong>2.</strong> Choose hashtags or use the copy options.</p>
-  <p><strong>3.</strong> Paste relevant hashtags into your Instagram caption.</p>
-  <p><strong>4.</strong> Use hashtags that match your content.</p>
+  <h3>📌 RULE BOX</h3>
+  <p>1. Select your favourite hashtag category.</p>
+  <p>2. Search hashtags using the search box.</p>
+  <p>3. Choose hashtags related to your content.</p>
+  <p>4. Select hashtags you want to copy.</p>
+  <p>5. Use Copy All to copy all hashtags.</p>
+  <p>6. Paste hashtags into your Instagram caption.</p>
+  <p>7. Avoid irrelevant and repeated hashtags.</p>
 </div>
 
-<div class="privacy-box">
-  <h3>🔒 PRIVACY POLICY</h3>
-  <p>Your privacy is important to us.</p>
-  <p>No Instagram login or password is required.</p>
-  <p>We do not ask for your personal or sensitive information.</p>
-  <p>Browse Insta Vibez and use our tools responsibly.</p>
-  <div class="copyright">© 2026 Insta Vibez | All Rights Reserved</div>
-</div>
-
-.rules-box,
-.privacy-box {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 12px 0;
-  padding: 15px;
-  background: #000000;
-  color: #ffffff;
-  border: 1px solid #333333;
-  border-radius: 10px;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.rules-box h3,
-.privacy-box h3 {
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 900;
-  margin: 0 0 9px;
-}
-
-.rules-box p,
-.privacy-box p {
-  margin: 5px 0;
-}
-
-.copyright {
-  border-top: 1px solid #444444;
-  margin-top: 10px;
-  padding-top: 8px;
-  text-align: center;
-  color: #d9b5ff;
-  font-size: 11px;
-  font-weight: bold;
-}
+  
 
  
 <script>
@@ -1147,13 +1169,19 @@ function renderCategories(filter = "") {
   });
 }
 
-function selectCategory(category) {
+ function selectCategory(category) {
   activeCategory = category;
   currentTags = hashtagData[category].map(cleanTag);
 
   titleEl.textContent = category;
   renderCategories(searchInput.value);
   renderTags(currentTags);
+
+  // Category select karte hi Hashtags section par jao
+  document.querySelector(".results-box").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
 
 function renderTags(tags) {
@@ -1280,6 +1308,15 @@ searchInput.addEventListener("input", () => {
       renderTags(hashtagData[activeCategory].map(cleanTag));
     }
   }
+});
+// Back to Top button
+const backToTopBtn = document.getElementById("backToTop");
+
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 });
 
 // Show all categories and the first category on page load

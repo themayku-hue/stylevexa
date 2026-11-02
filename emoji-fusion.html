@@ -170,15 +170,16 @@ h1 {
   margin: 5px 0;
   width: 100%;
 }
-
+ 
 /* SPACE FOR FIXED PANEL */
 .fusion-section {
   padding-bottom: 240px;
 }
+
 .emoji-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
   margin: 20px 0;
 }
 
@@ -186,15 +187,16 @@ h1 {
   background: #292940;
   border: 2px solid transparent;
   border-radius: 12px;
-  padding: 12px 4px;
-  font-size: 29px;
+  padding: 10px 2px;
+  font-size: 27px;
   cursor: pointer;
+  min-width: 0;
 }
 
 .emoji-choice.selected {
   border-color: #ec4899;
   background: #49305c;
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
 #selectedDisplay {
@@ -267,11 +269,13 @@ h1 {
   }
 
   .emoji-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .emoji-choice {
-    font-size: 27px;
+    font-size: 23px;
+    padding: 10px 1px;
   }
 
   .fusion-display {
@@ -780,7 +784,7 @@ function makeCharacterName(emojis) {
 
   return names[(emojis.length + designVariation) % names.length];
 }
-
+ 
 // Create fusion
 document.getElementById("fusionButton").addEventListener("click", function () {
 
@@ -807,6 +811,14 @@ document.getElementById("fusionButton").addEventListener("click", function () {
 
   selected = [];
   updateSelected();
+
+  requestAnimationFrame(() => {
+    output.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  });
+
 });
 
 // Left button: colour change

@@ -637,6 +637,9 @@ async function copyText(text) {
 
   generate.addEventListener("click", renderBios);
 
+// Category change hote hi naye bios turant dikhao
+category.addEventListener("change", renderBios);
+
    copy.addEventListener("click", async function() {
 
   await copyAllBios();
