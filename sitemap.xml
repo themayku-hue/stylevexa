@@ -1,51 +1,87 @@
- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://instavibez.in/</loc>
+    <lastmod>2026-11-07</lastmod>
     <priority>1.0</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/bio.html</loc>
+    <lastmod>2026-11-07</lastmod>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/username.html</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/fonts.html</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/guide.html</loc>
+    <lastmod>2026-11-07</lastmod>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/captions.html</loc>
+    <lastmod>2026-11-07</lastmod>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/privacy.html</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/profile-studio.html</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/emoji-fusion.html</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/hashtag.html</loc>
+    <lastmod>2026-11-07</lastmod>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/about.html</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://instavibez.in/contact.html</loc>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://instavibez.in/grid-maker.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://instavibez.in/creator-toolkit.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://instavibez.in/instagram-downloader.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
