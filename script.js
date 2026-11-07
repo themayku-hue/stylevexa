@@ -91,3 +91,56 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+ // Quick Explore - Drag Without Blocking Links
+document.addEventListener("DOMContentLoaded", function () {
+  const box = document.querySelector(".mini-tools-marquee");
+  if (!box) return;
+
+  let isDown = false;
+  let startX = 0;
+  let startScroll = 0;
+  let moved = false;
+
+  box.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "touch" || e.button !== 0) return;
+
+    isDown = true;
+    moved = false;
+    startX = e.clientX;
+    startScroll = box.scrollLeft;
+    box.classList.add("dragging");
+  });
+
+  window.addEventListener("pointermove", function (e) {
+    if (!isDown) return;
+
+    const distance = e.clientX - startX;
+
+    if (Math.abs(distance) > 5) moved = true;
+
+    if (moved) {
+      box.scrollLeft = startScroll - distance;
+    }
+  });
+
+  window.addEventListener("pointerup", function () {
+    if (!isDown) return;
+
+    isDown = false;
+    box.classList.remove("dragging");
+
+    if (moved) {
+      box.dataset.dragged = "true";
+      setTimeout(function () {
+        delete box.dataset.dragged;
+      }, 100);
+    }
+  });
+
+  box.addEventListener("click", function (e) {
+    if (box.dataset.dragged === "true") {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+});

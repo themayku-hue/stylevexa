@@ -1331,3 +1331,429 @@ button {
 .back-to-top:hover {
   transform: translateY(-5px);
 }
+/* =====================================
+   MINI MOVING FEATURES BOX
+===================================== */
+
+.mini-tools-section {
+  padding: 22px 0;
+  overflow: hidden;
+}
+
+.mini-tools-title {
+  text-align: center;
+  font-size: 20px;
+  margin: 0 0 14px;
+  color: #fff;
+}
+
+.mini-tools-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.mini-tools-track {
+  display: flex;
+  width: max-content;
+  animation: miniToolsMove 35s linear infinite;
+}
+
+.mini-tools-group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+.mini-tool-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 175px;
+  padding: 13px 16px;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 12px;
+  background: #1b1b2b;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: 0.3s ease;
+}
+
+.mini-tool-card:hover {
+  border-color: #ec4899;
+  transform: translateY(-3px);
+  background: #25213a;
+}
+
+.mini-tools-marquee:hover .mini-tools-track {
+  animation-play-state: paused;
+}
+
+@keyframes miniToolsMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 600px) {
+  .mini-tools-section {
+    padding: 16px 0;
+  }
+
+  .mini-tools-title {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .mini-tool-card {
+    min-width: 145px;
+    padding: 11px 12px;
+    font-size: 12px;
+  }
+
+  .mini-tools-group {
+    gap: 9px;
+    padding-right: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mini-tools-track {
+    animation: none;
+  }
+}
+ /* Old Explore Our Tools - Static Layout */
+
+.tools-track {
+  animation: none !important;
+  transform: none !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100% !important;
+  gap: 18px;
+}
+
+.tools-group {
+  display: contents !important;
+}
+
+.tools-track .tool-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  flex: unset !important;
+}
+
+@media (max-width: 600px) {
+  .tools-track {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+/* Quick Explore - Manual Slide */
+.mini-tools-marquee {
+  overflow-x: auto;
+  cursor: grab;
+  scrollbar-width: none;
+  touch-action: pan-x;
+  user-select: none;
+}
+
+.mini-tools-marquee::-webkit-scrollbar {
+  display: none;
+}
+
+.mini-tools-marquee:active {
+  cursor: grabbing;
+}
+
+.mini-tools-marquee.dragging .mini-tools-track {
+  animation-play-state: paused;
+}
+/* Anonymous Names - Collapsible Box */
+
+.anonymous-generator-box {
+  background: #1b1b2b;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 20px auto;
+  max-width: 1000px;
+}
+
+.anonymous-generator-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.anonymous-generator-heading::-webkit-details-marker {
+  display: none;
+}
+
+.anonymous-open-text {
+  color: #c084fc;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.anonymous-generator-box[open] .anonymous-open-text {
+  color: #ec4899;
+}
+
+.anonymous-generator-content {
+  padding: 10px 20px 22px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.anonymous-generator-content > p {
+  color: #b8b8c9;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .anonymous-generator-heading {
+    padding: 16px 12px;
+    font-size: 15px;
+  }
+
+  .anonymous-open-text {
+    font-size: 11px;
+  }
+
+  .anonymous-generator-content {
+    padding: 10px 12px 18px;
+  }
+}
+/* ===== PREMIUM PURE BLACK FOOTER ===== */
+
+.footer,
+.premium-footer {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-top: 1px solid #222222;
+  padding: 45px 20px 20px;
+}
+
+.footer .logo {
+  color: #ffffff !important;
+  font-size: 30px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.footer p {
+  color: #bdbdc9;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin: 30px auto;
+}
+
+.footer-links a {
+  color: #c5c5d5 !important;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ec4899 !important;
+}
+
+.footer-heading h3 {
+  color: #ffffff;
+}
+
+.footer-heading p,
+.footer-description {
+  color: #9999aa;
+}
+
+.footer-bottom {
+  border-top: 1px solid #222222;
+  margin-top: 30px;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #888899;
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .footer-links {
+    gap: 13px 16px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+  }
+
+  .footer .logo {
+    font-size: 26px;
+  }
+}
+
+/* ===== INSTA VIBEZ NIGHT SKY HERO ===== */
+
+.night-sky-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 100%, #25205b 0%, transparent 55%),
+    linear-gradient(180deg, #02030d 0%, #080b22 55%, #10102c 100%) !important;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+.night-sky-hero .hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.night-sky-hero .hero-content h1,
+.night-sky-hero .hero-content p {
+  color: #ffffff;
+}
+
+.night-sky-hero .hero-content h1 span {
+  background: linear-gradient(90deg, #c084fc, #f0abfc, #93c5fd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.night-sky-decor {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.moon {
+  position: absolute;
+  top: 35px;
+  right: 12%;
+  font-size: 65px;
+  filter: drop-shadow(0 0 22px #fff2b0);
+  animation: moonGlow 4s ease-in-out infinite alternate;
+}
+
+.star {
+  position: absolute;
+  color: #ffffff;
+  text-shadow: 0 0 12px #ffffff, 0 0 22px #a78bfa;
+  animation: starTwinkle 2s ease-in-out infinite alternate;
+}
+
+.star-1 { top: 15%; left: 12%; font-size: 20px; }
+.star-2 { top: 30%; left: 30%; font-size: 16px; animation-delay: .5s; }
+.star-3 { top: 65%; left: 8%; font-size: 22px; animation-delay: 1s; }
+.star-4 { top: 18%; left: 55%; font-size: 17px; animation-delay: .7s; }
+.star-5 { top: 70%; left: 75%; font-size: 20px; animation-delay: 1.2s; }
+.star-6 { top: 40%; right: 10%; font-size: 17px; animation-delay: .3s; }
+.star-7 { top: 85%; left: 45%; font-size: 16px; animation-delay: .9s; }
+.star-8 { top: 12%; left: 80%; font-size: 19px; animation-delay: 1.5s; }
+
+@keyframes starTwinkle {
+  from { opacity: .25; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes moonGlow {
+  from { filter: drop-shadow(0 0 10px #fff2b0); }
+  to { filter: drop-shadow(0 0 28px #fff2b0); }
+}
+
+.airplane {
+  position: absolute;
+  top: 35%;
+  left: -60px;
+  font-size: 27px;
+  animation: airplaneFly 18s linear infinite;
+  filter: drop-shadow(0 0 8px #ffffff);
+}
+
+@keyframes airplaneFly {
+  from { transform: translateX(0) translateY(0); }
+  to { transform: translateX(calc(100vw + 120px)) translateY(-45px); }
+}
+
+.sky-cloud {
+  position: absolute;
+  font-size: 45px;
+  opacity: .20;
+  filter: blur(1px);
+}
+
+.cloud-one {
+  bottom: 12%;
+  left: -80px;
+  animation: cloudMove 35s linear infinite;
+}
+
+.cloud-two {
+  top: 22%;
+  right: -90px;
+  animation: cloudMove 45s linear infinite reverse;
+}
+
+@keyframes cloudMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(110vw); }
+}
+
+@media (max-width: 600px) {
+  .night-sky-hero {
+    min-height: 420px;
+    padding: 65px 15px;
+  }
+
+  .moon {
+    font-size: 48px;
+    top: 22px;
+    right: 8%;
+  }
+
+  .airplane {
+    font-size: 22px;
+  }
+
+  .sky-cloud {
+    font-size: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .night-sky-hero *,
+  .night-sky-hero *::before {
+    animation: none !important;
+  }
+}
