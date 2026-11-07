@@ -250,16 +250,9 @@
   const results = document.getElementById("emojiResults");
   const search = document.getElementById("emojiSearch");
 
-  const picker = document.getElementById("emojiPicker");
-  const selectedBox = document.getElementById("selectedEmojis");
-  const createButton = document.getElementById("createEmojiMix");
-  const mixResults = document.getElementById("emojiMixResults");
-  const mixerButtons = document.querySelectorAll(
-    ".emoji-mixer-options button"
-  );
+ 
 
-  if (!categoryList || !results || !search ||
-      !picker || !selectedBox || !createButton || !mixResults) {
+   if (!categoryList || !results || !search) {
     console.error("Emoji Generator: HTML elements nahi mile.");
     return;
   }
@@ -397,152 +390,7 @@
     showCategories(search.value.trim());
   });
 
-  // =====================================
-  // EMOJI MIXER
-  // =====================================
-
-  let requiredCount = 2;
-  let selectedEmojis = [];
-
-  const mixerEmojis = [
-    ...new Set(
-      categories
-        .filter(category => category.name !== "All Country Flags")
-        .flatMap(category =>
-          category.items.map(item =>
-            typeof item === "string" ? item : item.emoji
-          )
-        )
-    )
-  ].slice(0, 180);
-
-  function updateSelection() {
-    selectedBox.textContent = selectedEmojis.length
-      ? selectedEmojis.join(" ")
-      : "Select your emojis";
-
-    selectedBox.setAttribute(
-      "aria-label",
-      selectedEmojis.length + " emojis selected"
-    );
-
-    picker.querySelectorAll(".emoji-pick-item").forEach(button => {
-      button.classList.toggle(
-        "selected",
-        selectedEmojis.includes(button.dataset.emoji)
-      );
-    });
-  }
-
-   let renderedEmojiCount = 0;
-  const emojiBatchSize = 40;
-
-  function appendPickerBatch() {
-    const oldLoadButton = picker.querySelector(".emoji-load-more");
-    if (oldLoadButton) oldLoadButton.remove();
-
-    const nextEmojis = mixerEmojis.slice(
-      renderedEmojiCount,
-      renderedEmojiCount + emojiBatchSize
-    );
-
-    nextEmojis.forEach(emoji => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "emoji-pick-item";
-      button.textContent = emoji;
-      button.dataset.emoji = emoji;
-
-      button.addEventListener("click", () => {
-        if (selectedEmojis.includes(emoji)) {
-          selectedEmojis = selectedEmojis.filter(item => item !== emoji);
-        } else if (selectedEmojis.length < requiredCount) {
-          selectedEmojis.push(emoji);
-        }
-
-        updateSelection();
-      });
-
-      picker.appendChild(button);
-    });
-
-    renderedEmojiCount += nextEmojis.length;
-
-    if (renderedEmojiCount < mixerEmojis.length) {
-      const loadButton = document.createElement("button");
-      loadButton.type = "button";
-      loadButton.className = "emoji-load-more";
-      loadButton.textContent = "Load More Emojis";
-      loadButton.addEventListener("click", appendPickerBatch);
-      picker.appendChild(loadButton);
-    }
-
-    updateSelection();
-  }
-
-  function showPicker() {
-    picker.innerHTML = "";
-    renderedEmojiCount = 0;
-    appendPickerBatch();
-  }
-
-  mixerButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      requiredCount = Number(button.dataset.count);
-      selectedEmojis = [];
-      mixResults.innerHTML = "";
-
-      mixerButtons.forEach(item => item.classList.remove("active"));
-      button.classList.add("active");
-
-      updateSelection();
-    });
-  });
-
-  mixerButtons[0].classList.add("active");
-
-  createButton.addEventListener("click", () => {
-    mixResults.innerHTML = "";
-
-    if (selectedEmojis.length !== requiredCount) {
-      mixResults.textContent =
-        "Please select exactly " + requiredCount + " emojis.";
-      return;
-    }
-
-    let combinations = [];
-
-    if (requiredCount === 4) {
-      combinations = [
-        selectedEmojis.slice(0, 2).join(""),
-        selectedEmojis.slice(2, 4).join("")
-      ];
-    } else {
-      combinations = [selectedEmojis.join("")];
-    }
-
-    combinations.forEach((combination, index) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "emoji-mix-result";
-
-      const emojiText = document.createElement("span");
-      emojiText.textContent = combination;
-
-      const label = document.createElement("small");
-      label.textContent = "Copy";
-
-      button.append(emojiText, label);
-
-      button.addEventListener("click", async () => {
-        await copyText(combination, label);
-      });
-
-      mixResults.appendChild(button);
-    });
-  });
-
-  showPicker();
+ 
   showCategories();
 
   console.log("InstaVibez: All Emoji Generator Loaded!");
