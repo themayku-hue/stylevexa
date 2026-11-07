@@ -434,10 +434,19 @@
     });
   }
 
-  function showPicker() {
-    picker.innerHTML = "";
+   let renderedEmojiCount = 0;
+  const emojiBatchSize = 40;
 
-    mixerEmojis.forEach(emoji => {
+  function appendPickerBatch() {
+    const oldLoadButton = picker.querySelector(".emoji-load-more");
+    if (oldLoadButton) oldLoadButton.remove();
+
+    const nextEmojis = mixerEmojis.slice(
+      renderedEmojiCount,
+      renderedEmojiCount + emojiBatchSize
+    );
+
+    nextEmojis.forEach(emoji => {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "emoji-pick-item";
@@ -457,7 +466,24 @@
       picker.appendChild(button);
     });
 
+    renderedEmojiCount += nextEmojis.length;
+
+    if (renderedEmojiCount < mixerEmojis.length) {
+      const loadButton = document.createElement("button");
+      loadButton.type = "button";
+      loadButton.className = "emoji-load-more";
+      loadButton.textContent = "Load More Emojis";
+      loadButton.addEventListener("click", appendPickerBatch);
+      picker.appendChild(loadButton);
+    }
+
     updateSelection();
+  }
+
+  function showPicker() {
+    picker.innerHTML = "";
+    renderedEmojiCount = 0;
+    appendPickerBatch();
   }
 
   mixerButtons.forEach(button => {
