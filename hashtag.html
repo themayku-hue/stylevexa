@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta name="description" content="Find Instagram hashtags for Reels, posts, viral videos, gaming, fashion, travel, photography, business and more. Explore 50+ hashtag categories and copy relevant hashtags for your content with Insta Vibez.">
-
+      <meta name="description" content="Find Instagram hashtags for Reels, posts, viral videos, gaming, fashion, travel, photography, business and more. Explore 50+ hashtag categories and 10 ready-made hashtag groups with easy copy options on Insta Vibez.">
   <meta name="theme-color" content="#10101c">
 
   <title>Instagram Hashtag Generator - Viral Hashtags for Reels & Posts | Insta Vibez</title>
@@ -358,7 +357,7 @@
 
 <body>
 
-  <h1 class="main-heading">VIRAL KEYWORDS</h1>
+   <h1 class="main-heading">Instagram Hashtag Generator</h1>
 
   <div class="search-area">
     <div class="search-box">
@@ -1383,6 +1382,167 @@ if (firstCategory) {
 }
 </script>
 
+<!-- READY MADE HASHTAG GROUPS START -->
+<style>
+.ready-hashtag-section {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 20px;
+}
+.ready-hashtag-section h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.ready-hashtag-intro {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 25px;
+}
+.ready-hashtag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.ready-hashtag-card {
+  background: var(--card, #191929);
+  border: 1px solid var(--border, #333);
+  border-radius: 14px;
+  padding: 18px;
+}
+.ready-hashtag-card h3 {
+  margin: 0 0 12px;
+}
+.ready-hashtag-list {
+  color: inherit;
+  opacity: .9;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+.ready-hashtag-copy {
+  margin-top: 14px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #7c3aed;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+.ready-hashtag-copy.copied {
+  background: #16834a;
+}
+</style>
+
+<section class="ready-hashtag-section">
+  <h2>🔥 Ready-Made Instagram Hashtag Groups</h2>
+  <p class="ready-hashtag-intro">
+    Choose your favourite category and copy 30 hashtags with one click.
+  </p>
+
+  <div class="ready-hashtag-grid" id="readyHashtagGrid"></div>
+</section>
+
+<script>
+(function () {
+  const groups = [
+    {
+      name: "🎬 Instagram Reels",
+      tags: `#instagramreels #reelsinstagram #reelsvideo #reelitfeelit #reelsindia #reelsviral #reelscreator #reelsdaily #reelsinstagramvideo #reelscontent #reelscommunity #reelslife #reelslovers #reelsfun #reelsedit #reelsindiaofficial #instareels #reelkarofeelkaro #reelstrend #reels2026 #trendingreels #viralreels #reelsworld #reelsgram #reelsinspiration #reelsentertainment #reelslover #reelsvideooftheday #reelscreatorindia #explorepage`
+    },
+    {
+      name: "🚀 Viral Posts",
+      tags: `#viral #viralpost #viralcontent #trending #trendingnow #explore #explorepage #instagood #instagram #instadaily #photooftheday #picoftheday #instalike #likeforlikes #share #followforfollowback #contentcreator #digitalcreator #socialmedia #popular #newpost #postoftheday #dailycontent #instamood #viralindia #trendingpost #publicfigure #creativecontent #internetfamous #discover`
+    },
+    {
+      name: "❤️ Love & Couples",
+      tags: `#love #couplegoals #couplelove #truelove #lovestory #relationshipgoals #romantic #romance #togetherforever #soulmate #myLove #loveyou #cutecouple #couplelife #foreverlove #hearttouching #lovequotes #lovestatus #beautifulcouple #madeforeachother #couplevibes #happycouple #preciousmoments #sweetlove #inlove #relationship #loveforever #couplephotography #youandme #endlesslove`
+    },
+    {
+      name: "😎 Attitude",
+      tags: `#attitude #attitudeboys #attitudegirls #royalattitude #swag #bossvibes #selfrespect #fearless #bornleader #ownrules #beoriginal #staystrong #silentkiller #kingvibes #queenvibes #attitudestatus #attitudequotes #confidence #nevergiveup #beunique #powerfulmindset #independent #strongpersonality #myway #levelup #positiveattitude #mindsetmatters #noattitudefake #royalmindset #legend`
+    },
+    {
+      name: "🎮 Gaming",
+      tags: `#gaming #gamer #gamers #gamingcommunity #gaminglife #mobilegaming #pcgaming #bgmi #freefire #minecraft #pubgmobile #gamerlife #gamingvideos #gamingreels #gameplay #proplayer #esports #gamingworld #gamingfun #onlinegaming #gamingsetup #gamingclips #gamerforever #instagaming #gameon #gamingindia #gamingcontent #noobtopro #victory #levelup`
+    },
+    {
+      name: "📸 Photography",
+      tags: `#photography #photographer #photooftheday #photographylovers #photographyart #naturephotography #portraitphotography #mobilephotography #streetphotography #travelphotography #creativephotography #photography📸 #photoeveryday #capturethemoment #visualsoflife #photogram #instaphoto #camera #photographylover #beautifulshots #pictureperfect #lightroom #photoediting #photoshoot #clickoftheday #photographyindia #artofphotography #bestphoto #visualstorytelling #picoftheday`
+    },
+    {
+      name: "✈️ Travel",
+      tags: `#travel #travelgram #travelphotography #traveling #wanderlust #travelblogger #traveltheworld #exploremore #adventure #nature #beautifuldestinations #travelholic #trip #vacation #holiday #mountains #beachlife #roadtrip #traveladdict #worldtraveler #indiatravel #incredibleindia #travelreels #exploreindia #travel_diary #naturelovers #discoverearth #journey #travelvibes #travelstories`
+    },
+    {
+      name: "👗 Fashion",
+      tags: `#fashion #fashionstyle #fashionblogger #style #ootd #outfitoftheday #fashionista #streetstyle #styleinspiration #fashionlover #fashiondaily #trendy #trendingfashion #mensfashion #womensfashion #indianfashion #ethnicwear #traditionalwear #lookbook #styleoftheday #fashionreels #beautyandfashion #fashiongram #outfitinspiration #fashionphotography #newlook #stylish #personalstyle #fashiontrends #instafashion`
+    },
+    {
+      name: "🕉️ Devotional / Bhakti",
+      tags: `#bhakti #sanatandharma #mahadev #harharmahadev #shiv #bholenath #mahakal #jaishreeram #shreeram #hanuman #hanumanji #jaishreekrishna #radhakrishna #radheradhe #krishna #krishnabhakti #rammandir #bhagavadgita #geetagyana #hindutemple #devotional #spirituality #shivbhakt #hanumanbhakt #bhaktistatus #sanatani #hindudharma #omnamahshivaya #jaishivshankar #bhagwan`
+    },
+    {
+      name: "💼 Business & Motivation",
+      tags: `#business #businessmindset #entrepreneur #entrepreneurlife #motivation #motivationalquotes #success #successmindset #hustle #hustlehard #businessowner #startup #smallbusiness #digitalmarketing #marketing #workhard #dreambig #goalsetting #mindset #growthmindset #selfgrowth #inspiration #nevergiveup #successquotes #millionairemindset #businessgrowth #entrepreneurmind #productivity #leadership #keepgoing`
+    }
+  ];
+
+  const grid = document.getElementById("readyHashtagGrid");
+  if (!grid) return;
+
+  groups.forEach((group, index) => {
+    const card = document.createElement("div");
+    card.className = "ready-hashtag-card";
+
+    const heading = document.createElement("h3");
+    heading.textContent = group.name;
+
+    const list = document.createElement("div");
+    list.className = "ready-hashtag-list";
+    list.textContent = group.tags;
+
+    const button = document.createElement("button");
+    button.className = "ready-hashtag-copy";
+    button.textContent = "📋 Copy 30 Hashtags";
+
+    button.addEventListener("click", async function () {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(group.tags);
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = group.tags;
+          textarea.style.position = "fixed";
+          textarea.style.left = "-9999px";
+          document.body.appendChild(textarea);
+          textarea.select();
+          const copied = document.execCommand("copy");
+          textarea.remove();
+          if (!copied) throw new Error("Copy failed");
+        }
+
+        button.textContent = "✅ Copied!";
+        button.classList.add("copied");
+
+        setTimeout(() => {
+          button.textContent = "📋 Copy 30 Hashtags";
+          button.classList.remove("copied");
+        }, 1800);
+      } catch (error) {
+        button.textContent = "Copy failed - Try again";
+      }
+    });
+
+    card.appendChild(heading);
+    card.appendChild(list);
+    card.appendChild(button);
+    grid.appendChild(card);
+  });
+})();
+</script>
+<!-- READY MADE HASHTAG GROUPS END -->
+
 <!-- HASHTAG SEO CONTENT START -->
 <section class="hashtag-seo-content">
 
@@ -1442,11 +1602,17 @@ if (firstCategory) {
     Yes, you can explore hashtags related to Reels, viral videos
     and different content categories.
   </p>
-
-  <h3>Can I copy all hashtags at once?</h3>
+   <h3>Can I copy all hashtags at once?</h3>
   <p>
-    Yes, use the Copy All option to copy the available hashtags
-    from the selected category.
+    Yes. Use Copy All to copy all available hashtags from every category,
+    Selected Copy to copy only your chosen hashtags, or Same Category Copy
+    to copy hashtags from the current category.
+  </p>
+
+  <h3>Can I copy ready-made hashtag groups?</h3>
+  <p>
+    Yes. Choose any of the 10 ready-made hashtag groups and click its
+    Copy button to copy 30 hashtags at once.
   </p>
 
   <h3>Do trending hashtags guarantee more views?</h3>
@@ -1455,8 +1621,201 @@ if (firstCategory) {
     content and use relevant hashtags that describe your post.
   </p>
 
+  
+<h2>Ready-Made Instagram Hashtag Groups</h2>
+<p>
+Save time with 10 ready-made Instagram hashtag groups for Reels,
+viral posts, love and couples, attitude, gaming, photography,
+travel, fashion, devotional content and business. Each group
+contains 30 hashtag ideas with a separate one-click copy button.
+Choose hashtags that are relevant to your post or Reel.
+</p>
+
+
 </section>
 <!-- HASHTAG SEO CONTENT END -->
+
+<section class="explore-tools">
+  <h2>Explore More Instagram Tools</h2>
+  <p>Discover more free Instagram tools by Insta Vibez.</p>
+
+  <div class="explore-tools-links">
+    <a href="bio.html">Instagram Bio Generator</a>
+    <a href="username.html">Username Generator</a>
+    <a href="fonts.html">Stylish Fonts Generator</a>
+     <a href="emoji-fusion.html">Emoji Generator</a>
+     <a href="captions.html">Instagram Caption Generator</a>
+  </div>
+</section>
+<style>
+/* VIP DISCO LIGHT BACKGROUND */
+body {
+  position: relative;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 30%, #a000ff88, transparent 35%),
+    radial-gradient(circle at 80% 20%, #0066ff77, transparent 35%),
+    radial-gradient(circle at 50% 80%, #ff008877, transparent 40%),
+    radial-gradient(circle at 90% 90%, #00ffd577, transparent 35%);
+  background-size: 200% 200%;
+  animation: vipDiscoLights 12s ease-in-out infinite alternate;
+}
+
+@keyframes vipDiscoLights {
+  0% {
+    background-position: 0% 0%;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(100deg);
+  }
+  100% {
+    background-position: 0% 100%;
+    filter: hue-rotate(220deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+ /* VIP DISCO EXPLORE TOOLS */
+.explore-tools {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 35px auto;
+  padding: 35px 25px;
+  border: 1px solid #bd35ff;
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at bottom, #6d087c88, transparent 65%),
+    linear-gradient(135deg, #100625, #071b35, #190629);
+  box-shadow: 0 0 25px #a020ff88;
+}
+
+.explore-tools::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 0%, white 0 5px, #ff00ee 7px, transparent 17px),
+    radial-gradient(circle at 37% 0%, white 0 5px, #00cfff 7px, transparent 17px),
+    radial-gradient(circle at 65% 0%, white 0 5px, #ffcc00 7px, transparent 17px),
+    radial-gradient(circle at 88% 0%, white 0 5px, #00ff77 7px, transparent 17px),
+    radial-gradient(ellipse at 12% 0%, #ff00ee99, transparent 40%),
+    radial-gradient(ellipse at 37% 0%, #0088ff99, transparent 40%),
+    radial-gradient(ellipse at 65% 0%, #ff990099, transparent 40%),
+    radial-gradient(ellipse at 88% 0%, #00ff7799, transparent 40%);
+  background-size: 100% 100%;
+  animation: discoLights 5s ease-in-out infinite alternate;
+}
+
+@keyframes discoLights {
+  0% {
+    filter: hue-rotate(0deg);
+    opacity: 0.65;
+  }
+  50% {
+    filter: hue-rotate(100deg);
+    opacity: 1;
+  }
+  100% {
+    filter: hue-rotate(220deg);
+    opacity: 0.75;
+  }
+}
+
+.explore-tools h2 {
+  color: #f0aaff;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.explore-tools p {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.explore-tools-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.explore-tools-links a {
+  display: inline-block;
+  padding: 11px 17px;
+  color: white;
+  background: linear-gradient(135deg, #7928ca, #3b65d9);
+  border: 1px solid #bd8aff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.explore-tools-links a:hover {
+  background: linear-gradient(135deg, #e02bdc, #653bff);
+  box-shadow: 0 0 18px #bd55ff;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+  .explore-tools {
+    margin: 25px 12px;
+    padding: 25px 18px;
+  }
+}
+/* FINAL VIP MOBILE POLISH */
+.explore-tools {
+  text-align: center;
+}
+
+.explore-tools-links {
+  justify-content: center;
+  align-items: center;
+}
+
+.explore-tools-links a {
+  text-align: center;
+  box-shadow: 0 0 10px #9b42ff55;
+}
+
+@media (max-width: 600px) {
+  .explore-tools {
+    width: auto;
+    margin: 22px 12px;
+    padding: 25px 14px;
+  }
+
+  .explore-tools-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .explore-tools-links a {
+    width: auto;
+    padding: 12px 5px;
+    font-size: 12px;
+  }
+}
+</style>
 
 </body>
 </html>

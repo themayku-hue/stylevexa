@@ -1015,3 +1015,87 @@ button {
 }
 
 /* HOMEPAGE SEO CONTENT END */
+
+ /* Navigation Menu - Bigger and Readable */
+
+.header {
+  width: 100%;
+  overflow: hidden;
+}
+
+.header .nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.header .logo {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.navbar {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.navbar a {
+  flex: 0 0 125px;
+  min-width: 125px;
+  box-sizing: border-box;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  padding: 12px 8px;
+  font-size: 16px;
+}
+
+
+/* Rain Animation - Navigation Box Only */
+
+.header {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #10101c;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      105deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(160, 190, 255, 0.45) 19px,
+      transparent 20px,
+      transparent 35px
+    );
+
+  background-size: 45px 100px;
+  animation: rainFall 0.7s linear infinite;
+}
+
+@keyframes rainFall {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -20px 100px;
+  }
+}
+

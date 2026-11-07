@@ -184,6 +184,2097 @@
         font-size: 14px;
       }
     }
+    /* CAPTION LINE BREAKER */
+.caption-breaker {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 24px;
+  background: var(--card, #191929);
+  border: 1px solid #8b5cf6;
+  border-radius: 16px;
+  text-align: left;
+}
+
+.caption-breaker h2 {
+  color: #d8a9ff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.caption-breaker p {
+  color: #ccc;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.caption-breaker textarea {
+  display: block;
+  width: 100%;
+  min-height: 130px;
+  box-sizing: border-box;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid #555;
+  border-radius: 10px;
+  background: #10101c;
+  color: white;
+  font: inherit;
+  resize: vertical;
+}
+
+.caption-breaker button {
+  padding: 11px 18px;
+  margin: 5px;
+  border: 0;
+  border-radius: 8px;
+  background: #8b5cf6;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.caption-breaker button:hover {
+  background: #a855f7;
+  box-shadow: 0 0 12px #a855f788;
+}
+
+#breakerStatus {
+  min-height: 22px;
+  text-align: center;
+  color: #86efac;
+}
+
+@media (max-width: 600px) {
+  .caption-breaker {
+    margin: 25px 10px;
+    padding: 16px;
+  }
+}
+ 
+/* ===== VIP ENGAGEMENT CALCULATOR ===== */
+
+.engagement-wrap {
+  position: relative;
+  isolation: isolate;
+  max-width: 1000px;
+  margin: 45px auto;
+  padding: 55px 25px;
+}
+
+.engagement-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 5%;
+  z-index: -1;
+  background: radial-gradient(ellipse, #a855f755, transparent 70%);
+  filter: blur(35px);
+  animation: engagementAura 3s ease-in-out infinite alternate;
+}
+
+@keyframes engagementAura {
+  from { opacity: .4; transform: scale(.9); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+.engagement-calculator {
+  position: relative;
+  padding: 30px;
+  background: linear-gradient(145deg, #171027, #090817);
+  border: 2px solid #c026ff;
+  border-radius: 22px;
+  box-shadow: 0 0 15px #a855f7, 0 0 35px #a855f777;
+  text-align: left;
+  animation: calculatorGlow 3s infinite alternate;
+}
+
+@keyframes calculatorGlow {
+  from { box-shadow: 0 0 12px #a855f7, 0 0 25px #a855f755; }
+  to { box-shadow: 0 0 20px #ec4899, 0 0 45px #a855f799; }
+}
+
+.engagement-calculator h2 {
+  color: #e9c7ff;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.engagement-calculator .calculator-info {
+  color: #ddd0f5;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.engagement-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.engagement-field {
+  padding: 13px;
+  border: 1px solid #7650a8;
+  border-radius: 14px;
+  background: #151126;
+}
+
+.engagement-field label {
+  display: block;
+  color: #f2dfff;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.engagement-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid #554078;
+  border-radius: 10px;
+  background: #0d0b19;
+  color: white;
+  font-size: 16px;
+}
+
+.engagement-field input:focus {
+  outline: 2px solid #c026ff;
+  border-color: #c026ff;
+}
+
+.engagement-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.engagement-buttons button {
+  padding: 13px 25px;
+  border: 1px solid #c084fc;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7928ca, #a000ff);
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.engagement-buttons .reset-engagement {
+  background: #171326;
+}
+
+.engagement-result {
+  display: none;
+  margin-top: 22px;
+  padding: 20px;
+  border: 2px solid #b34aff;
+  border-radius: 15px;
+  background: #0d0b19;
+  text-align: center;
+}
+
+.engagement-result strong {
+  display: block;
+  color: #4ade80;
+  font-size: 42px;
+  margin: 8px 0;
+}
+
+#engagementStatus {
+  min-height: 24px;
+  margin-top: 14px;
+  text-align: center;
+  color: #86efac;
+}
+
+/* GLOWING BULBS */
+
+.engagement-bulb {
+  position: absolute;
+  z-index: 5;
+  width: 34px;
+  height: 65px;
+  pointer-events: none;
+}
+
+.engagement-bulb::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15px;
+  width: 3px;
+  height: 15px;
+  background: #aaa;
+}
+
+.engagement-bulb::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 5px;
+  width: 25px;
+  height: 34px;
+  border-radius: 50% 50% 45% 45%;
+  background: radial-gradient(
+    ellipse at 50% 30%,
+    #fff 0%,
+    #fff5bb 20%,
+    #ffbd45 48%,
+    #ff7b00 75%,
+    transparent 100%
+  );
+  filter: drop-shadow(0 0 10px #ffbd45)
+          drop-shadow(0 0 25px #ff9d22)
+          drop-shadow(0 0 40px #ff8c00);
+  animation: bulbPulse 1.8s ease-in-out infinite alternate;
+}
+
+.bulb-base {
+  position: absolute;
+  top: 44px;
+  left: 11px;
+  width: 14px;
+  height: 9px;
+  border-radius: 2px 2px 5px 5px;
+  background: linear-gradient(90deg, #555, #ddd, #555);
+}
+
+@keyframes bulbPulse {
+  from { opacity: .55; }
+  to { opacity: 1; }
+}
+
+.bulb-top {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -35%);
+}
+
+.bulb-bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 35%) rotate(180deg);
+}
+
+.bulb-left {
+  left: 0;
+  top: 50%;
+  transform: translate(-35%, -50%) rotate(-90deg);
+}
+
+.bulb-right {
+  right: 0;
+  top: 50%;
+  transform: translate(35%, -50%) rotate(90deg);
+}
+
+.bulb-light {
+  position: absolute;
+  inset: -30px;
+  z-index: -1;
+  background: radial-gradient(circle, #ffbd4570, transparent 70%);
+  filter: blur(18px);
+  animation: lightSpread 2s ease-in-out infinite alternate;
+}
+
+@keyframes lightSpread {
+  from { opacity: .3; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1.5); }
+}
+
+/* SHARE AND QUICK LINKS */
+
+.engagement-share,
+.engagement-quicklinks {
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid #7540a9;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #151025, #0b0916);
+  box-shadow: 0 0 18px #8b5cf633;
+  text-align: center;
+}
+
+.engagement-share h3,
+.engagement-quicklinks h3 {
+  color: #e8c8ff;
+  margin-bottom: 10px;
+}
+
+.engagement-share p {
+  color: #cfc0e8;
+}
+
+.engagement-share-buttons,
+.engagement-link-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.engagement-share-buttons button,
+.engagement-link-buttons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 16px;
+  border: 1px solid #7650a8;
+  border-radius: 12px;
+  background: #211735;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.engagement-share-buttons button:hover,
+.engagement-link-buttons a:hover {
+  background: #7134b8;
+  box-shadow: 0 0 12px #a855f7;
+}
+
+@media (max-width: 650px) {
+  .engagement-wrap {
+    padding: 45px 14px;
+    margin: 25px auto;
+  }
+
+  .engagement-calculator {
+    padding: 22px 14px;
+  }
+
+  .engagement-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .engagement-result strong {
+    font-size: 34px;
+  }
+
+  .engagement-share,
+  .engagement-quicklinks {
+    padding: 18px 12px;
+  }
+
+  .engagement-share-buttons button,
+  .engagement-link-buttons a {
+    flex: 1 1 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .engagement-wrap::before,
+  .engagement-calculator,
+  .engagement-bulb::after,
+  .bulb-light {
+    animation: none !important;
+  }
+}
+
+/* ===== PREMIUM VIP RESULT CARD ===== */
+
+#engagementResult {
+  position: relative;
+  overflow: hidden;
+  margin-top: 28px;
+  padding: 30px 20px;
+  border: 1px solid #c084fc;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, #9333ea33, transparent 45%),
+    linear-gradient(145deg, #211333, #0c0a18 75%);
+  box-shadow:
+    0 0 18px #a855f755,
+    inset 0 0 20px #a855f711;
+  animation: resultAppear .5s ease;
+}
+
+#engagementResult::before {
+  content: "✦  VIP ANALYSIS  ✦";
+  display: block;
+  margin-bottom: 14px;
+  color: #e9b8ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+#engagementResult strong {
+  display: block;
+  margin: 12px 0;
+  color: #f0abfc;
+  font-size: clamp(38px, 8vw, 58px);
+  font-weight: 900;
+  text-shadow: 0 0 18px #c026ff88;
+}
+
+#engagementDetails {
+  display: block;
+  max-width: 650px;
+  margin: 15px auto 0;
+  padding: 15px;
+  border: 1px solid #7650a8;
+  border-radius: 13px;
+  background: #171126;
+  color: #e9ddff;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+#engagementStatus {
+  color: #c4b5fd;
+  font-weight: 600;
+}
+
+@keyframes resultAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #engagementResult {
+    animation: none;
+  }
+}
+
+
+/* ===== VIP RATING & ADVICE CARDS ===== */
+
+.result-heading {
+  color: #d8b4fe;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.engagement-result-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 650px;
+  margin: 22px auto 0;
+}
+
+.engagement-total-card,
+.engagement-rating-card {
+  padding: 18px 12px;
+  border: 1px solid #8854bd;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #211735, #100d1c);
+  box-shadow: 0 0 14px #a855f722;
+}
+
+.engagement-total-card span,
+.engagement-rating-card span {
+  display: block;
+  color: #cbb6e8;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.engagement-total-card b,
+.engagement-rating-card b {
+  display: block;
+  color: #f3e8ff;
+  font-size: 19px;
+  overflow-wrap: anywhere;
+}
+
+.engagement-rating-card b {
+  font-size: 20px;
+  text-shadow: 0 0 12px currentColor;
+}
+
+.engagement-advice-card {
+  max-width: 650px;
+  margin: 18px auto 0;
+  padding: 20px;
+  border: 1px solid #d8a4ff;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #291744, #151025);
+  box-shadow: 0 0 18px #a855f733;
+  text-align: left;
+}
+
+.engagement-advice-card span {
+  color: #e9b8ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.engagement-advice-card p {
+  margin: 12px 0 0;
+  color: #f1e8ff;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+@media (max-width: 500px) {
+  .engagement-result-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .engagement-total-card,
+  .engagement-rating-card {
+    padding: 16px;
+  }
+
+  .engagement-advice-card {
+    padding: 17px;
+  }
+}
+
+ 
+/* ===== REALISTIC FIREWORKS CANVAS ===== */
+
+.diwali-fireworks {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+#realFireworks {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diwali-fireworks {
+    display: none;
+  }
+}
+
+/* ===== LIVE INSTAGRAM PROFILE PREVIEW ===== */
+
+.live-profile-tool {
+  max-width: 950px;
+  margin: 45px auto;
+  padding: 25px;
+  border: 1px solid #a855f7;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #191126, #0c0a18);
+  box-shadow: 0 0 25px #a855f733;
+  color: white;
+}
+
+.live-profile-tool > h2 {
+  color: #e9c7ff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.live-profile-tool > p {
+  color: #cbb6e8;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.profile-editor {
+  padding: 22px;
+  border: 1px solid #7650a8;
+  border-radius: 16px;
+  background: #151126;
+}
+
+.profile-editor h3 {
+  color: #e9b8ff;
+  margin-bottom: 18px;
+}
+
+.profile-editor label {
+  display: block;
+  margin: 15px 0 7px;
+  color: #e9ddff;
+  font-weight: 600;
+}
+
+.profile-editor input,
+.profile-editor textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid #554078;
+  border-radius: 10px;
+  background: #0d0b19;
+  color: white;
+  font: inherit;
+}
+
+.profile-editor textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.profile-editor input:focus,
+.profile-editor textarea:focus {
+  outline: 2px solid #c026ff;
+  border-color: #c026ff;
+}
+
+.instagram-preview {
+  max-width: 480px;
+  margin: 30px auto 0;
+  padding: 20px;
+  border: 1px solid #494052;
+  border-radius: 18px;
+  background: #111111;
+  color: white;
+  box-shadow: 0 10px 35px #0008;
+}
+
+.preview-heading {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #333;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.preview-profile-top {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin: 25px 0;
+}
+
+#previewPhoto {
+  width: 95px;
+  height: 95px;
+  flex-shrink: 0;
+  border: 3px solid #d946ef;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.preview-stats {
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+  gap: 8px;
+  text-align: center;
+}
+
+.preview-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.preview-stats strong {
+  font-size: 17px;
+}
+
+.preview-stats span {
+  color: #cccccc;
+  font-size: 12px;
+}
+
+.preview-bio {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.preview-bio strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.preview-bio p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.preview-username {
+  margin-top: 8px;
+  color: #b9a3d8;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.preview-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.preview-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: #363636;
+  color: white;
+  font-weight: 700;
+}
+
+.preview-buttons button:first-child {
+  background: #7c3aed;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin-top: 25px;
+}
+
+.preview-grid div {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #38234d, #171126);
+  color: #d8b4fe;
+  font-size: 35px;
+}
+
+@media (max-width: 600px) {
+  .live-profile-tool {
+    margin: 25px 10px;
+    padding: 16px 12px;
+  }
+
+  .profile-editor {
+    padding: 15px;
+  }
+
+  .instagram-preview {
+    padding: 15px 12px;
+  }
+
+  .preview-profile-top {
+    gap: 12px;
+  }
+
+  #previewPhoto {
+    width: 76px;
+    height: 76px;
+  }
+
+  .preview-stats {
+    gap: 5px;
+  }
+
+  .preview-stats strong {
+    font-size: 15px;
+  }
+
+  .preview-stats span {
+    font-size: 11px;
+  }
+}
+/* ===== REALISTIC INSTAGRAM PHONE PREVIEW ===== */
+
+.instagram-preview {
+  max-width: 390px;
+  margin: 35px auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.phone-frame {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  min-height: 750px;
+  margin: auto;
+  padding: 17px 13px 14px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 9px solid #252936;
+  border-radius: 42px;
+  background: #080808;
+  color: #fff;
+  box-shadow:
+    0 0 0 2px #080a10,
+    0 15px 45px #000a,
+    0 0 25px #a855f733;
+}
+
+.phone-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+  padding: 0 7px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 20px;
+  border-radius: 20px;
+  background: #020204;
+  border: 1px solid #161a24;
+}
+
+.phone-header {
+  display: none;
+}
+
+.phone-username {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 5px 19px;
+  border-bottom: 1px solid #292929;
+  font-size: 16px;
+}
+
+.phone-username strong {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.phone-username span {
+  font-size: 20px;
+}
+
+.phone-profile-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 23px 3px 20px;
+}
+
+#previewPhoto {
+  width: 86px;
+  height: 86px;
+  flex-shrink: 0;
+  border: 2px solid #d946ef;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.phone-profile-top .preview-stats {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  gap: 4px;
+  text-align: center;
+}
+
+.phone-profile-top .preview-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.phone-profile-top .preview-stats strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.phone-profile-top .preview-stats span {
+  font-size: 11px;
+  color: #ddd;
+}
+
+.phone-bio {
+  padding: 0 5px;
+  line-height: 1.6;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.phone-bio strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 14px;
+}
+
+.phone-bio p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.phone-action-buttons {
+  display: flex;
+  gap: 6px;
+  margin: 17px 2px 22px;
+}
+
+.phone-action-buttons button {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 3px;
+  border: 0;
+  border-radius: 7px;
+  background: #363636;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.phone-action-buttons button:last-child {
+  flex: 0 0 38px;
+  font-size: 17px;
+}
+
+.phone-highlights {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 3px 20px;
+  overflow: hidden;
+}
+
+.highlight {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.highlight div {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  max-width: 100%;
+  margin: auto;
+  border: 2px solid #555;
+  border-radius: 50%;
+  background: #171717;
+  font-size: 22px;
+}
+
+.highlight span {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  color: #eee;
+}
+
+.phone-tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 13px 0;
+  border-top: 1px solid #292929;
+  border-bottom: 1px solid #292929;
+  font-size: 23px;
+}
+
+.phone-post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 3px;
+}
+
+.phone-post-grid div {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #35204d, #151b35);
+  font-size: 30px;
+}
+
+.phone-bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px 2px 8px;
+  font-size: 22px;
+}
+
+.phone-bottom-nav img {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.phone-home-indicator {
+  width: 105px;
+  height: 4px;
+  margin: 5px auto 0;
+  border-radius: 10px;
+  background: white;
+}
+
+@media (max-width: 600px) {
+  .instagram-preview {
+    width: 100%;
+    padding: 0;
+  }
+
+  .phone-frame {
+    max-width: 340px;
+    min-height: 720px;
+    border-radius: 38px;
+    padding: 15px 11px 12px;
+  }
+
+  .phone-profile-top {
+    gap: 12px;
+  }
+
+  #previewPhoto {
+    width: 75px;
+    height: 75px;
+  }
+
+  .phone-profile-top .preview-stats strong {
+    font-size: 13px;
+  }
+
+  .highlight div {
+    width: 46px;
+    height: 46px;
+  }
+}
+/* ===== DESKTOP SIDE BY SIDE LAYOUT ===== */
+
+.phone-bio {
+  text-align: left !important;
+  margin-top: 8px;
+}
+
+.live-profile-tool {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 20px;
+  align-items: start;
+}
+
+.live-profile-tool > h2,
+.live-profile-tool > p {
+  grid-column: 1 / -1;
+}
+
+.profile-editor {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.instagram-preview {
+  grid-column: 2;
+  grid-row: 3;
+  width: 100%;
+  max-width: 290px;
+  margin: 0 auto;
+}
+
+.phone-frame {
+  width: 100%;
+  max-width: 275px;
+  min-height: auto;
+  padding: 12px 9px;
+  border-width: 7px;
+  border-radius: 32px;
+}
+
+.phone-profile-top {
+  gap: 10px;
+  margin: 16px 2px;
+}
+
+#previewPhoto {
+  width: 68px;
+  height: 68px;
+}
+
+.phone-profile-top .preview-stats strong {
+  font-size: 12px;
+}
+
+.phone-profile-top .preview-stats span {
+  font-size: 9px;
+}
+
+.phone-bio {
+  font-size: 12px;
+}
+
+.phone-action-buttons {
+  margin: 12px 2px;
+}
+
+.phone-action-buttons button {
+  padding: 8px 2px;
+  font-size: 10px;
+}
+
+.highlight div {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.highlight span {
+  font-size: 9px;
+}
+
+.phone-post-grid div {
+  font-size: 23px;
+}
+
+@media (max-width: 700px) {
+  .live-profile-tool {
+    display: block;
+  }
+
+  .profile-editor {
+    margin-bottom: 25px;
+  }
+
+  .instagram-preview {
+    max-width: 340px;
+    margin: 20px auto;
+  }
+
+  .phone-frame {
+    max-width: 320px;
+    min-height: auto;
+  }
+}
+/* ===== COMPACT LIVE PROFILE BOX ===== */
+
+.live-profile-tool {
+  max-width: 760px;
+  padding: 15px;
+  margin: 25px auto;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) 230px;
+}
+
+.live-profile-tool > h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.live-profile-tool > p {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.profile-editor {
+  padding: 13px;
+}
+
+.profile-editor h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.profile-editor label {
+  margin: 9px 0 5px;
+  font-size: 13px;
+}
+
+.profile-editor input,
+.profile-editor textarea {
+  padding: 9px;
+  font-size: 13px;
+}
+
+.profile-editor textarea {
+  min-height: 75px;
+}
+
+.instagram-preview {
+  max-width: 230px;
+}
+
+.phone-frame {
+  max-width: 220px;
+  padding: 10px 7px;
+  border-width: 6px;
+  border-radius: 27px;
+}
+
+@media (max-width: 700px) {
+  .live-profile-tool {
+    max-width: 100%;
+    padding: 12px;
+    display: block;
+  }
+
+  .instagram-preview {
+    max-width: 300px;
+    margin: 18px auto;
+  }
+
+  .phone-frame {
+    max-width: 280px;
+  }
+}
+
+/* ===== REDUCE BOX HEIGHT ONLY ===== */
+
+.live-profile-tool {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  row-gap: 8px;
+}
+
+.profile-editor {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 12px;
+  row-gap: 2px;
+  padding: 12px;
+}
+
+.profile-editor h3 {
+  grid-column: 1 / -1;
+  margin: 0 0 6px;
+}
+
+.profile-editor label {
+  margin: 5px 0 2px;
+  font-size: 13px;
+}
+
+.profile-editor input,
+.profile-editor textarea {
+  padding: 8px;
+  font-size: 13px;
+}
+
+.profile-editor label:nth-of-type(3),
+.profile-editor textarea,
+.profile-editor label:nth-of-type(6),
+.profile-editor input:nth-of-type(6) {
+  grid-column: 1 / -1;
+}
+
+.profile-editor textarea {
+  min-height: 55px;
+  height: 55px;
+}
+
+@media (max-width: 600px) {
+  .profile-editor {
+    display: block;
+  }
+}
+/* ===== WIDE OCEAN BACKGROUND ===== */
+
+.live-profile-tool {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: 1100px;
+  width: calc(100% - 30px);
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 20px;
+  padding: 22px;
+  background: linear-gradient(
+    180deg,
+    #063c70 0%,
+    #07558a 35%,
+    #023354 70%,
+    #001b32 100%
+  );
+  border: 2px solid #28c8ff;
+  box-shadow: 0 0 30px #009dff66;
+}
+
+/* MOVING OCEAN WAVES */
+
+.live-profile-tool::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -50%;
+  bottom: -90px;
+  width: 200%;
+  height: 240px;
+  border-radius: 45%;
+  background: repeating-linear-gradient(
+    0deg,
+    #087eb0aa 0px,
+    #087eb066 12px,
+    #00bfff33 24px,
+    #06436c99 38px
+  );
+  animation: oceanWave 7s ease-in-out infinite alternate;
+}
+
+.live-profile-tool::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -30%;
+  bottom: -120px;
+  width: 160%;
+  height: 260px;
+  border-radius: 43%;
+  background: #00a9e455;
+  animation: oceanWave 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes oceanWave {
+  from {
+    transform: translateX(-5%) rotate(-5deg);
+  }
+  to {
+    transform: translateX(5%) rotate(5deg);
+  }
+}
+
+/* TRANSPARENT EDITOR */
+
+.profile-editor {
+  background: #061b35bb;
+  backdrop-filter: blur(5px);
+  border-color: #39caff;
+}
+
+.instagram-preview {
+  max-width: 300px;
+}
+
+/* SHORTER PHONE HEIGHT */
+
+.phone-frame {
+  max-width: 280px;
+  min-height: auto;
+  padding: 8px 9px;
+}
+
+.phone-username {
+  padding: 8px 4px 10px;
+}
+
+.phone-profile-top {
+  margin: 12px 3px;
+}
+
+.phone-bio {
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.phone-action-buttons {
+  margin: 9px 2px 12px;
+}
+
+.phone-highlights {
+  padding-bottom: 10px;
+}
+
+.phone-tabs {
+  padding: 8px 0;
+}
+
+.phone-bottom-nav {
+  padding: 8px 2px 4px;
+}
+
+.phone-home-indicator {
+  margin-top: 3px;
+}
+
+@media (max-width: 700px) {
+  .live-profile-tool {
+    width: auto;
+    max-width: 100%;
+    display: block;
+    padding: 14px;
+  }
+
+  .instagram-preview {
+    max-width: 320px;
+  }
+}
+/* ===== REALISTIC JUMPING OCEAN FISH ===== */
+
+.ocean-life {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.live-profile-tool > :not(.ocean-life) {
+  position: relative;
+  z-index: 1;
+}
+
+.ocean-fish {
+  position: absolute;
+  display: block;
+  font-size: 34px;
+  filter: drop-shadow(0 4px 5px #00182c);
+  animation: fishJump 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.fish-one {
+  left: 2%;
+  bottom: 12%;
+  font-size: 38px;
+  animation-delay: 0s;
+}
+
+.fish-two {
+  right: 3%;
+  bottom: 15%;
+  font-size: 43px;
+  animation-name: dolphinJump;
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+.fish-three {
+  left: 18%;
+  bottom: 5%;
+  font-size: 27px;
+  animation-delay: 2s;
+}
+
+.fish-four {
+  right: 15%;
+  bottom: 8%;
+  font-size: 32px;
+  animation-delay: 2.8s;
+}
+
+.fish-five {
+  right: 35%;
+  bottom: 4%;
+  font-size: 25px;
+  animation-delay: 1.5s;
+}
+
+.fish-six {
+  left: 48%;
+  bottom: 10%;
+  font-size: 30px;
+  animation-delay: 3.2s;
+}
+
+@keyframes fishJump {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(12px, -35px) rotate(-12deg);
+  }
+  40% {
+    transform: translate(25px, -85px) rotate(-20deg);
+  }
+  60% {
+    transform: translate(38px, -45px) rotate(12deg);
+  }
+  80% {
+    transform: translate(48px, 5px) rotate(5deg);
+  }
+}
+
+@keyframes dolphinJump {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-15px, -55px) rotate(-15deg);
+  }
+  50% {
+    transform: translate(-35px, -115px) rotate(-25deg);
+  }
+  75% {
+    transform: translate(-55px, -45px) rotate(15deg);
+  }
+}
+
+.ocean-bubble {
+  position: absolute;
+  color: #b9efff;
+  font-size: 25px;
+  opacity: 0;
+  animation: bubbleRise 4s linear infinite;
+}
+
+.bubble-one {
+  left: 12%;
+  bottom: 5%;
+}
+
+.bubble-two {
+  right: 12%;
+  bottom: 8%;
+  animation-delay: 1.5s;
+}
+
+.bubble-three {
+  left: 55%;
+  bottom: 3%;
+  animation-delay: 2.5s;
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(0) scale(.5);
+    opacity: 0;
+  }
+  30% {
+    opacity: .8;
+  }
+  100% {
+    transform: translateY(-180px) scale(1.3);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ocean-fish,
+  .ocean-bubble {
+    animation: none;
+  }
+}
+/* ===== FINAL COMPACT DESKTOP LAYOUT ===== */
+
+.live-profile-tool {
+  width: calc(100% - 24px);
+  max-width: 1100px;
+  margin: 10px auto;
+  padding: 12px 18px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 8px 18px;
+  align-items: center;
+}
+
+.live-profile-tool > h2,
+.live-profile-tool > p {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.live-profile-tool > h2 {
+  font-size: 21px;
+}
+
+.live-profile-tool > p {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.profile-editor {
+  grid-column: 1;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px 12px;
+  padding: 12px;
+  margin: 0;
+}
+
+.profile-editor h3 {
+  grid-column: 1 / -1;
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+/* Name and Username */
+
+.profile-editor label[for="liveName"] {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#liveName {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.profile-editor label[for="liveUsername"] {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#liveUsername {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+/* Bio */
+
+.profile-editor label[for="liveBio"] {
+  grid-column: 1 / -1;
+  grid-row: 4;
+}
+
+#liveBio {
+  grid-column: 1 / -1;
+  grid-row: 5;
+  min-height: 65px;
+  height: 65px;
+}
+
+/* Stats */
+
+.profile-editor label[for="livePosts"] {
+  grid-column: 1;
+  grid-row: 6;
+}
+
+#livePosts {
+  grid-column: 1;
+  grid-row: 7;
+}
+
+.profile-editor label[for="liveFollowers"] {
+  grid-column: 2;
+  grid-row: 6;
+}
+
+#liveFollowers {
+  grid-column: 2;
+  grid-row: 7;
+}
+
+.profile-editor label[for="liveFollowing"] {
+  grid-column: 1;
+  grid-row: 8;
+}
+
+#liveFollowing {
+  grid-column: 1;
+  grid-row: 9;
+}
+
+.profile-editor label[for="livePhoto"] {
+  grid-column: 2;
+  grid-row: 8;
+}
+
+#livePhoto {
+  grid-column: 2;
+  grid-row: 9;
+  min-width: 0;
+  font-size: 10px;
+}
+
+/* Compact inputs */
+
+.profile-editor label {
+  margin: 3px 0 2px;
+  font-size: 12px;
+}
+
+.profile-editor input,
+.profile-editor textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 7px;
+  font-size: 12px;
+}
+
+/* Shorter phone */
+
+.instagram-preview {
+  grid-column: 2;
+  grid-row: 3;
+  width: 100%;
+  max-width: 290px;
+  margin: 0 auto;
+}
+
+.phone-frame {
+  width: 100%;
+  max-width: 270px;
+  height: 445px;
+  min-height: 0;
+  overflow: hidden;
+  padding: 7px 9px;
+  border-radius: 30px;
+}
+
+.phone-status {
+  height: 17px;
+  font-size: 9px;
+}
+
+.phone-username {
+  padding: 6px 4px;
+  font-size: 13px;
+}
+
+.phone-profile-top {
+  margin: 10px 2px;
+  gap: 9px;
+}
+
+#previewPhoto {
+  width: 62px;
+  height: 62px;
+}
+
+.phone-profile-top .preview-stats strong {
+  font-size: 11px;
+}
+
+.phone-profile-top .preview-stats span {
+  font-size: 9px;
+}
+
+.phone-bio {
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.phone-bio strong {
+  font-size: 12px;
+}
+
+.phone-action-buttons {
+  margin: 8px 2px;
+}
+
+.phone-action-buttons button {
+  padding: 7px 2px;
+  font-size: 9px;
+}
+
+.phone-highlights {
+  padding-bottom: 7px;
+}
+
+.highlight div {
+  width: 35px;
+  height: 35px;
+  font-size: 17px;
+}
+
+.highlight span {
+  font-size: 8px;
+}
+
+.phone-tabs {
+  padding: 6px 0;
+  font-size: 18px;
+}
+
+.phone-post-grid div {
+  font-size: 19px;
+}
+
+.phone-bottom-nav {
+  padding: 6px 2px 2px;
+  font-size: 18px;
+}
+
+.phone-bottom-nav img {
+  width: 19px;
+  height: 19px;
+}
+
+.phone-home-indicator {
+  width: 75px;
+  height: 3px;
+  margin-top: 2px;
+}
+
+ /* REAL FISH VISIBLE */
+.ocean-fish,
+.ocean-bubble {
+  display: block !important;
+}
+
+/* Mobile layout */
+
+@media (max-width: 700px) {
+  .live-profile-tool {
+    display: block;
+    width: auto;
+    padding: 12px;
+  }
+
+  .profile-editor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .instagram-preview {
+    max-width: 300px;
+    margin: 15px auto;
+  }
+
+  .phone-frame {
+    height: 445px;
+  }
+}
+
+/* ===== DEEP BLUE OCEAN BACKGROUND ===== */
+
+.live-profile-tool {
+  background:
+    radial-gradient(ellipse at 15% 85%, #00bfff66, transparent 35%),
+    radial-gradient(ellipse at 85% 20%, #0077cc88, transparent 40%),
+    radial-gradient(ellipse at 50% 100%, #00aaff77, transparent 45%),
+    linear-gradient(180deg, #00152f, #003c70 45%, #001b38) !important;
+
+  border: 2px solid #00c8ff !important;
+  box-shadow:
+    0 0 20px #00aaff99,
+    inset 0 0 35px #008cff66 !important;
+}
+
+/* WATER LIGHT EFFECT */
+
+.live-profile-tool::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0px,
+      #ffffff08 15px,
+      transparent 30px,
+      #00d9ff22 45px
+    );
+
+  animation: oceanLight 8s linear infinite;
+}
+
+.live-profile-tool::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: -20%;
+  bottom: -100px;
+  width: 140%;
+  height: 190px;
+  border-radius: 50%;
+  background: #00bfff44;
+  box-shadow: 0 -12px 30px #00cfff66;
+  pointer-events: none;
+  animation: oceanSurface 5s ease-in-out infinite alternate;
+}
+
+@keyframes oceanLight {
+  from { background-position: 0 0; }
+  to { background-position: 200px 100px; }
+}
+
+@keyframes oceanSurface {
+  from { transform: translateX(-4%) rotate(-3deg); }
+  to { transform: translateX(4%) rotate(3deg); }
+}
+
+/* GLASS EDITOR */
+
+.profile-editor {
+  background: #001a3dcc !important;
+  border-color: #00c8ff !important;
+  backdrop-filter: blur(8px);
+}
+/* REAL FISH SWIMMING ANIMATION */
+.ocean-fish {
+  display: block !important;
+  position: absolute;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.96;
+  filter: drop-shadow(0 5px 8px rgba(0, 20, 50, 0.35));
+  pointer-events: none;
+}
+
+/* FISH 1 */
+.fish-one {
+  width: 82px;
+  left: 2%;
+  bottom: 8%;
+  animation: fishJumpOne 7s ease-in-out infinite;
+}
+
+/* FISH 2 */
+.fish-two {
+  width: 95px;
+  right: 2%;
+  bottom: 12%;
+  animation: fishJumpTwo 9s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* FISH 3 */
+.fish-three {
+  width: 65px;
+  left: 42%;
+  bottom: 3%;
+  animation: fishSwimThree 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* FISH 4 */
+.fish-four {
+  width: 72px;
+  right: 35%;
+  bottom: 5%;
+  animation: fishSwimFour 10s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* JUMP OUT AND DIVE BACK */
+@keyframes fishJumpOne {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(35px, -65px) rotate(-12deg);
+  }
+  50% {
+    transform: translate(75px, -5px) rotate(5deg);
+  }
+  75% {
+    transform: translate(35px, 5px);
+  }
+}
+
+@keyframes fishJumpTwo {
+  0%, 100% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+  30% {
+    transform: translate(-45px, -75px) scaleX(-1) rotate(-10deg);
+  }
+  60% {
+    transform: translate(-85px, 0) scaleX(-1);
+  }
+}
+
+@keyframes fishSwimThree {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(90px) translateY(-18px);
+  }
+}
+
+@keyframes fishSwimFour {
+  0%, 100% {
+    transform: translateX(0) scaleX(-1);
+  }
+  50% {
+    transform: translateX(-75px) translateY(-25px) scaleX(-1);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .fish-one { width: 55px; }
+  .fish-two { width: 62px; }
+  .fish-three { width: 45px; }
+  .fish-four { width: 48px; }
+}
+/* ===== REAL FISH SWIMMING & JUMPING ANIMATION ===== */
+
+.ocean-fish {
+  display: block !important;
+  position: absolute;
+  width: 75px;
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 5px 7px rgba(0, 15, 35, .65));
+  will-change: transform;
+}
+
+/* Fish 1 */
+.fish-one {
+  width: 85px;
+  left: 1%;
+  bottom: 12%;
+  animation: fishSwimOne 7s ease-in-out infinite;
+}
+
+/* Fish 2 */
+.fish-two {
+  width: 75px;
+  right: 1%;
+  bottom: 18%;
+  animation: fishSwimTwo 8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Fish 3 */
+.fish-three {
+  width: 65px;
+  left: 12%;
+  bottom: 5%;
+  animation: fishSwimThree 9s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Fish 4 */
+.fish-four {
+  width: 70px;
+  right: 12%;
+  bottom: 7%;
+  animation: fishSwimFour 8s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* Swimming and jumping */
+@keyframes fishSwimOne {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(45px, -18px) rotate(-8deg); }
+  50% { transform: translate(85px, -75px) rotate(-18deg); }
+  75% { transform: translate(120px, -12px) rotate(5deg); }
+}
+
+@keyframes fishSwimTwo {
+  0%, 100% { transform: translate(0, 0) scaleX(-1); }
+  30% { transform: translate(-40px, -25px) scaleX(-1) rotate(-8deg); }
+  55% { transform: translate(-90px, -100px) scaleX(-1) rotate(-18deg); }
+  80% { transform: translate(-130px, -10px) scaleX(-1); }
+}
+
+@keyframes fishSwimThree {
+  0%, 100% { transform: translate(0, 0); }
+  35% { transform: translate(65px, -35px) rotate(-10deg); }
+  65% { transform: translate(115px, -5px) rotate(8deg); }
+}
+
+@keyframes fishSwimFour {
+  0%, 100% { transform: translate(0, 0) scaleX(-1); }
+  35% { transform: translate(-65px, -45px) scaleX(-1) rotate(-12deg); }
+  65% { transform: translate(-120px, -8px) scaleX(-1) rotate(5deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ocean-fish {
+    animation: none !important;
+  }
+}
   </style>
 </head>
 
@@ -237,96 +2328,611 @@
     <div class="caption-list" id="captionList"></div>
 
     <button id="captionLoadMore">Load More</button>
+    <!-- CAPTION LINE BREAKER START -->
+<section class="caption-breaker">
+  <h2>✨ Instagram Caption Line-Breaker</h2>
+  <p>Fix caption spacing and organize your lines before posting.</p>
 
-        <!-- CAPTIONS SEO CONTENT START -->
-    <section class="caption-seo-content">
+  <label for="captionBreakerInput">Your Caption</label>
+  <textarea
+    id="captionBreakerInput"
+    placeholder="Paste or type your Instagram caption here..."
+  ></textarea>
 
-      <h2>Free Instagram Caption Generator</h2>
-      <p>
-        Find stylish and creative Instagram captions with Insta Vibez.
-        Explore 200 caption ideas in every category for your photos,
-        Reels and social media posts. Choose your favourite caption
-        and copy it instantly for free.
-      </p>
+  <button type="button" id="formatCaptionBtn">
+    Format Caption
+  </button>
 
-      <h2>Instagram Captions for Boys</h2>
-      <p>
-        Discover cool, stylish and attitude captions for boys.
-        Find creative lines that match your personality, confidence
-        and Instagram profile style.
-      </p>
+  <label for="captionBreakerOutput">Formatted Caption</label>
+  <textarea
+    id="captionBreakerOutput"
+    placeholder="Your formatted caption will appear here..."
+    readonly
+  ></textarea>
 
-      <h2>Instagram Captions for Girls</h2>
-      <p>
-        Explore cute, beautiful, classy and stylish captions for girls.
-        Choose captions that express your mood, confidence and
-        personality.
-      </p>
+  <button type="button" id="copyFormattedCaption">
+    Copy Formatted Caption
+  </button>
 
-      <h2>Attitude and Stylish Captions</h2>
-      <p>
-        Find bold attitude captions and unique lines for your
-        Instagram photos. Express your confidence with captions
-        that match your personal style.
-      </p>
+  <p id="breakerStatus" aria-live="polite"></p>
+</section>
+<!-- CAPTION LINE BREAKER END -->
 
-      <h2>Love and Friendship Captions</h2>
-      <p>
-        Discover romantic captions for couples and love posts.
-        You can also find friendship captions for your best friends,
-        special moments and unforgettable memories.
-      </p>
+ 
+<!-- ENGAGEMENT RATE CALCULATOR START -->
+<div class="engagement-wrap">
 
-      <h2>Sad and Motivational Captions</h2>
-      <p>
-        Find emotional captions for sad moments and motivational
-        captions to express positivity, hard work and personal growth.
-      </p>
+  <div class="engagement-bulb bulb-top">
+    <span class="bulb-base"></span>
+    <span class="bulb-light"></span>
+  </div>
 
-      <h2>Selfie and Travel Captions</h2>
-      <p>
-        Make your selfies and travel photos more expressive with
-        creative captions. Explore ideas for beautiful moments,
-        adventures and memorable journeys.
-      </p>
+  <div class="engagement-bulb bulb-bottom">
+    <span class="bulb-base"></span>
+    <span class="bulb-light"></span>
+  </div>
 
-      <h2>How to Use the Instagram Caption Generator?</h2>
-      <p>
-        Select a category such as boys, girls, love, attitude,
-        friendship or travel. Browse the captions, search for
-        your favourite line and click Copy Caption. You can also
-        load more captions to explore additional ideas.
-      </p>
+  <div class="engagement-bulb bulb-left">
+    <span class="bulb-base"></span>
+    <span class="bulb-light"></span>
+  </div>
 
-      <h2>Frequently Asked Questions</h2>
+  <div class="engagement-bulb bulb-right">
+    <span class="bulb-base"></span>
+    <span class="bulb-light"></span>
+  </div>
 
-      <h3>Is this Instagram caption generator free?</h3>
-      <p>
-        Yes, Insta Vibez offers free Instagram caption ideas
-        that you can browse and copy.
-      </p>
+  <section class="engagement-calculator">
 
-      <h3>How many captions are available in each category?</h3>
-      <p>
-        The generator creates 200 caption suggestions in each
-        available category.
-      </p>
+    <h2>📊 Instagram Engagement Rate Calculator</h2>
 
-      <h3>Can I copy Instagram captions?</h3>
-      <p>
-        Yes, click the Copy Caption button to copy your favourite
-        caption and paste it into your Instagram post.
-      </p>
+    <p class="calculator-info">
+      Calculate your Instagram engagement rate using your followers, likes and comments.
+    </p>
 
-      <h3>Can I find captions for boys and girls?</h3>
-      <p>
-        Yes, separate boys and girls categories are available,
-        along with love, attitude, sad, friendship, selfie,
-        travel and motivational captions.
-      </p>
+    <div class="engagement-fields">
 
-    </section>
-    <!-- CAPTIONS SEO CONTENT END -->
+      <div class="engagement-field">
+        <label for="engagementFollowers">👥 Total Followers</label>
+        <input type="number" id="engagementFollowers"
+          min="1" step="1" inputmode="numeric"
+          placeholder="e.g. 10000">
+      </div>
+
+      <div class="engagement-field">
+        <label for="engagementLikes">❤️ Total Likes</label>
+        <input type="number" id="engagementLikes"
+          min="0" step="1" inputmode="numeric"
+          placeholder="e.g. 500">
+      </div>
+
+      <div class="engagement-field">
+        <label for="engagementComments">💬 Total Comments</label>
+        <input type="number" id="engagementComments"
+          min="0" step="1" inputmode="numeric"
+          placeholder="e.g. 100">
+      </div>
+
+    </div>
+
+    <div class="engagement-buttons">
+      <button type="button" id="calculateEngagement">▦ Calculate Rate</button>
+      <button type="button" class="reset-engagement" id="resetEngagement">↻ Reset</button>
+    </div>
+
+     <div class="engagement-result" id="engagementResult" aria-live="polite">
+       <div class="diwali-fireworks" aria-hidden="true">
+  <canvas id="realFireworks"></canvas>
+</div>
+
+  <div class="result-heading">YOUR ENGAGEMENT RATE</div>
+
+  <strong id="engagementPercentage">0.00%</strong>
+
+  <div class="engagement-result-meta">
+    <div class="engagement-total-card">
+      <span>📊 Total Engagement</span>
+      <b id="engagementDetails"></b>
+    </div>
+
+    <div class="engagement-rating-card">
+      <span>🏆 Your Rating</span>
+      <b id="engagementRating"></b>
+    </div>
+  </div>
+
+  <div class="engagement-advice-card">
+    <span>💡 PERSONALIZED ADVICE</span>
+    <p id="engagementAdvice"></p>
+  </div>
+
+</div>
+
+    <p id="engagementStatus" role="status" aria-live="polite">
+      Enter your values and click Calculate!
+    </p>
+
+  </section>
+
+  <!-- SHARE THIS TOOL -->
+  <section class="engagement-share">
+
+    <h3>🔗 Share This Tool</h3>
+    <p>Help others discover Insta Vibez!</p>
+
+    <div class="engagement-share-buttons">
+      <button type="button" id="shareCopy">🔗 Copy Link</button>
+      <button type="button" id="shareWhatsApp">WhatsApp</button>
+      <button type="button" id="shareTelegram">Telegram</button>
+      <button type="button" id="shareFacebook">Facebook</button>
+      <button type="button" id="shareX">𝕏 Share</button>
+      <button type="button" id="shareMore">••• More</button>
+    </div>
+
+    <p id="shareStatus" role="status" aria-live="polite"></p>
+
+  </section>
+
+  <!-- QUICK LINKS -->
+  <section class="engagement-quicklinks">
+
+    <h3>⚡ Explore More Tools</h3>
+
+    <div class="engagement-link-buttons">
+      <a href="captions.html">Caption Generator</a>
+      <a href="bio.html">Bio Ideas</a>
+      <a href="username.html">Username Ideas</a>
+      <a href="fonts.html">Instagram Fonts</a>
+      <a href="guide.html">Instagram Guide</a>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- ENGAGEMENT RATE CALCULATOR END -->
+ 
+<!-- ENGAGEMENT CALCULATOR SEO CONTENT START -->
+<section class="caption-seo-content engagement-seo-content">
+
+  <h2>Free Instagram Engagement Rate Calculator</h2>
+  <p>
+    Insta Vibez का यह Instagram Engagement Calculator बिल्कुल free है।
+    यह आपके followers, likes और comments के आधार पर आपका engagement rate
+    calculate करता है। इससे आप जान सकते हैं कि आपके Instagram posts पर
+    audience कितना interact कर रही है। बस अपनी details डालें और अपना
+    engagement rate आसानी से check करें।
+  </p>
+
+  <h2>Instagram Engagement Rate Formula</h2>
+  <p>
+    आप अपने Instagram engagement rate को manually भी calculate कर सकते हैं।
+    इसके लिए नीचे दिया गया formula इस्तेमाल करें:
+  </p>
+
+  <p>
+    <strong>
+      Engagement Rate = [(Total Likes + Total Comments) ÷ Total Followers] × 100
+    </strong>
+  </p>
+
+  <p>
+    उदाहरण के लिए, अगर आपके 1,000 followers हैं और आपकी post पर
+    100 likes और 20 comments मिलते हैं, तो आपका engagement rate 12% होगा।
+  </p>
+
+  <h2>Frequently Asked Questions (FAQs)</h2>
+
+  <h3>1. What is a good Instagram engagement rate?</h3>
+  <p>
+    Instagram पर 1% से 5% के बीच engagement rate को कई accounts के लिए
+    अच्छा माना जाता है। हालांकि, अच्छा rate आपके account size,
+    audience और content category पर भी depend करता है।
+  </p>
+
+  <h3>2. Is this Instagram Engagement Calculator safe to use?</h3>
+  <p>
+    हाँ, Insta Vibez का यह calculator इस्तेमाल करने के लिए आपको
+    अपना Instagram password या account login details देने की जरूरत नहीं है।
+    आप अपनी likes, comments और followers की संख्या manually enter कर सकते हैं।
+  </p>
+
+  <h3>3. How can I increase my Instagram engagement rate?</h3>
+  <p>
+    अपने Instagram engagement को बेहतर बनाने के लिए regularly Reels post करें,
+    interesting content बनाएं और अपने audience के comments का reply दें।
+    साथ ही, अपने content से relevant hashtags चुनने के लिए
+    Insta Vibez के free Instagram Hashtag Generator का इस्तेमाल करें।
+  </p>
+
+</section>
+<!-- ENGAGEMENT CALCULATOR SEO CONTENT END -->
+
+<!-- LIVE INSTAGRAM PROFILE PREVIEW START -->
+
+<section class="live-profile-tool">
+
+   <!-- REAL OCEAN FISH START -->
+<div class="ocean-life" aria-hidden="true">
+
+  <img class="ocean-fish fish-one"
+  src="https://purepng.com/download/9hVOgVOebUurgLEC7oBIaUwkcVAtUzPWshwYQ2pR8ydg43iyDCmY2enZglagPDXLPTTCfh15RzSoeG0Tf7FsAOyfpEEIE8Mbcu5iSnSLy9Jcbom76JauYCOBg87uz0GKy2DJ7eUUk6IfTjDWTiBqSsUbbvVbg986mWPbw5cUHlpk3pMFvzu9oNSmRN0gbbShFB2kTyX0/small"
+  alt="Tropical angelfish">
+
+  <img class="ocean-fish fish-two"
+  src="https://purepng.com/download/I7XmZH818Cjn85z7BbfvWMV8S3XWNV1cLSsHhAESxmL9Dzrin5usmgv0HztznEx6QTVa01yLr7iXIukdxwZWi85PoMb7ny4IObOAKm1rw6WzbFQvKhA8shIR3bfmGyRqSW8kU9NB3GgDlrowltgNhP0TltPcKI5Q5T73kr41azT6S7WztY6k0KffxhWJPQNsJnwQTOV1/small"
+  alt="Silver fish">
+
+  <img class="ocean-fish fish-three"
+  src="https://purepng.com/download/9hVOgVOebUurgLEC7oBIaUwkcVAtUzPWshwYQ2pR8ydg43iyDCmY2enZglagPDXLPTTCfh15RzSoeG0Tf7FsAOyfpEEIE8Mbcu5iSnSLy9Jcbom76JauYCOBg87uz0GKy2DJ7eUUk6IfTjDWTiBqSsUbbvVbg986mWPbw5cUHlpk3pMFvzu9oNSmRN0gbbShFB2kTyX0/small"
+  alt="Angelfish">
+
+  <img class="ocean-fish fish-four"
+  src="https://purepng.com/download/I7XmZH818Cjn85z7BbfvWMV8S3XWNV1cLSsHhAESxmL9Dzrin5usmgv0HztznEx6QTVa01yLr7iXIukdxwZWi85PoMb7ny4IObOAKm1rw6WzbFQvKhA8shIR3bfmGyRqSW8kU9NB3GgDlrowltgNhP0TltPcKI5Q5T73kr41azT6S7WztY6k0KffxhWJPQNsJnwQTOV1/small"
+  alt="Silver tropical fish">
+
+</div>
+<!-- REAL OCEAN FISH END -->
+
+  <h2>📱 Live Instagram Profile Preview</h2>
+  <p>Create your Instagram-style profile and see changes instantly!</p>
+
+  <div class="profile-editor">
+    <h3>✏️ Edit Your Profile</h3>
+
+    <label for="liveName">Your Name</label>
+    <input type="text" id="liveName" placeholder="Enter your name" value="Your Name">
+
+    <label for="liveUsername">Username</label>
+    <input type="text" id="liveUsername" placeholder="Enter username" value="your_username">
+
+    <label for="liveBio">Instagram Bio</label>
+    <textarea id="liveBio" placeholder="Write your bio...">✨ Living my dreams
+🔥 Creating my own story
+❤️ Stay original</textarea>
+
+    <label for="livePosts">Posts</label>
+    <input type="number" id="livePosts" min="0" value="120">
+
+    <label for="liveFollowers">Followers</label>
+    <input type="number" id="liveFollowers" min="0" value="10.5">
+
+    <label for="liveFollowing">Following</label>
+    <input type="number" id="liveFollowing" min="0" value="250">
+
+    <label for="livePhoto">Profile Photo</label>
+    <input type="file" id="livePhoto" accept="image/*">
+
+  </div>
+
+   <div class="instagram-preview">
+
+  <div class="phone-frame">
+
+    <div class="phone-status">
+      <span>9:41</span>
+      <span>●●●  Wi-Fi  ▰</span>
+    </div>
+
+    <div class="phone-notch"></div>
+
+    <div class="phone-header">
+      <strong>Instagram</strong>
+      <div>＋　♡　☰</div>
+    </div>
+
+    <div class="phone-username">
+      <strong id="previewUsername">@your_username</strong>
+      <span>⌄</span>
+      <span>☰</span>
+    </div>
+
+    <div class="phone-profile-top">
+
+      <img
+        id="previewPhoto"
+        src="https://placehold.co/150x150/292039/ffffff?text=Photo"
+        alt="Profile photo preview"
+      >
+
+      <div class="preview-stats">
+        <div>
+          <strong id="previewPosts">120</strong>
+          <span>Posts</span>
+        </div>
+        <div>
+          <strong id="previewFollowers">10.5</strong>
+          <span>Followers</span>
+        </div>
+        <div>
+          <strong id="previewFollowing">250</strong>
+          <span>Following</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phone-bio">
+      <strong id="previewName">Your Name</strong>
+      <p id="previewBio">✨ Living my dreams
+🔥 Creating my own story
+❤️ Stay original</p>
+    </div>
+
+    <div class="phone-action-buttons">
+      <button type="button">Edit profile</button>
+      <button type="button">Share profile</button>
+      <button type="button">＋</button>
+    </div>
+
+    <div class="phone-highlights">
+
+      <div class="highlight">
+        <div>✨</div>
+        <span>New</span>
+      </div>
+
+      <div class="highlight">
+        <div>❤️</div>
+        <span>Love</span>
+      </div>
+
+      <div class="highlight">
+        <div>🌍</div>
+        <span>Travel</span>
+      </div>
+
+      <div class="highlight">
+        <div>🔥</div>
+        <span>Life</span>
+      </div>
+
+      <div class="highlight">
+        <div>🎵</div>
+        <span>Music</span>
+      </div>
+
+    </div>
+
+    <div class="phone-tabs">
+      <span>▦</span>
+      <span>▣</span>
+      <span>♙</span>
+    </div>
+
+    <div class="phone-post-grid">
+      <div>📸</div>
+      <div>🌅</div>
+      <div>❤️</div>
+      <div>🌴</div>
+      <div>✨</div>
+      <div>🎬</div>
+    </div>
+
+    <div class="phone-bottom-nav">
+      <span>⌂</span>
+      <span>⌕</span>
+      <span>＋</span>
+      <span>▣</span>
+      <img
+        src="https://placehold.co/40x40/292039/ffffff?text=Me"
+        alt="Navigation profile icon"
+      >
+    </div>
+
+    <div class="phone-home-indicator"></div>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- LIVE INSTAGRAM PROFILE PREVIEW END -->
+
+<!-- INSTAGRAM CAPTIONS FAQ START -->
+<style>
+.caption-faq {
+  max-width: 1000px;
+  margin: 25px auto;
+  padding: 20px;
+  background: #1b1b2b;
+  border: 1px solid rgba(168,85,247,.3);
+  border-radius: 16px;
+  color: #fff;
+}
+
+.caption-faq h2 {
+  text-align: center;
+  color: #d8a5ff;
+  font-size: 23px;
+  margin: 0 0 8px;
+}
+
+.caption-faq > p {
+  text-align: center;
+  color: #c5c5d5;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.caption-faq details {
+  background: #25253a;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 14px;
+}
+
+.caption-faq summary {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.caption-faq details p {
+  color: #d0d0df;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 12px 0 0;
+}
+
+@media (max-width: 600px) {
+  .caption-faq {
+    padding: 15px;
+    margin: 20px 10px;
+  }
+
+  .caption-faq h2 {
+    font-size: 20px;
+  }
+}
+</style>
+
+<section class="caption-faq" aria-labelledby="caption-faq-title">
+
+  <h2 id="caption-faq-title">Frequently Asked Questions</h2>
+
+  <p>Learn how to use the free Instagram caption tools on Insta Vibez.</p>
+
+  <details>
+    <summary>1. What is the Instagram Caption Generator on Insta Vibez?</summary>
+    <p>Insta Vibez provides Instagram caption ideas for different moods and categories, including love, attitude, friendship, travel, selfies and motivation. You can find a caption that matches your post and copy it for use.</p>
+  </details>
+
+  <details>
+    <summary>2. What does the Instagram Caption Line-Breaker do?</summary>
+    <p>The Caption Line-Breaker helps organize your Instagram caption by formatting its line spacing. Paste your text, select Format Caption and copy the formatted result.</p>
+  </details>
+
+  <details>
+    <summary>3. How does the Instagram Engagement Rate Calculator work?</summary>
+    <p>The Engagement Rate Calculator helps you analyze Instagram engagement using the information you enter. Add your account statistics to view the calculated engagement rate and analysis.</p>
+  </details>
+
+  <details>
+    <summary>4. What is the Live Instagram Profile Preview tool?</summary>
+    <p>The Live Profile Preview lets you enter your name, username, bio and profile statistics to see how your Instagram-style profile could look. You can also upload a profile picture to customize the preview.</p>
+  </details>
+
+  <details>
+    <summary>5. Can I use Insta Vibez caption tools for free?</summary>
+    <p>Yes. You can use the available caption tools on Insta Vibez for free. You can generate caption ideas, format text and explore the other available features without paying for these tools.</p>
+  </details>
+
+  <details>
+    <summary>6. Can I copy captions and use them on Instagram?</summary>
+    <p>Yes. Copy your preferred caption and paste it into your Instagram post, Reel or profile wherever you want to use it.</p>
+  </details>
+
+  <details>
+    <summary>7. Does Insta Vibez require an Instagram login?</summary>
+    <p>No Instagram login is required to use these caption tools. You can use the available features directly on the Insta Vibez website.</p>
+  </details>
+
+</section>
+<!-- INSTAGRAM CAPTIONS FAQ END -->
+
+        
+<!-- CAPTIONS SEO CONTENT START -->
+<section class="caption-seo-content">
+
+  <h2>Free Instagram Caption Generator</h2>
+  <p>
+    Find stylish and creative Instagram captions with Insta Vibez.
+    Explore 200 caption ideas for your photos, Reels and social media
+    posts. Choose your favourite caption and copy it instantly for free.
+  </p>
+
+  <h2>Instagram Captions for Boys</h2>
+  <p>
+    Discover cool, stylish and attitude captions for boys.
+    Find creative lines that match your personality, confidence
+    and Instagram profile style.
+  </p>
+
+  <h2>Instagram Captions for Girls</h2>
+  <p>
+    Explore cute, beautiful, classy and stylish captions for girls.
+    Choose captions that express your mood, confidence and personality.
+  </p>
+
+  <h2>Attitude and Stylish Captions</h2>
+  <p>
+    Find bold attitude captions and unique lines for your Instagram
+    photos. Express your confidence with captions that match your style.
+  </p>
+
+  <h2>Love and Friendship Captions</h2>
+  <p>
+    Discover romantic captions for couples and love posts.
+    You can also find friendship captions for your best friends,
+    special moments and unforgettable memories.
+  </p>
+
+  <h2>Sad and Motivational Captions</h2>
+  <p>
+    Find emotional captions for sad moments and motivational
+    captions to express positivity, hard work and personal growth.
+  </p>
+
+  <h2>Selfie and Travel Captions</h2>
+  <p>
+    Make your selfies and travel photos more expressive with
+    creative captions for beautiful moments, adventures and journeys.
+  </p>
+
+  <h2>How to Use the Instagram Caption Generator?</h2>
+  <p>
+    Select a category such as boys, girls, love, attitude,
+    friendship or travel. Browse the captions, find your favourite
+    line and click Copy Caption. You can explore more caption ideas
+    and use them in your Instagram posts and Reels.
+  </p>
+
+  <h2>Explore More Free Instagram Tools</h2>
+  <p>
+    Insta Vibez offers more free Instagram tools to help you
+    customize your profile and create stylish content.
+    Explore these tools:
+  </p>
+
+  <ul>
+    <li>
+      <a href="bio.html">Instagram Bio Generator</a> –
+      Find stylish Instagram bios for your profile.
+    </li>
+    <li>
+      <a href="username.html">Instagram Username Generator</a> –
+      Discover creative username ideas.
+    </li>
+    <li>
+      <a href="fonts.html">Instagram Stylish Fonts</a> –
+      Create stylish text using decorative fonts.
+    </li>
+    <li>
+      <a href="hashtag.html">Instagram Hashtag Generator</a> –
+      Explore hashtags for your posts.
+    </li>
+    <li>
+      <a href="emoji-fusion.html">Emoji Fusion</a> –
+      Explore creative emoji combinations.
+    </li>
+    <li>
+      <a href="profile-studio.html">Instagram Profile Studio</a> –
+      Customize and preview your profile style.
+    </li>
+    <li>
+      <a href="guide.html">Instagram Profile Guide</a> –
+      Explore tips and ideas for your Instagram profile.
+    </li>
+  </ul>
+
+</section>
+<!-- CAPTIONS SEO CONTENT END -->
+
 
   </section>
 </main>
@@ -644,5 +3250,557 @@
 })();
 </script>
 
+<script>
+(() => {
+  const input = document.getElementById("captionBreakerInput");
+  const output = document.getElementById("captionBreakerOutput");
+  const formatBtn = document.getElementById("formatCaptionBtn");
+  const copyBtn = document.getElementById("copyFormattedCaption");
+  const status = document.getElementById("breakerStatus");
+
+  if (!input || !output || !formatBtn || !copyBtn || !status) return;
+
+  formatBtn.addEventListener("click", () => {
+    let text = input.value
+      .replace(/\r\n?/g, "\n")
+      .replace(/[ \t]+/g, " ")
+      .trim();
+
+    if (!text) {
+      status.textContent = "Please enter a caption first.";
+      output.value = "";
+      return;
+    }
+
+    text = text.replace(/([.!?])\s+(?=\S)/g, "$1\n");
+
+    text = text
+      .split("\n")
+      .map(line => line.trim())
+      .join("\n")
+      .replace(/\n{3,}/g, "\n\n");
+
+    output.value = text;
+    status.textContent = "Caption formatted successfully!";
+  });
+
+  copyBtn.addEventListener("click", async () => {
+    if (!output.value.trim()) {
+      status.textContent = "Please format your caption first.";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(output.value);
+      status.textContent = "Caption copied successfully!";
+    } catch (error) {
+      output.focus();
+      output.select();
+      const copied = document.execCommand("copy");
+      status.textContent = copied
+        ? "Caption copied successfully!"
+        : "Copy failed. Please copy manually.";
+    }
+  });
+})();
+</script>
+
+ 
+<script>
+(() => {
+  const followersInput = document.getElementById("engagementFollowers");
+  const likesInput = document.getElementById("engagementLikes");
+  const commentsInput = document.getElementById("engagementComments");
+
+  const calculateBtn = document.getElementById("calculateEngagement");
+  const resetBtn = document.getElementById("resetEngagement");
+
+  const result = document.getElementById("engagementResult");
+  const percentage = document.getElementById("engagementPercentage");
+  const details = document.getElementById("engagementDetails");
+  const status = document.getElementById("engagementStatus");
+  const shareStatus = document.getElementById("shareStatus");
+
+  if (
+    !followersInput || !likesInput || !commentsInput ||
+    !calculateBtn || !resetBtn || !result ||
+    !percentage || !details || !status
+  ) return;
+
+  // CALCULATE ENGAGEMENT RATE
+  calculateBtn.addEventListener("click", () => {
+    const followers = Number(followersInput.value);
+    const likes = Number(likesInput.value);
+    const comments = Number(commentsInput.value);
+
+    if (
+      !followersInput.value.trim() ||
+      !likesInput.value.trim() ||
+      !commentsInput.value.trim()
+    ) {
+      status.textContent = "Please fill in all three fields.";
+      result.style.display = "none";
+      return;
+    }
+
+    if (
+      !Number.isSafeInteger(followers) ||
+      !Number.isSafeInteger(likes) ||
+      !Number.isSafeInteger(comments) ||
+      followers <= 0 ||
+      likes < 0 ||
+      comments < 0 ||
+      !Number.isSafeInteger(likes + comments)
+    ) {
+      status.textContent =
+        "Enter valid whole numbers. Followers must be greater than zero.";
+      result.style.display = "none";
+      return;
+    }
+
+     
+const total = likes + comments;
+const rate = (total / followers) * 100;
+
+ 
+let rating = "";
+let advice = "";
+let ratingColor = "";
+
+if (rate < 1) {
+  rating = "🔴 कमजोर";
+  advice = "Engagement बढ़ाने के लिए बेहतर content और audience interaction पर काम करें।";
+  ratingColor = "#f87171";
+} else if (rate < 3) {
+  rating = "🟡 ठीक";
+  advice = "अच्छी शुरुआत है! नियमित और interesting posts डालते रहें।";
+  ratingColor = "#facc15";
+} else if (rate < 6) {
+  rating = "🟢 अच्छा";
+  advice = "आपका engagement अच्छा है। इसी तरह consistency बनाए रखें।";
+  ratingColor = "#4ade80";
+} else if (rate < 10) {
+  rating = "💜 बहुत अच्छा";
+  advice = "आपकी audience अच्छी तरह interact कर रही है। इसे बनाए रखें!";
+  ratingColor = "#c084fc";
+} else {
+  rating = "👑 शानदार";
+  advice = "आपका engagement बहुत मजबूत है। अपनी content strategy जारी रखें!";
+  ratingColor = "#fbbf24";
+}
+
+percentage.textContent = rate.toFixed(2) + "%";
+
+document.getElementById("engagementDetails").textContent =
+  total.toLocaleString("en-IN");
+
+const ratingElement = document.getElementById("engagementRating");
+ratingElement.textContent = rating;
+ratingElement.style.color = ratingColor;
+
+document.getElementById("engagementAdvice").textContent = advice;
+
+result.style.display = "block";
+status.textContent = "Your engagement analysis is ready!";
+
+ });
+
+  // RESET CALCULATOR
+  resetBtn.addEventListener("click", () => {
+    followersInput.value = "";
+    likesInput.value = "";
+    commentsInput.value = "";
+
+    result.style.display = "none";
+    percentage.textContent = "0.00%";
+    details.textContent = "";
+
+    status.textContent = "Calculator reset successfully.";
+  });
+
+  // SHARE SETTINGS
+  const pageUrl = window.location.href.split("#")[0];
+  const shareText = "Try this free Instagram Engagement Rate Calculator on Insta Vibez!";
+
+  function openShare(url) {
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  // COPY LINK
+  document.getElementById("shareCopy")?.addEventListener("click", async () => {
+    if (!shareStatus) return;
+
+    try {
+      await navigator.clipboard.writeText(pageUrl);
+      shareStatus.textContent = "Link copied successfully!";
+    } catch {
+      shareStatus.textContent =
+        "Copy unavailable. Please copy the page URL from your browser.";
+    }
+  });
+
+  // WHATSAPP
+  document.getElementById("shareWhatsApp")?.addEventListener("click", () => {
+    openShare(
+      "https://wa.me/?text=" +
+      encodeURIComponent(shareText + " " + pageUrl)
+    );
+  });
+
+  // TELEGRAM
+  document.getElementById("shareTelegram")?.addEventListener("click", () => {
+    openShare(
+      "https://t.me/share/url?url=" +
+      encodeURIComponent(pageUrl) +
+      "&text=" +
+      encodeURIComponent(shareText)
+    );
+  });
+
+  // FACEBOOK
+  document.getElementById("shareFacebook")?.addEventListener("click", () => {
+    openShare(
+      "https://www.facebook.com/sharer/sharer.php?u=" +
+      encodeURIComponent(pageUrl)
+    );
+  });
+
+  // X
+  document.getElementById("shareX")?.addEventListener("click", () => {
+    openShare(
+      "https://twitter.com/intent/tweet?text=" +
+      encodeURIComponent(shareText) +
+      "&url=" +
+      encodeURIComponent(pageUrl)
+    );
+  });
+
+  // MORE SHARE OPTIONS
+  document.getElementById("shareMore")?.addEventListener("click", async () => {
+    if (!shareStatus) return;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Insta Vibez Engagement Calculator",
+          text: shareText,
+          url: pageUrl
+        });
+        shareStatus.textContent = "Thanks for sharing Insta Vibez!";
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          shareStatus.textContent = "Sharing could not be completed.";
+        }
+      }
+    } else {
+      shareStatus.textContent =
+        "Your browser does not support the More sharing option.";
+    }
+  });
+
+})();
+</script>
+
+<script>
+(() => {
+  const canvas = document.getElementById("realFireworks");
+  const result = document.getElementById("engagementResult");
+
+  if (!canvas || !result) return;
+
+  const ctx = canvas.getContext("2d");
+  const layer = canvas.parentElement;
+
+  layer.style.zIndex = "0";
+
+  let width = 0;
+  let height = 0;
+  let rockets = [];
+  let particles = [];
+  let animationId = null;
+  let lastLaunch = 0;
+
+  const colors = [
+    "#ffd166",
+    "#ff5252",
+    "#00e5ff",
+    "#ff4dff",
+    "#ffffff",
+    "#7cff6b"
+  ];
+
+  function resizeCanvas() {
+    const rect = layer.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    width = rect.width;
+    height = rect.height;
+
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function launchRocket() {
+    if (width < 100 || height < 100) return;
+
+    const startX = width * (0.12 + Math.random() * 0.76);
+    const targetX = width * (0.12 + Math.random() * 0.76);
+    const targetY = height * (0.12 + Math.random() * 0.38);
+
+    rockets.push({
+      x: startX,
+      y: height + 5,
+      vx: (targetX - startX) / 65,
+      vy: -(height - targetY) / 65,
+      targetY,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      trail: []
+    });
+  }
+
+  function explode(x, y, color) {
+    const count = 65 + Math.floor(Math.random() * 45);
+
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 1.1 + Math.random() * 3.8;
+
+      particles.push({
+        x,
+        y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        gravity: 0.035 + Math.random() * 0.035,
+        friction: 0.985,
+        alpha: 1,
+        decay: 0.009 + Math.random() * 0.012,
+        color: Math.random() > 0.35
+          ? color
+          : colors[Math.floor(Math.random() * colors.length)],
+        size: 1 + Math.random() * 2.2
+      });
+    }
+  }
+
+  function drawRocket(rocket) {
+    rocket.trail.push({ x: rocket.x, y: rocket.y });
+
+    if (rocket.trail.length > 9) {
+      rocket.trail.shift();
+    }
+
+    for (let i = 0; i < rocket.trail.length; i++) {
+      const point = rocket.trail[i];
+
+      ctx.globalAlpha = i / rocket.trail.length * 0.7;
+      ctx.fillStyle = rocket.color;
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = rocket.color;
+    ctx.fillStyle = "#ffffff";
+
+    ctx.beginPath();
+    ctx.arc(rocket.x, rocket.y, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.shadowBlur = 0;
+  }
+
+  function drawParticles() {
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += p.gravity;
+      p.vx *= p.friction;
+      p.vy *= p.friction;
+      p.alpha -= p.decay;
+
+      if (p.alpha <= 0) {
+        particles.splice(i, 1);
+        continue;
+      }
+
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = p.color;
+      ctx.shadowBlur = 9;
+      ctx.shadowColor = p.color;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
+  }
+
+  function animate(timestamp) {
+    if (result.style.display === "none" || !result.isConnected) {
+      stopAnimation();
+      return;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    if (timestamp - lastLaunch > 950 + Math.random() * 750) {
+      launchRocket();
+      lastLaunch = timestamp;
+    }
+
+    for (let i = rockets.length - 1; i >= 0; i--) {
+      const rocket = rockets[i];
+
+      rocket.x += rocket.vx;
+      rocket.y += rocket.vy;
+
+      drawRocket(rocket);
+
+      if (rocket.y <= rocket.targetY) {
+        explode(rocket.x, rocket.y, rocket.color);
+        rockets.splice(i, 1);
+      }
+    }
+
+    drawParticles();
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  function startAnimation() {
+    if (
+      animationId ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) return;
+
+    resizeCanvas();
+    lastLaunch = performance.now() - 1000;
+    animationId = requestAnimationFrame(animate);
+  }
+
+  function stopAnimation() {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+
+    rockets = [];
+    particles = [];
+
+    ctx.clearRect(0, 0, width, height);
+  }
+
+  const observer = new MutationObserver(() => {
+    if (result.style.display !== "none") {
+      startAnimation();
+    } else {
+      stopAnimation();
+    }
+  });
+
+  observer.observe(result, {
+    attributes: true,
+    attributeFilter: ["style"]
+  });
+
+  window.addEventListener("resize", resizeCanvas);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopAnimation();
+    } else if (result.style.display !== "none") {
+      startAnimation();
+    }
+  });
+
+})();
+</script>
+<script>
+/* ===== LIVE INSTAGRAM PROFILE PREVIEW ===== */
+
+(function () {
+  const fields = {
+    name: document.getElementById("liveName"),
+    username: document.getElementById("liveUsername"),
+    bio: document.getElementById("liveBio"),
+    posts: document.getElementById("livePosts"),
+    followers: document.getElementById("liveFollowers"),
+    following: document.getElementById("liveFollowing"),
+    photo: document.getElementById("livePhoto")
+  };
+
+  const preview = {
+    name: document.getElementById("previewName"),
+    username: document.getElementById("previewUsername"),
+    bio: document.getElementById("previewBio"),
+    posts: document.getElementById("previewPosts"),
+    followers: document.getElementById("previewFollowers"),
+    following: document.getElementById("previewFollowing"),
+    photo: document.getElementById("previewPhoto")
+  };
+
+  if (Object.values(fields).some(field => !field) ||
+      Object.values(preview).some(item => !item)) {
+    return;
+  }
+
+  fields.name.addEventListener("input", function () {
+    preview.name.textContent = this.value.trim() || "Your Name";
+  });
+
+  fields.username.addEventListener("input", function () {
+    const username = this.value.trim().replace(/^@+/, "");
+    preview.username.textContent = "@" + (username || "your_username");
+  });
+
+  fields.bio.addEventListener("input", function () {
+    preview.bio.textContent = this.value;
+  });
+
+  ["posts", "followers", "following"].forEach(key => {
+    fields[key].addEventListener("input", function () {
+      preview[key].textContent = this.value || "0";
+    });
+  });
+
+  let currentPhotoURL = null;
+
+  fields.photo.addEventListener("change", function () {
+    const file = this.files && this.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please select a valid image.");
+      this.value = "";
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Please select an image smaller than 5 MB.");
+      this.value = "";
+      return;
+    }
+
+    if (currentPhotoURL) {
+      URL.revokeObjectURL(currentPhotoURL);
+    }
+
+    currentPhotoURL = URL.createObjectURL(file);
+    preview.photo.src = currentPhotoURL;
+  });
+
+})();
+
+/* ===== LIVE PREVIEW END ===== */
+</script>
 </body>
 </html>

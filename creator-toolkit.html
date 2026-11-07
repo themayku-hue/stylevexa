@@ -1,0 +1,918 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Insta Vibez Creator Toolkit - Daily Instagram captions, hashtags, post ideas, content planner, saved notes and bio ideas.">
+<meta name="theme-color" content="#10101c">
+<title>Instagram Creator Toolkit | Insta Vibez</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --purple: #a855f7;
+  --pink: #ec4899;
+  --card: rgba(18, 20, 35, .88);
+  --border: rgba(255,255,255,.18);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: white;
+  min-height: 100vh;
+  background-color: #063e50;
+  background-image:
+    linear-gradient(rgba(3,20,35,.48), rgba(3,15,30,.72)),
+       url("./whale-bg.png");
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* HEADER */
+
+.header {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.logo {
+  display: inline-block;
+  padding: 8px 17px;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(0,0,0,.35);
+  border-radius: 30px;
+  font-size: 14px;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.header h1 {
+  font-size: clamp(30px, 6vw, 48px);
+  font-weight: 900;
+  margin-bottom: 12px;
+  text-shadow: 0 3px 15px #000;
+}
+
+.header h1 span {
+  background: linear-gradient(90deg,#d8b4fe,#f9a8d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.header p {
+  color: #f0eaff;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* INTRO */
+
+.intro {
+  background: rgba(0,0,0,.45);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 25px;
+  backdrop-filter: blur(8px);
+}
+
+.intro h2 {
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.intro p {
+  color: #e2d9f0;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* TOOL GRID */
+
+.section-title {
+  font-size: 24px;
+  margin: 30px 0 16px;
+  text-shadow: 0 2px 8px #000;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 17px;
+}
+
+.tool-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+.tool-card h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.tool-card .desc {
+  color: #c9c5d8;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.tool-icon {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.result {
+  display: none;
+  background: rgba(0,0,0,.42);
+  border: 1px solid rgba(192,132,252,.4);
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  color: #fff;
+}
+
+.result.show {
+  display: block;
+}
+
+.field {
+  width: 100%;
+  background: rgba(0,0,0,.5);
+  color: white;
+  border: 1px solid #71618d;
+  border-radius: 10px;
+  padding: 13px;
+  margin-bottom: 12px;
+  outline: none;
+  min-width: 0;
+}
+
+.field:focus {
+  border-color: #d8b4fe;
+}
+
+.field::placeholder {
+  color: #b8b1c8;
+}
+
+select.field option {
+  background: #1b1b2b;
+  color: white;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 17px;
+  background: linear-gradient(100deg,var(--purple),var(--pink));
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+  margin: 3px 3px 3px 0;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+
+.btn.secondary {
+  background: rgba(255,255,255,.13);
+  border: 1px solid rgba(255,255,255,.25);
+}
+
+.btn.full {
+  width: 100%;
+  margin: 3px 0;
+}
+
+.small-note {
+  color: #c9c5d8;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* PLANNER */
+
+.planner-row {
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.planner-row strong {
+  font-size: 14px;
+}
+
+.planner-row .field {
+  margin: 0;
+}
+
+/* NOTES */
+
+textarea.field {
+  resize: vertical;
+  min-height: 125px;
+  line-height: 1.6;
+}
+
+.saved-note {
+  background: rgba(0,0,0,.4);
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.saved-note button {
+  margin-top: 9px;
+}
+
+/* FOOTER */
+
+.footer {
+  margin-top: 45px;
+  text-align: center;
+  padding: 25px 15px;
+  background: rgba(0,0,0,.55);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+}
+
+.footer h2 {
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+
+.social-links, .tool-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  background: rgba(255,255,255,.12);
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.social-link:hover {
+  background: rgba(168,85,247,.4);
+}
+
+.social-link svg {
+  width: 21px;
+  height: 21px;
+}
+
+.footer-label {
+  color: #e4d5ff;
+  margin-top: 24px;
+  font-weight: bold;
+}
+
+.tool-links a {
+  color: #f0d9ff;
+  text-decoration: none;
+  background: rgba(255,255,255,.1);
+  padding: 9px 12px;
+  border-radius: 9px;
+  font-size: 13px;
+  border: 1px solid rgba(255,255,255,.13);
+}
+
+.tool-links a:hover {
+  background: rgba(168,85,247,.45);
+}
+
+.copyright {
+  color: #c5bfd3;
+  font-size: 12px;
+  margin-top: 25px;
+  line-height: 1.8;
+}
+
+@media(max-width:650px) {
+  .container {
+    padding: 12px;
+  }
+
+  .header {
+    padding: 23px 8px;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .tool-card {
+    padding: 17px;
+  }
+
+  .section-title {
+    font-size: 21px;
+  }
+
+  .planner-row {
+    grid-template-columns: 75px 1fr;
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header class="header">
+    <div class="logo">✨ INSTA VIBEZ PRESENTS</div>
+    <h1>Creator <span>Daily Toolkit</span></h1>
+    <p>Your everyday Instagram content partner</p>
+  </header>
+
+  <section class="intro">
+    <h2>🚀 Create Something Amazing Today</h2>
+    <p>
+      Find captions, hashtags, post ideas and stylish bios.
+      Plan your content and save your favourite ideas
+      in one simple place.
+    </p>
+  </section>
+
+  <h2 class="section-title">🔥 Your Daily Creator Tools</h2>
+
+  <div class="tools-grid">
+
+    <!-- DAILY CAPTION -->
+
+    <section class="tool-card">
+      <div class="tool-icon">✍️</div>
+      <h3>Daily Caption</h3>
+      <p class="desc">Get a fresh Instagram caption and copy it for your post.</p>
+
+      <select class="field" id="captionCategory">
+        <option value="attitude">Attitude</option>
+        <option value="love">Love</option>
+        <option value="motivation">Motivation</option>
+        <option value="selfie">Selfie</option>
+        <option value="friendship">Friendship</option>
+        <option value="travel">Travel</option>
+      </select>
+
+      <button class="btn full" id="captionBtn">Generate Caption</button>
+      <div class="result" id="captionResult"></div>
+      <button class="btn secondary" id="copyCaption" hidden>📋 Copy Caption</button>
+    </section>
+
+    <!-- HASHTAG FINDER -->
+
+    <section class="tool-card">
+      <div class="tool-icon">#️⃣</div>
+      <h3>Hashtag Finder</h3>
+      <p class="desc">Choose your post category and get relevant hashtags.</p>
+
+      <select class="field" id="hashtagCategory">
+        <option value="instagram">Instagram General</option>
+        <option value="selfie">Selfie</option>
+        <option value="fashion">Fashion</option>
+        <option value="travel">Travel</option>
+        <option value="love">Love</option>
+        <option value="fitness">Fitness</option>
+        <option value="food">Food</option>
+        <option value="motivation">Motivation</option>
+        <option value="photography">Photography</option>
+      </select>
+
+      <button class="btn full" id="hashtagBtn">Find Hashtags</button>
+      <div class="result" id="hashtagResult"></div>
+      <button class="btn secondary" id="copyHashtags" hidden>📋 Copy Hashtags</button>
+    </section>
+
+    <!-- POST IDEAS -->
+
+    <section class="tool-card">
+      <div class="tool-icon">💡</div>
+      <h3>Daily Post Ideas</h3>
+      <p class="desc">Never run out of ideas for your next Instagram post.</p>
+
+      <select class="field" id="ideaCategory">
+        <option value="general">General Creator</option>
+        <option value="reels">Reels</option>
+        <option value="fashion">Fashion</option>
+        <option value="lifestyle">Lifestyle</option>
+        <option value="business">Business</option>
+        <option value="photography">Photography</option>
+      </select>
+
+      <button class="btn full" id="ideaBtn">Get Post Idea</button>
+      <div class="result" id="ideaResult"></div>
+      <button class="btn secondary" id="copyIdea" hidden>📋 Copy Idea</button>
+    </section>
+
+    <!-- BIO IDEAS -->
+
+    <section class="tool-card">
+      <div class="tool-icon">👑</div>
+      <h3>Bio Ideas</h3>
+      <p class="desc">Find a new Instagram bio for your profile.</p>
+
+      <select class="field" id="bioCategory">
+        <option value="cool">Cool</option>
+        <option value="attitude">Attitude</option>
+        <option value="love">Love</option>
+        <option value="simple">Simple</option>
+        <option value="motivation">Motivation</option>
+      </select>
+
+      <button class="btn full" id="bioBtn">Generate Bio</button>
+      <div class="result" id="bioResult"></div>
+      <button class="btn secondary" id="copyBio" hidden>📋 Copy Bio</button>
+    </section>
+
+    <!-- WEEKLY PLANNER -->
+
+    <section class="tool-card">
+      <div class="tool-icon">📅</div>
+      <h3>Weekly Content Planner</h3>
+      <p class="desc">Write your posting plan for each day. It saves in this browser.</p>
+
+      <div id="plannerFields"></div>
+
+      <button class="btn full" id="savePlanner">💾 Save Weekly Plan</button>
+      <p class="small-note" id="plannerStatus" aria-live="polite"></p>
+    </section>
+
+    <!-- SAVED NOTES -->
+
+    <section class="tool-card">
+      <div class="tool-icon">📝</div>
+      <h3>My Saved Notes</h3>
+      <p class="desc">Save your captions, ideas and anything you want to remember.</p>
+
+      <textarea class="field" id="noteInput" placeholder="Write your caption or content idea here..."></textarea>
+
+      <button class="btn full" id="saveNote">💾 Save Note</button>
+
+      <div id="notesList"></div>
+      <p class="small-note">Your notes stay saved in this browser on this device.</p>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <h2>💜 Insta Vibez</h2>
+    <p>Make your Instagram profile more stylish!</p>
+
+    <div class="social-links">
+
+      <a class="social-link"
+         href="https://www.instagram.com/instavibez.in/"
+         target="_blank" rel="noopener noreferrer">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+        Instagram
+      </a>
+
+      <a class="social-link"
+         href="https://www.youtube.com/@instavibezin"
+         target="_blank" rel="noopener noreferrer">
+
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12a31 31 0 0 0-.5-4.8ZM9.5 15.5v-7l6 3.5-6 3.5Z"/>
+        </svg>
+        YouTube
+      </a>
+
+    </div>
+
+    <p class="footer-label">Explore All Insta Vibez Tools</p>
+
+    <div class="tool-links">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio Generator</a>
+      <a href="username.html">Username Generator</a>
+      <a href="fonts.html">Stylish Fonts</a>
+      <a href="captions.html">Captions</a>
+      <a href="hashtag.html">Hashtag Generator</a>
+      <a href="emoji-fusion.html">Emoji Fusion</a>
+      <a href="profile-studio.html">Profile Studio</a>
+      <a href="grid-maker.html">Grid Maker</a>
+      <a href="guide.html">Instagram Guide</a>
+    </div>
+
+    <div class="copyright">
+      © 2026 Insta Vibez. All rights reserved.<br>
+      Made with ❤️ for creators.
+    </div>
+
+  </footer>
+
+</div>
+
+<script>
+
+/* RANDOM ITEM */
+
+function randomItem(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+/* COPY FUNCTION */
+
+async function copyText(text, button) {
+  try {
+    await navigator.clipboard.writeText(text);
+    const oldText = button.textContent;
+    button.textContent = "✅ Copied!";
+    setTimeout(() => button.textContent = oldText, 1500);
+  } catch {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+
+    const oldText = button.textContent;
+    button.textContent = "✅ Copied!";
+    setTimeout(() => button.textContent = oldText, 1500);
+  }
+}
+
+/* CAPTIONS */
+
+const captions = {
+  attitude: [
+    "I don't follow the crowd, I create my own path. 👑",
+    "Silent moves, loud results. 🔥",
+    "My vibe speaks louder than words. 😎",
+    "Not perfect, just original. ✨",
+    "Born to stand out, not to fit in. 💯",
+    "Confidence is my favourite outfit. 🖤"
+  ],
+  love: [
+    "Every little moment with you feels special. ❤️",
+    "You are my favourite notification. 💌",
+    "Some feelings need no words. 🥰",
+    "My heart found its favourite place. 💗",
+    "Love makes ordinary moments magical. ✨"
+  ],
+  motivation: [
+    "Dream big. Start small. Keep going. 🚀",
+    "Your future is created by what you do today. 💯",
+    "Progress is better than perfection. 🔥",
+    "One step every day makes a big difference.",
+    "Stay focused. Your time is coming. 👑"
+  ],
+  selfie: [
+    "A little confidence, a little sunshine. ☀️",
+    "Just me being me. ✨",
+    "Smile first, worry later. 😊",
+    "Today's mood: feeling good. 💜",
+    "A moment worth remembering. 📸"
+  ],
+  friendship: [
+    "Good friends make good memories. ❤️",
+    "Together is always a good idea. 🫶",
+    "Real ones make life better. 💯",
+    "Friends today, memories forever. ✨"
+  ],
+  travel: [
+    "Collect moments, not things. 🌍",
+    "Somewhere between dreams and destinations. ✈️",
+    "Adventure is calling. 🌊",
+    "New places, fresh memories. 📸"
+  ]
+};
+
+let currentCaption = "";
+
+document.getElementById("captionBtn").addEventListener("click", () => {
+  const category = document.getElementById("captionCategory").value;
+  currentCaption = randomItem(captions[category]);
+
+  const box = document.getElementById("captionResult");
+  box.textContent = currentCaption;
+  box.classList.add("show");
+
+  document.getElementById("copyCaption").hidden = false;
+});
+
+document.getElementById("copyCaption").addEventListener("click", function() {
+  copyText(currentCaption, this);
+});
+
+/* HASHTAGS */
+
+const hashtags = {
+  instagram: "#instagram #instagood #instadaily #explorepage #reels #contentcreator #photooftheday #trending",
+  selfie: "#selfie #selfietime #selfielove #smile #portrait #instaselfie #goodvibes",
+  fashion: "#fashion #style #ootd #fashionstyle #streetstyle #fashionlover #outfitideas",
+  travel: "#travel #travelgram #wanderlust #explore #adventure #travelphotography #beautifuldestinations",
+  love: "#love #lovestatus #couplegoals #romance #loveyou #heart #relationship",
+  fitness: "#fitness #gym #workout #fitnessmotivation #healthylifestyle #fitlife #training",
+  food: "#food #foodie #foodlover #foodphotography #instafood #yummy #foodstagram",
+  motivation: "#motivation #success #mindset #inspiration #nevergiveup #goals #hardwork",
+  photography: "#photography #photooftheday #photographer #photoart #camera #creativephotography"
+};
+
+let currentHashtags = "";
+
+document.getElementById("hashtagBtn").addEventListener("click", () => {
+  const category = document.getElementById("hashtagCategory").value;
+  currentHashtags = hashtags[category];
+
+  const box = document.getElementById("hashtagResult");
+  box.textContent = currentHashtags;
+  box.classList.add("show");
+
+  document.getElementById("copyHashtags").hidden = false;
+});
+
+document.getElementById("copyHashtags").addEventListener("click", function() {
+  copyText(currentHashtags, this);
+});
+
+/* POST IDEAS */
+
+const postIdeas = {
+  general: [
+    "Share 3 things your followers don't know about you.",
+    "Post a photo that describes your current mood.",
+    "Share your biggest lesson from this week.",
+    "Make a before-and-after post.",
+    "Share your favourite memory this month.",
+    "Ask your followers an interesting question."
+  ],
+  reels: [
+    "Create a day-in-my-life Reel.",
+    "Show a quick before-and-after transformation.",
+    "Make a 3 tips in 15 seconds Reel.",
+    "Share a behind-the-scenes moment.",
+    "Create a trending transition Reel.",
+    "Show your top 5 favourite things."
+  ],
+  fashion: [
+    "Share 3 outfit ideas for this week.",
+    "Create a simple outfit transformation Reel.",
+    "Show your favourite accessories.",
+    "Share your everyday fashion look."
+  ],
+  lifestyle: [
+    "Show your morning routine.",
+    "Share your favourite daily habits.",
+    "Create a weekend vlog.",
+    "Show your favourite corner of your room."
+  ],
+  business: [
+    "Introduce your brand story.",
+    "Show how your product is made.",
+    "Answer a common customer question.",
+    "Share a customer success story."
+  ],
+  photography: [
+    "Share your best sunset photo.",
+    "Show a photo before and after editing.",
+    "Create a photo dump of your week.",
+    "Share your favourite camera angle."
+  ]
+};
+
+let currentIdea = "";
+
+document.getElementById("ideaBtn").addEventListener("click", () => {
+  const category = document.getElementById("ideaCategory").value;
+  currentIdea = "💡 " + randomItem(postIdeas[category]);
+
+  const box = document.getElementById("ideaResult");
+  box.textContent = currentIdea;
+  box.classList.add("show");
+
+  document.getElementById("copyIdea").hidden = false;
+});
+
+document.getElementById("copyIdea").addEventListener("click", function() {
+  copyText(currentIdea, this);
+});
+
+/* BIO IDEAS */
+
+const bios = {
+  cool: [
+    "✨ Living my own story\n🌍 Exploring life\n💜 Good vibes only",
+    "☁️ Simple soul\n📸 Creating memories\n✨ Staying real",
+    "🎯 Focused on my dreams\n😎 Different by nature"
+  ],
+  attitude: [
+    "👑 Born to be original\n🔥 Never ordinary\n💯 My own rules",
+    "😎 Less talk, more action\n⚡ Different mindset",
+    "🖤 Silent personality\n👑 Royal attitude"
+  ],
+  love: [
+    "❤️ Spreading love\n🌸 Collecting memories\n✨ Living happily",
+    "💌 Heart full of dreams\n🥰 Love is my language",
+    "🌷 A little love makes life beautiful"
+  ],
+  simple: [
+    "🌿 Simple living\n✨ Positive thinking\n😊 Happy soul",
+    "📍 Living in the moment\n💜 Staying humble",
+    "☀️ Smile more\n🌸 Worry less"
+  ],
+  motivation: [
+    "🚀 Dream big\n💪 Work hard\n👑 Stay humble",
+    "🎯 Goals over excuses\n🔥 Progress every day",
+    "✨ Building my future\n💯 One day at a time"
+  ]
+};
+
+let currentBio = "";
+
+document.getElementById("bioBtn").addEventListener("click", () => {
+  const category = document.getElementById("bioCategory").value;
+  currentBio = randomItem(bios[category]);
+
+  const box = document.getElementById("bioResult");
+  box.textContent = currentBio;
+  box.classList.add("show");
+
+  document.getElementById("copyBio").hidden = false;
+});
+
+document.getElementById("copyBio").addEventListener("click", function() {
+  copyText(currentBio, this);
+});
+
+/* WEEKLY PLANNER */
+
+const days = [
+  "Monday", "Tuesday", "Wednesday", "Thursday",
+  "Friday", "Saturday", "Sunday"
+];
+
+const plannerFields = document.getElementById("plannerFields");
+
+days.forEach(day => {
+  const row = document.createElement("div");
+  row.className = "planner-row";
+
+  const label = document.createElement("strong");
+  label.textContent = day;
+
+  const input = document.createElement("input");
+  input.className = "field planner-input";
+  input.placeholder = "What will you post?";
+  input.dataset.day = day;
+
+  row.appendChild(label);
+  row.appendChild(input);
+  plannerFields.appendChild(row);
+});
+
+function loadPlanner() {
+  const saved = JSON.parse(localStorage.getItem("ivCreatorPlanner") || "{}");
+
+  document.querySelectorAll(".planner-input").forEach(input => {
+    input.value = saved[input.dataset.day] || "";
+  });
+}
+
+document.getElementById("savePlanner").addEventListener("click", () => {
+  const plan = {};
+
+  document.querySelectorAll(".planner-input").forEach(input => {
+    plan[input.dataset.day] = input.value;
+  });
+
+  localStorage.setItem("ivCreatorPlanner", JSON.stringify(plan));
+
+  document.getElementById("plannerStatus").textContent =
+    "✅ Your weekly content plan has been saved!";
+});
+
+loadPlanner();
+
+/* SAVED NOTES */
+
+let savedNotes = JSON.parse(localStorage.getItem("ivCreatorNotes") || "[]");
+
+function renderNotes() {
+  const list = document.getElementById("notesList");
+  list.innerHTML = "";
+
+  if (savedNotes.length === 0) {
+    list.innerHTML = '<p class="small-note">No saved notes yet.</p>';
+    return;
+  }
+
+  savedNotes.forEach((note, index) => {
+    const item = document.createElement("div");
+    item.className = "saved-note";
+
+    const content = document.createElement("div");
+    content.textContent = note;
+
+    const copy = document.createElement("button");
+    copy.className = "btn secondary";
+    copy.textContent = "📋 Copy";
+    copy.addEventListener("click", () => copyText(note, copy));
+
+    const remove = document.createElement("button");
+    remove.className = "btn secondary";
+    remove.textContent = "🗑️ Delete";
+    remove.addEventListener("click", () => {
+      savedNotes.splice(index, 1);
+      localStorage.setItem("ivCreatorNotes", JSON.stringify(savedNotes));
+      renderNotes();
+    });
+
+    item.appendChild(content);
+    item.appendChild(copy);
+    item.appendChild(remove);
+
+    list.appendChild(item);
+  });
+}
+
+document.getElementById("saveNote").addEventListener("click", () => {
+  const input = document.getElementById("noteInput");
+  const note = input.value.trim();
+
+  if (!note) {
+    alert("Please write something first!");
+    return;
+  }
+
+  savedNotes.unshift(note);
+  localStorage.setItem("ivCreatorNotes", JSON.stringify(savedNotes));
+
+  input.value = "";
+  renderNotes();
+});
+
+renderNotes();
+
+</script>
+
+</body>
+</html>

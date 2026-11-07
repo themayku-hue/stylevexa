@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Grid Maker & Photo Splitter | Insta Vibez</title>
+<meta name="description" content="Split your Instagram photos into 3x3, 3x2, 3x1 and 3x4 grids. Preview and download individual photo tiles for free with Insta Vibez.">
+<meta name="theme-color" content="#142b50">
+<link rel="stylesheet" href="style.css">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  background:
+    radial-gradient(ellipse at 15% 15%,rgba(255,255,255,.35),transparent 25%),
+    radial-gradient(ellipse at 85% 25%,rgba(255,255,255,.25),transparent 22%),
+    linear-gradient(180deg,#75b9ed 0%,#387db9 38%,#192b50 100%);
+  background-attachment:fixed;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* SKY CLOUDS */
+.sky-cloud{
+  position:fixed;
+  z-index:0;
+  width:180px;
+  height:48px;
+  background:rgba(255,255,255,.22);
+  border-radius:50px;
+  filter:blur(2px);
+  pointer-events:none;
+}
+.sky-cloud:before,.sky-cloud:after{
+  content:"";
+  position:absolute;
+  background:inherit;
+  border-radius:50%;
+}
+.sky-cloud:before{width:75px;height:75px;left:25px;top:-35px}
+.sky-cloud:after{width:95px;height:85px;right:22px;top:-43px}
+.cloud-one{top:17%;left:5%;transform:scale(1.1)}
+.cloud-two{top:48%;right:4%;transform:scale(.8)}
+.cloud-three{top:75%;left:12%;transform:scale(.65)}
+
+/* FLYING AIRPLANES */
+.airplane{
+  position:fixed;
+  z-index:1;
+  width:95px;
+  height:48px;
+  pointer-events:none;
+  opacity:.85;
+  filter:drop-shadow(0 4px 5px rgba(0,0,0,.25));
+  animation:flyAcross 25s linear infinite;
+}
+.airplane svg{width:100%;height:100%}
+.plane-one{top:12%;left:-130px;animation-duration:27s}
+.plane-two{
+  top:39%;left:-150px;
+  width:65px;
+  animation-duration:35s;
+  animation-delay:8s;
+  opacity:.65;
+}
+.plane-three{
+  top:68%;left:-140px;
+  width:115px;
+  animation-duration:31s;
+  animation-delay:15s;
+}
+.plane-four{
+  top:85%;left:-120px;
+  width:55px;
+  animation-duration:40s;
+  animation-delay:4s;
+  opacity:.6;
+}
+@keyframes flyAcross{
+  from{transform:translateX(-150px) translateY(0)}
+  25%{transform:translateX(35vw) translateY(-12px)}
+  50%{transform:translateX(65vw) translateY(8px)}
+  75%{transform:translateX(100vw) translateY(-8px)}
+  to{transform:translateX(calc(100vw + 180px)) translateY(0)}
+}
+
+/* MAIN CONTENT */
+.grid-page{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:1000px;
+  margin:auto;
+  padding:25px 16px 40px;
+}
+
+.grid-hero{text-align:center;padding:25px 10px}
+.grid-hero h1{
+  font-size:clamp(27px,5vw,42px);
+  margin-bottom:12px;
+  background:linear-gradient(90deg,#fff,#ffe0f5,#e8d5ff);
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+  text-shadow:0 3px 15px rgba(0,0,0,.15);
+}
+.grid-hero p{
+  color:#fff;
+  line-height:1.7;
+  max-width:650px;
+  margin:auto;
+  text-shadow:0 2px 5px rgba(0,0,0,.3);
+}
+
+.grid-box{
+  background:rgba(17,20,43,.91);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:18px;
+  padding:22px;
+  margin:20px 0;
+  box-shadow:0 10px 30px rgba(0,0,0,.22);
+  backdrop-filter:blur(8px);
+}
+.grid-box h2{
+  text-align:center;
+  font-size:21px;
+  margin:5px 0 18px;
+}
+.upload-area{
+  display:block;
+  border:2px dashed #c084fc;
+  border-radius:15px;
+  padding:30px 15px;
+  text-align:center;
+  background:#242239;
+  cursor:pointer;
+}
+.upload-area .upload-icon{
+  font-size:42px;
+  display:block;
+  margin-bottom:10px;
+}
+.upload-area strong{display:block;color:#fff;font-size:17px}
+.upload-area small{display:block;color:#c5b9df;margin-top:8px}
+.upload-area input{display:none}
+.file-name{
+  color:#d8b4fe;
+  text-align:center;
+  margin:12px 0;
+  font-size:13px;
+  overflow-wrap:anywhere;
+}
+.layout-options{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin:20px 0;
+}
+.layout-btn{
+  border:1px solid #655b83;
+  background:#252239;
+  color:white;
+  padding:13px 5px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.layout-btn.active{
+  background:linear-gradient(135deg,#a855f7,#ec4899);
+  border-color:transparent;
+}
+.preview-area{
+  width:100%;
+  max-width:440px;
+  margin:20px auto;
+  padding:5px;
+  background:#0b0b14;
+  border-radius:12px;
+}
+.preview-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  overflow:hidden;
+}
+.preview-grid img{
+  display:block;
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+}
+.placeholder{
+  text-align:center;
+  padding:60px 10px;
+  color:#aaa4c4;
+  grid-column:1/-1;
+}
+.grid-button{
+  width:100%;
+  border:none;
+  border-radius:11px;
+  padding:15px;
+  background:linear-gradient(135deg,#a855f7,#ec4899);
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:10px;
+}
+.grid-button:disabled{opacity:.5;cursor:not-allowed}
+.status{
+  text-align:center;
+  color:#e9d5ff;
+  min-height:22px;
+  margin:15px 0;
+}
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.tile-card{
+  background:#252239;
+  border-radius:12px;
+  padding:8px;
+  text-align:center;
+  min-width:0;
+}
+.tile-card img{display:block;width:100%;border-radius:7px}
+.tile-card button{
+  border:none;
+  width:100%;
+  padding:9px 3px;
+  margin-top:8px;
+  background:#9333ea;
+  color:white;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:12px;
+}
+.grid-info{color:#ddd8ee;line-height:1.8}
+.grid-info h2{color:#fff;text-align:left}
+.grid-info details{border-bottom:1px solid #39344f;padding:13px 0}
+.grid-info summary{cursor:pointer;color:#e9d5ff;font-weight:bold}
+.grid-info details p{color:#ddd8ee;line-height:1.7}
+
+/* SOCIAL LINKS */
+.social-section{
+  text-align:center;
+  padding:22px 12px;
+}
+.social-section h2{margin:0 0 18px;font-size:22px}
+.social-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:14px;
+}
+.social-link{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:#fff;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:13px;
+  padding:12px 17px;
+  min-width:190px;
+  transition:.25s;
+}
+.social-link:hover{
+  transform:translateY(-4px);
+  background:rgba(255,255,255,.22);
+}
+.social-link svg{width:32px;height:32px;flex-shrink:0}
+.social-link span{text-align:left;font-weight:bold}
+.social-link small{
+  display:block;
+  font-size:12px;
+  color:#e5e7eb;
+  font-weight:normal;
+  margin-top:3px;
+}
+
+/* ALL TOOLS FOOTER */
+.tools-footer{
+  margin-top:25px;
+  padding:22px 16px;
+  text-align:center;
+  background:rgba(12,15,35,.92);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:18px;
+}
+.tools-footer h2{margin:0 0 8px;font-size:22px}
+.tools-footer p{color:#c9c5da;font-size:14px}
+.tool-links{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+.tool-links a{
+  display:block;
+  text-decoration:none;
+  color:#fff;
+  background:linear-gradient(135deg,#30234f,#48265e);
+  border:1px solid #72518c;
+  padding:12px 6px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:bold;
+  transition:.2s;
+}
+.tool-links a:hover{
+  background:linear-gradient(135deg,#a855f7,#ec4899);
+  transform:translateY(-3px);
+}
+.footer-brand{
+  margin-top:22px;
+  color:#c9c5da;
+  font-size:13px;
+}
+.footer-brand strong{color:#fff}
+
+@media(max-width:600px){
+  .grid-page{padding:12px 10px 30px}
+  .grid-box{padding:15px;border-radius:14px}
+  .layout-options{grid-template-columns:repeat(2,1fr)}
+  .result-grid{gap:7px}
+  .tile-card{padding:5px}
+  .tile-card button{font-size:11px}
+  .tool-links{grid-template-columns:repeat(2,1fr)}
+  .social-link{min-width: min(100%,220px)}
+  .airplane{opacity:.65}
+}
+@media(prefers-reduced-motion:reduce){
+  .airplane{animation:none;display:none}
+  *{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SKY CLOUDS -->
+<div class="sky-cloud cloud-one" aria-hidden="true"></div>
+<div class="sky-cloud cloud-two" aria-hidden="true"></div>
+<div class="sky-cloud cloud-three" aria-hidden="true"></div>
+
+<!-- FLYING AIRPLANES -->
+<div class="airplane plane-one" aria-hidden="true">
+  <svg viewBox="0 0 120 60" fill="white">
+    <path d="M5 31 L48 25 L75 3 Q80 0 82 5 L72 25 L108 29 Q116 31 108 34 L72 38 L82 55 Q80 60 75 56 L48 37 L5 34 Q0 33 5 31Z"/>
+  </svg>
+</div>
+<div class="airplane plane-two" aria-hidden="true">
+  <svg viewBox="0 0 120 60" fill="white">
+    <path d="M5 31 L48 25 L75 3 Q80 0 82 5 L72 25 L108 29 Q116 31 108 34 L72 38 L82 55 Q80 60 75 56 L48 37 L5 34 Q0 33 5 31Z"/>
+  </svg>
+</div>
+<div class="airplane plane-three" aria-hidden="true">
+  <svg viewBox="0 0 120 60" fill="white">
+    <path d="M5 31 L48 25 L75 3 Q80 0 82 5 L72 25 L108 29 Q116 31 108 34 L72 38 L82 55 Q80 60 75 56 L48 37 L5 34 Q0 33 5 31Z"/>
+  </svg>
+</div>
+<div class="airplane plane-four" aria-hidden="true">
+  <svg viewBox="0 0 120 60" fill="white">
+    <path d="M5 31 L48 25 L75 3 Q80 0 82 5 L72 25 L108 29 Q116 31 108 34 L72 38 L82 55 Q80 60 75 56 L48 37 L5 34 Q0 33 5 31Z"/>
+  </svg>
+</div>
+
+<main class="grid-page">
+
+  <header class="grid-hero">
+    <h1>Instagram Grid Maker</h1>
+    <p>
+      Turn one photo into a beautiful Instagram photo grid.
+      Split your image into multiple tiles and download them individually.
+    </p>
+  </header>
+
+  <section class="grid-box">
+    <h2>📸 Upload Your Photo</h2>
+
+    <label class="upload-area" for="gridFile">
+      <span class="upload-icon">🖼️</span>
+      <strong>Choose Photo From Your Device</strong>
+      <small>JPG, PNG or WebP · Maximum 20 MB</small>
+      <input type="file" id="gridFile" accept="image/jpeg,image/png,image/webp">
+    </label>
+
+    <div class="file-name" id="fileName">No photo selected</div>
+
+    <h2>Choose Your Grid Layout</h2>
+    <div class="layout-options">
+      <button class="layout-btn active" data-rows="3" data-cols="3">3 × 3</button>
+      <button class="layout-btn" data-rows="2" data-cols="3">3 × 2</button>
+      <button class="layout-btn" data-rows="1" data-cols="3">3 × 1</button>
+      <button class="layout-btn" data-rows="4" data-cols="3">3 × 4</button>
+    </div>
+
+    <h2>Live Photo Preview</h2>
+    <div class="preview-area">
+      <div class="preview-grid" id="previewGrid">
+        <div class="placeholder">Upload a photo to see your grid preview.</div>
+      </div>
+    </div>
+
+    <p class="status" id="status"></p>
+
+    <button class="grid-button" id="splitBtn" disabled>
+      ✂️ Split My Photo
+    </button>
+
+    <button class="grid-button" id="downloadAllBtn" style="display:none;">
+      📥 Download All Photos
+    </button>
+  </section>
+
+  <section class="grid-box" id="resultsSection" style="display:none;">
+    <h2>🎉 Your Grid Photos</h2>
+    <p style="text-align:center;color:#bbb;">Download each photo separately.</p>
+    <div class="result-grid" id="resultGrid"></div>
+  </section>
+
+  <section class="grid-box grid-info">
+    <h2>How to Use Instagram Grid Maker?</h2>
+    <ol>
+      <li>Upload a photo from your device.</li>
+      <li>Choose your preferred grid layout.</li>
+      <li>Check the live photo preview.</li>
+      <li>Click Split My Photo.</li>
+      <li>Download your individual photo tiles.</li>
+    </ol>
+  </section>
+
+  <section class="grid-box grid-info">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>Is Instagram Grid Maker free?</summary>
+      <p>Yes, you can use this photo grid splitter for free.</p>
+    </details>
+    <details>
+      <summary>Can I create a 3x3 Instagram grid?</summary>
+      <p>Yes, the 3x3 layout splits your image into nine separate tiles.</p>
+    </details>
+    <details>
+      <summary>Can I download each tile separately?</summary>
+      <p>Yes, every generated tile has its own download button.</p>
+    </details>
+    <details>
+      <summary>Are my photos uploaded to a server?</summary>
+      <p>No. Your photo is processed locally in your browser.</p>
+    </details>
+  </section>
+
+  <!-- INSTAGRAM AND YOUTUBE LINKS -->
+  <section class="grid-box social-section">
+    <h2>Follow Insta Vibez ❤️</h2>
+    <div class="social-links">
+
+      <a class="social-link" href="https://www.instagram.com/instavibez.in/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 48 48" aria-label="Instagram logo">
+          <defs>
+            <linearGradient id="instaGradient" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0%" stop-color="#ffdc80"/>
+              <stop offset="35%" stop-color="#fcaf45"/>
+              <stop offset="65%" stop-color="#e1306c"/>
+              <stop offset="100%" stop-color="#833ab4"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="42" height="42" rx="12" fill="url(#instaGradient)"/>
+          <rect x="12" y="12" width="24" height="24" rx="7" fill="none" stroke="white" stroke-width="3"/>
+          <circle cx="24" cy="24" r="6" fill="none" stroke="white" stroke-width="3"/>
+          <circle cx="32" cy="16" r="2" fill="white"/>
+        </svg>
+        <span>Instagram<small>@instavibez.in</small></span>
+      </a>
+
+      <a class="social-link" href="https://www.youtube.com/@instavibezin" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 48 48" aria-label="YouTube logo">
+          <rect x="3" y="9" width="42" height="30" rx="9" fill="#ff0033"/>
+          <path d="M20 16 L33 24 L20 32 Z" fill="white"/>
+        </svg>
+        <span>YouTube<small>@instavibezin</small></span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ALL INSTA VIBEZ TOOLS -->
+  <footer class="tools-footer">
+    <h2>Explore More Insta Vibez Tools</h2>
+    <p>Make your Instagram profile more stylish with our free tools.</p>
+
+    <nav class="tool-links" aria-label="Insta Vibez tools">
+      <a href="index.html">🏠 Home</a>
+      <a href="bio.html">✨ Bio Generator</a>
+      <a href="username.html">👤 Username Generator</a>
+      <a href="fonts.html">🔤 Stylish Fonts</a>
+      <a href="captions.html">💬 Captions</a>
+      <a href="hashtag.html">#️⃣ Hashtag Generator</a>
+      <a href="emoji-fusion.html">😀 Emoji Fusion</a>
+      <a href="profile-studio.html">🎨 Profile Studio</a>
+      <a href="guide.html">📖 Instagram Guide</a>
+      <a href="grid-maker.html">📸 Grid Maker</a>
+    </nav>
+
+    <div class="footer-brand">
+      Made with ❤️ by <strong>Insta Vibez</strong>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+const fileInput = document.getElementById("gridFile");
+const fileName = document.getElementById("fileName");
+const previewGrid = document.getElementById("previewGrid");
+const statusText = document.getElementById("status");
+const splitBtn = document.getElementById("splitBtn");
+const downloadAllBtn = document.getElementById("downloadAllBtn");
+const resultGrid = document.getElementById("resultGrid");
+const resultsSection = document.getElementById("resultsSection");
+
+let originalImage = null;
+let selectedRows = 3;
+let selectedCols = 3;
+let generatedTiles = [];
+
+document.querySelectorAll(".layout-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".layout-btn").forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    selectedRows = Number(button.dataset.rows);
+    selectedCols = Number(button.dataset.cols);
+
+    generatedTiles = [];
+    resultGrid.innerHTML = "";
+    resultsSection.style.display = "none";
+    downloadAllBtn.style.display = "none";
+
+    updatePreview();
+  });
+});
+
+fileInput.addEventListener("change", event => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    statusText.textContent = "Please select a valid image.";
+    return;
+  }
+
+  if (file.size > 20 * 1024 * 1024) {
+    statusText.textContent = "Please choose an image smaller than 20 MB.";
+    return;
+  }
+
+  const imageURL = URL.createObjectURL(file);
+  const image = new Image();
+
+  image.onload = () => {
+    if (originalImage && originalImage.src.startsWith("blob:")) {
+      URL.revokeObjectURL(originalImage.src);
+    }
+
+    originalImage = image;
+    fileName.textContent = file.name;
+    statusText.textContent = "Photo loaded successfully!";
+    splitBtn.disabled = false;
+
+    generatedTiles = [];
+    resultGrid.innerHTML = "";
+    resultsSection.style.display = "none";
+    downloadAllBtn.style.display = "none";
+
+    updatePreview();
+  };
+
+  image.onerror = () => {
+    URL.revokeObjectURL(imageURL);
+    statusText.textContent = "Unable to open this image.";
+  };
+
+  image.src = imageURL;
+});
+
+function createTile(row, col) {
+  const tileWidth = Math.floor(originalImage.naturalWidth / selectedCols);
+  const tileHeight = Math.floor(originalImage.naturalHeight / selectedRows);
+
+  const width = col === selectedCols - 1
+    ? originalImage.naturalWidth - col * tileWidth
+    : tileWidth;
+
+  const height = row === selectedRows - 1
+    ? originalImage.naturalHeight - row * tileHeight
+    : tileHeight;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+
+  const context = canvas.getContext("2d");
+
+  context.drawImage(
+    originalImage,
+    col * tileWidth,
+    row * tileHeight,
+    width,
+    height,
+    0,
+    0,
+    width,
+    height
+  );
+
+  return canvas;
+}
+
+function updatePreview() {
+  if (!originalImage) return;
+
+  previewGrid.innerHTML = "";
+  previewGrid.style.gridTemplateColumns = `repeat(${selectedCols},1fr)`;
+
+  for (let row = 0; row < selectedRows; row++) {
+    for (let col = 0; col < selectedCols; col++) {
+      const image = document.createElement("img");
+      image.src = createTile(row, col).toDataURL("image/jpeg", 0.92);
+      image.alt = `Grid preview tile ${row * selectedCols + col + 1}`;
+      previewGrid.appendChild(image);
+    }
+  }
+}
+
+splitBtn.addEventListener("click", () => {
+  if (!originalImage) {
+    statusText.textContent = "Please upload a photo first.";
+    return;
+  }
+
+  generatedTiles = [];
+  resultGrid.innerHTML = "";
+
+  let tileNumber = 0;
+
+  for (let row = 0; row < selectedRows; row++) {
+    for (let col = 0; col < selectedCols; col++) {
+      tileNumber++;
+
+      const canvas = createTile(row, col);
+      const dataURL = canvas.toDataURL("image/jpeg", 0.95);
+
+      generatedTiles.push(dataURL);
+
+      const card = document.createElement("div");
+      card.className = "tile-card";
+
+      const image = document.createElement("img");
+      image.src = dataURL;
+      image.alt = `Instagram grid tile ${tileNumber}`;
+
+      const button = document.createElement("button");
+      button.textContent = `⬇ Download ${tileNumber}`;
+
+      button.addEventListener("click", () => {
+        downloadTile(dataURL, tileNumber);
+      });
+
+      card.appendChild(image);
+      card.appendChild(button);
+      resultGrid.appendChild(card);
+    }
+  }
+
+  resultsSection.style.display = "block";
+  downloadAllBtn.style.display = "block";
+  statusText.textContent = `${generatedTiles.length} photo tiles created successfully!`;
+
+  resultsSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+function downloadTile(dataURL, number) {
+  const link = document.createElement("a");
+  link.href = dataURL;
+  link.download = `insta-vibez-grid-${number}.jpg`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+downloadAllBtn.addEventListener("click", () => {
+  generatedTiles.forEach((tile, index) => {
+    setTimeout(() => {
+      downloadTile(tile, index + 1);
+    }, index * 400);
+  });
+});
+</script>
+
+</body>
+</html>
