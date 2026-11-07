@@ -1,12 +1,9 @@
- 
- 
+
 /* =================================
    InstaVibez - Main JavaScript
 ================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
-
-   
 
   // Automatic Copyright Year
   const currentYear = document.getElementById("currentYear");
@@ -15,42 +12,82 @@ document.addEventListener("DOMContentLoaded", function () {
     currentYear.textContent = new Date().getFullYear();
   }
 
-  // Live Tool Search + No Results
-  const searchInput = document.getElementById("toolSearch");
-  const clearButton = document.getElementById("clearToolSearch");
-  const noResults = document.getElementById("noToolResults");
+  // Feature Carousel
+  const track = document.querySelector(".tools-track");
 
-  if (searchInput && clearButton && noResults) {
+  if (track) {
+    const originalCards = Array.from(
+      track.querySelectorAll(":scope > .tool-card")
+    );
 
-    const toolCards = document.querySelectorAll(".tool-card");
+    if (originalCards.length > 0) {
 
-    function searchTools() {
-      const searchText = searchInput.value.toLowerCase().trim();
-      let visibleCount = 0;
+      // Original cards group
+      const originalGroup = document.createElement("div");
+      originalGroup.className = "tools-group";
 
-      toolCards.forEach(function (card) {
-        const matches = card.textContent.toLowerCase().includes(searchText);
-
-        card.style.display = matches ? "" : "none";
-
-        if (matches) {
-          visibleCount++;
-        }
+      originalCards.forEach(function (card) {
+        originalGroup.appendChild(card);
       });
 
-      noResults.style.display =
-        visibleCount === 0 ? "block" : "none";
+      track.appendChild(originalGroup);
+
+      // Duplicate group for seamless movement
+      const duplicateGroup = originalGroup.cloneNode(true);
+      duplicateGroup.className = "tools-group";
+      duplicateGroup.setAttribute("aria-hidden", "true");
+
+      duplicateGroup.querySelectorAll("a").forEach(function (link) {
+        link.setAttribute("tabindex", "-1");
+      });
+
+      track.appendChild(duplicateGroup);
+
+      // Live Tool Search
+      const searchInput = document.getElementById("toolSearch");
+      const clearButton = document.getElementById("clearToolSearch");
+      const noResults = document.getElementById("noToolResults");
+
+      if (searchInput && clearButton && noResults) {
+
+        const duplicateCards = Array.from(
+          duplicateGroup.querySelectorAll(".tool-card")
+        );
+
+        function searchTools() {
+          const searchText = searchInput.value.toLowerCase().trim();
+          let visibleCount = 0;
+
+          originalCards.forEach(function (card, index) {
+            const matches = card.textContent
+              .toLowerCase()
+              .includes(searchText);
+
+            card.style.display = matches ? "" : "none";
+            duplicateCards[index].style.display = matches ? "" : "none";
+
+            if (matches) {
+              visibleCount++;
+            }
+          });
+
+          noResults.style.display =
+            visibleCount === 0 ? "block" : "none";
+
+          track.classList.toggle("is-searching", searchText !== "");
+        }
+
+        searchInput.addEventListener("input", searchTools);
+
+        clearButton.addEventListener("click", function () {
+          searchInput.value = "";
+          searchTools();
+          searchInput.focus();
+        });
+
+        searchTools();
+      }
     }
-
-    searchInput.addEventListener("input", searchTools);
-
-    clearButton.addEventListener("click", function () {
-      searchInput.value = "";
-      searchTools();
-      searchInput.focus();
-    });
-
-    searchTools();
   }
 
 });

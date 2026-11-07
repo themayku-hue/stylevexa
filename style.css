@@ -1060,13 +1060,72 @@ button {
 }
 
 
-/* Rain Animation - Navigation Box Only */
+ /* =================================
+   MOBILE MENU + RAIN BACKGROUND
+================================= */
+
+@media (max-width: 768px) {
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    overflow: visible;
+    background: #10101c;
+  }
+
+  .header .nav {
+    position: relative;
+    min-height: 68px;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: relative;
+    z-index: 10002;
+    font-size: 28px;
+  }
+
+  .navbar {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 75vh;
+    overflow-y: auto;
+    padding: 15px;
+    background: #151523;
+    border: 1px solid rgba(168,85,247,.4);
+    border-radius: 0 0 14px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    z-index: 10001;
+  }
+
+  .navbar.active {
+    display: flex;
+  }
+
+  .navbar a {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    text-align: left;
+    border-radius: 8px;
+    background: rgba(168,85,247,.08);
+  }
+}
+
+/* RAIN ANIMATION */
 
 .header {
-  position: relative;
-  overflow: hidden;
+  position: sticky;
+  top: 0;
   isolation: isolate;
-  background: #10101c;
 }
 
 .header::before {
@@ -1075,27 +1134,200 @@ button {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-
-  background-image:
-    repeating-linear-gradient(
-      105deg,
-      transparent 0px,
-      transparent 18px,
-      rgba(160, 190, 255, 0.45) 19px,
-      transparent 20px,
-      transparent 35px
-    );
-
+  background-image: repeating-linear-gradient(
+    105deg,
+    transparent 0 18px,
+    rgba(160,190,255,.35) 19px,
+    transparent 20px 35px
+  );
   background-size: 45px 100px;
-  animation: rainFall 0.7s linear infinite;
+  animation: rainFall 1s linear infinite;
 }
 
 @keyframes rainFall {
-  from {
-    background-position: 0 0;
+  from { background-position: 0 0; }
+  to { background-position: -20px 100px; }
+}
+
+ 
+/* =====================================
+   INSTA VIBEZ FEATURE CAROUSEL
+===================================== */
+
+.tools-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 30px 0;
+  border-radius: 20px;
+  background: #10101c;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.12);
+}
+
+/* Rain effect */
+
+.tools-carousel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    105deg,
+    transparent 0 18px,
+    rgba(160, 190, 255, 0.35) 19px,
+    transparent 20px 35px
+  );
+  background-size: 45px 100px;
+  animation: featureRain 1s linear infinite;
+}
+
+@keyframes featureRain {
+  from { background-position: 0 0; }
+  to { background-position: -20px 100px; }
+}
+
+/* Sliding track */
+
+.tools-track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  padding: 0;
+  animation: featureSlide 45s linear infinite;
+}
+
+.tools-group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 18px;
+  padding: 0 9px;
+}
+
+.tools-track:hover {
+  animation-play-state: paused;
+}
+
+.tools-track.is-searching {
+  animation-play-state: paused;
+}
+
+/* Feature cards */
+
+.tools-track .tool-card {
+  flex: 0 0 340px;
+  width: 340px;
+  min-height: 220px;
+  box-sizing: border-box;
+  padding: 22px;
+  background: rgba(27, 27, 43, 0.94);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 16px;
+}
+
+/* Continuous movement */
+
+@keyframes featureSlide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .tools-carousel {
+    padding: 22px 0;
+    border-radius: 14px;
   }
-  to {
-    background-position: -20px 100px;
+
+  .tools-group {
+    gap: 12px;
+    padding: 0 6px;
+  }
+
+  .tools-track .tool-card {
+    flex-basis: 44vw;
+    width: 44vw;
+    min-height: 220px;
+    padding: 14px;
+  }
+
+  .tools-track .tool-card h3 {
+    font-size: 17px;
+  }
+
+  .tools-track .tool-card p {
+    font-size: 13px;
   }
 }
 
+/* Tablet */
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .tools-track .tool-card {
+    flex-basis: 300px;
+    width: 300px;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .tools-track,
+  .tools-carousel::before {
+    animation: none;
+  }
+}
+.tools-carousel::before {
+  z-index: 0;
+}
+
+.tools-track {
+  position: relative;
+  z-index: 1;
+}
+/* Footer All Links */
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 20px;
+  margin: 25px auto;
+}
+
+.footer-links a {
+  color: #b8b8c9;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ec4899;
+}
+
+/* Back To Top Arrow */
+
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 10px auto 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.35);
+  transition: 0.3s;
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+}

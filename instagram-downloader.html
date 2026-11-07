@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +21,9 @@ body {
   color: #ffffff;
   font-family: Arial, sans-serif;
   min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
 }
 
 header {
@@ -201,12 +204,10 @@ footer h3 {
     font-size: 26px;
   }
 }
+
 /* FULL MOON SPACE BACKGROUND */
 
 body {
-  position: relative;
-  isolation: isolate;
-  overflow-x: hidden;
   background: #050510;
 }
 
@@ -416,6 +417,9 @@ async function downloadReel() {
   button.textContent = "Processing...";
   message.textContent = "Please wait, your Reel is being prepared...";
 
+  let objectURL = null;
+  let video = null;
+
   try {
 
     const apiURL =
@@ -428,36 +432,89 @@ async function downloadReel() {
       throw new Error("Download service could not process this Reel.");
     }
 
+    const contentType =
+      (response.headers.get("content-type") || "").toLowerCase();
+
+    if (
+      contentType.includes("application/json") ||
+      contentType.includes("text/html") ||
+      contentType.includes("text/plain")
+    ) {
+      throw new Error("The service did not return a video. Please try again later.");
+    }
+
     const blob = await response.blob();
 
     if (!blob.size) {
       throw new Error("No video was received.");
     }
 
-    const contentType =
-      response.headers.get("content-type") || "";
+    const videoType = contentType.startsWith("video/")
+      ? contentType
+      : blob.type;
+
+    if (!videoType || !videoType.startsWith("video/")) {
+      throw new Error("The server did not provide a valid video file.");
+    }
 
     const videoBlob = new Blob([blob], {
-      type: contentType.includes("video/")
-        ? contentType
-        : "video/mp4"
+      type: videoType
     });
 
-    const objectURL = URL.createObjectURL(videoBlob);
+    objectURL = URL.createObjectURL(videoBlob);
+
+    video = document.createElement("video");
+    video.preload = "metadata";
+    video.src = objectURL;
+
+    await new Promise((resolve, reject) => {
+
+      const timeout = setTimeout(() => {
+        reject(new Error("Video check timed out. Please try again."));
+      }, 20000);
+
+      video.onloadedmetadata = () => {
+        clearTimeout(timeout);
+
+        if (
+          Number.isFinite(video.duration) &&
+          video.duration > 0 &&
+          video.videoWidth > 0 &&
+          video.videoHeight > 0
+        ) {
+          resolve();
+        } else {
+          reject(new Error("Video duration is zero or invalid."));
+        }
+      };
+
+      video.onerror = () => {
+        clearTimeout(timeout);
+        reject(new Error("The received file is not a playable video."));
+      };
+    });
+
+    const duration = video.duration;
+
+    const extension = videoType.includes("webm")
+      ? "webm"
+      : videoType.includes("quicktime")
+      ? "mov"
+      : "mp4";
+
     const a = document.createElement("a");
 
     a.href = objectURL;
-    a.download = "insta-vibez-reel.mp4";
+    a.download = "insta-vibez-reel." + extension;
 
     document.body.appendChild(a);
     a.click();
     a.remove();
 
-    setTimeout(() => {
-      URL.revokeObjectURL(objectURL);
-    }, 60000);
-
-    message.textContent = "Your Reel download has started!";
+    message.textContent =
+      "Video checked successfully! Duration: " +
+      Math.floor(duration) +
+      " seconds. Download started.";
 
   } catch (error) {
 
@@ -465,6 +522,19 @@ async function downloadReel() {
       error.message || "Download failed. Please try again.";
 
   } finally {
+
+    if (video) {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      video.remove();
+    }
+
+    if (objectURL) {
+      setTimeout(() => {
+        URL.revokeObjectURL(objectURL);
+      }, 60000);
+    }
 
     button.disabled = false;
     button.textContent = "Download Reel";
@@ -480,4 +550,3 @@ function clearLink() {
 
 </body>
 </html>
-```
